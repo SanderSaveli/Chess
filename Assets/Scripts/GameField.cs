@@ -1,5 +1,6 @@
 using CellField2D;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -11,6 +12,8 @@ public class GameField : MonoBehaviour
     public RectangleField<IReferedCell> cellField;
 
     private Dictionary<Vector2Int, ChessCell> cellViews = new();
+
+    private List<Figure> figures = new List<Figure>();
 
     private void Start()
     {
@@ -72,6 +75,24 @@ public class GameField : MonoBehaviour
         cell.cell.changeOwner(0);
     }
 
+    public List<Vector2Int> GetAtackedCells(FigureColor color)
+    {
+        HashSet<Vector2Int> atckedCells = new HashSet<Vector2Int>();
+        foreach(var figure in figures)
+        {
+            if (figure._color != color)
+            {
+                continue;
+            }
+            List<IReferedCell> figureMoves = figure.GetMoves(this); 
+            foreach(var move in figureMoves)
+            {
+                atckedCells.Add(move.coordinates);
+            }
+        }
+        return atckedCells.ToList();
+    }
+
     private void InstantField()
     {
         int childCount = fieldLayer.transform.childCount;
@@ -97,6 +118,7 @@ public class GameField : MonoBehaviour
                 Vector2Int coordinate = (Vector2Int)fieldLayer.WorldToCell(worldPos);
                 cellField.TryGetCell(coordinate, out IReferedCell ownedCell);
                 PlaceFigure(figure, ownedCell);
+                figures.Add(figure);
             }
         }
     }

@@ -25,6 +25,10 @@ public class Figure : MonoBehaviour
 
     public virtual void StartDrag()
     {
+        if(_color == FigureColor.Black) 
+        {
+            return;
+        }
         isMovable = true;
         SelectFigure();
     }
@@ -66,6 +70,10 @@ public class Figure : MonoBehaviour
 
     public virtual void EndDrag()
     {
+        if (_color == FigureColor.Black)
+        {
+            return;
+        }
         isMovable = false;
         Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
         RaycastHit[] hits = Physics.RaycastAll(ray.origin, ray.direction);
