@@ -311,7 +311,8 @@ MonoBehaviour:
   - {fileID: 1055496462}
   - {fileID: 1611856449}
   - {fileID: 1651913751}
-  _cards: 010000000400000002000000
+  - {fileID: 318438520}
+  _cards: 01000000040000000200000006000000
 --- !u!1001 &191440835
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1355,7 +1356,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9f5ad5677666447ab588a7672bcd78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pointerController: {fileID: 0}
 --- !u!114 &1538527669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1373,9 +1373,6 @@ MonoBehaviour:
   _figureLayerMask:
     serializedVersion: 2
     m_Bits: 8
-  _cardLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!114 &1538527670
 MonoBehaviour:
   m_ObjectHideFlags: 0
