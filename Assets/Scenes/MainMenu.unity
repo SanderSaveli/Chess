@@ -1060,7 +1060,11 @@ Canvas:
   m_GameObject: {fileID: 356703479}
   m_Enabled: 1
   serializedVersion: 3
+<<<<<<< Updated upstream
   m_RenderMode: 0
+=======
+  m_RenderMode: 1
+>>>>>>> Stashed changes
   m_Camera: {fileID: 330585545}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -1534,6 +1538,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+<<<<<<< Updated upstream
+=======
+      - m_Target: {fileID: 392582284}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+>>>>>>> Stashed changes
 --- !u!114 &579526290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2930,7 +2949,11 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1592119163}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+<<<<<<< Updated upstream
   m_LocalPosition: {x: 0, y: 0, z: 0}
+=======
+  m_LocalPosition: {x: 0, y: 0, z: 341}
+>>>>>>> Stashed changes
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2939,7 +2962,11 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
+<<<<<<< Updated upstream
   m_AnchoredPosition: {x: 375, y: -385}
+=======
+  m_AnchoredPosition: {x: -38, y: -618}
+>>>>>>> Stashed changes
   m_SizeDelta: {x: 466.106, y: 80.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1592119165
@@ -2998,6 +3025,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+<<<<<<< Updated upstream
+=======
+      - m_Target: {fileID: 392582284}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+>>>>>>> Stashed changes
 --- !u!114 &1592119166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3306,7 +3348,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1592119164}
+<<<<<<< Updated upstream
   - {fileID: 1730750941}
+=======
+>>>>>>> Stashed changes
   m_Father: {fileID: 356703480}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -3314,6 +3359,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+<<<<<<< Updated upstream
 --- !u!1 &1730750940
 GameObject:
   m_ObjectHideFlags: 0
@@ -3447,6 +3493,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1730750940}
   m_CullTransparentMesh: 1
+=======
+>>>>>>> Stashed changes
 --- !u!1 &1762082768
 GameObject:
   m_ObjectHideFlags: 0
@@ -3680,7 +3728,11 @@ Transform:
   m_GameObject: {fileID: 1777565854}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< Updated upstream
   m_LocalPosition: {x: 140, y: -55.6, z: 321.4}
+=======
+  m_LocalPosition: {x: -50, y: -52.9, z: 321.4}
+>>>>>>> Stashed changes
   m_LocalScale: {x: 318.6932, y: 187.35338, z: 56.76}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4368,6 +4420,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2002439274}
   m_CullTransparentMesh: 1
+<<<<<<< Updated upstream
 --- !u!1 &2092466711
 GameObject:
   m_ObjectHideFlags: 0
@@ -4502,6 +4555,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2092466711}
   m_CullTransparentMesh: 1
+=======
+>>>>>>> Stashed changes
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
