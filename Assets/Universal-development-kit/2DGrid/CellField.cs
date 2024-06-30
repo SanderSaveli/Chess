@@ -8,7 +8,6 @@ namespace CellField2D
         protected Dictionary<Vector2Int, TCell> _field = new();
 
         #region GetCell
-
         public TCell GetCell(int x, int y) => GetCell(new Vector2Int(x, y));
 
         public TCell GetCell(Vector2Int coordinates) => _field[coordinates];
@@ -24,25 +23,14 @@ namespace CellField2D
             cell = default;
             return false;
         }
-
-
         #endregion
 
         #region FieldContainsCell
-        public bool FieldContainsCell(TCell cell)
-        {
-            return FieldContainsCell(cell.coordinates);
-        }
+        public bool FieldContainsCell(TCell cell) => FieldContainsCell(cell.coordinates);
 
-        public bool FieldContainsCell(int x, int y)
-        {
-            return FieldContainsCell(new Vector2Int(x, y));
-        }
+        public bool FieldContainsCell(int x, int y) => FieldContainsCell(new Vector2Int(x, y));
 
-        public bool FieldContainsCell(Vector2Int coordinates)
-        {
-            return _field.ContainsKey(coordinates);
-        }
+        public bool FieldContainsCell(Vector2Int coordinates) => _field.ContainsKey(coordinates);
         #endregion
 
         #region GetCellNeighbours
@@ -66,15 +54,15 @@ namespace CellField2D
 
             return neighbours;
         }
-
         #endregion
 
         #region InstantCell
         public void InstantCell(TCell cell)
         {
             if (_field.ContainsKey(cell.coordinates))
+            {
                 return;
-
+            }
             _field.Add(cell.coordinates, cell);
         }
         #endregion
@@ -89,8 +77,10 @@ namespace CellField2D
             List<Vector2Int> neighbourOffsets = GetCellNeighboursOffsets(Acoordinates);
             foreach (Vector2Int offset in neighbourOffsets)
             {
-                if (Acoordinates + offset == Bcoordinates)
+                if ((Acoordinates + offset) == Bcoordinates)
+                {
                     return true;
+                }
             }
             return false;
         }
@@ -112,5 +102,3 @@ namespace CellField2D
         protected abstract List<Vector2Int> GetCellNeighboursOffsets(Vector2Int coordinates);
     }
 }
-
-
