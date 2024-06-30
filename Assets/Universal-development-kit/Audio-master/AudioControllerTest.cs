@@ -18,19 +18,12 @@ public class AudioControllerTest : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            musicPlayer.PlayMusicClip("Music1");
+            soundPlayer.PlaySound2D("Win");
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
-            musicPlayer.PlayMusicClip("Music2");
+            soundPlayer.PlaySound2D("FigureTaken");
         }
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            soundPlayer.PlayAudioClip2D("Test1");
-        }
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            soundPlayer.PlayAudioClip2D("Test2");
-        }
+
     }
 }

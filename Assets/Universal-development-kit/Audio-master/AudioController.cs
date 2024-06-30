@@ -212,7 +212,7 @@ namespace UDK.Audio
             return s.Source.isPlaying;
         }
 
-        int ISoundPlayer.PlayAudioClip2D(AudioClip clip, float volumeProportion, bool looped)
+        int ISoundPlayer.PlaySound2D(AudioClip clip, float volumeProportion, bool looped)
         {
             if (volumeProportion > 1)
                 volumeProportion = 1;
@@ -244,15 +244,15 @@ namespace UDK.Audio
             return _audioCodeIndex;
         }
 
-        public int PlayAudioClip2D(string name, float volumeProportion = 1, bool looped = false)
+        public int PlaySound2D(string name, float volumeProportion = 1, bool looped = false)
         {
             AudioClip clip = _soundAudioList.GetClipByName(name);
             if (clip == null)
                 Debug.LogWarning("Audio clip with name " + name + " not found.");
-            return ((ISoundPlayer)this).PlayAudioClip2D(clip, volumeProportion, looped);
+            return ((ISoundPlayer)this).PlaySound2D(clip, volumeProportion, looped);
         }
 
-        int ISoundPlayer.PlayAudioClip3D(AudioClip clip, Vector3 position, float maxSoundDistance, float volumeProportion, bool looped)
+        int ISoundPlayer.PlaySound3D(AudioClip clip, Vector3 position, float maxSoundDistance, float volumeProportion, bool looped)
         {
             if (volumeProportion > 1)
                 volumeProportion = 1;
@@ -295,12 +295,12 @@ namespace UDK.Audio
             return _audioCodeIndex;
         }
 
-        public int PlayAudioClip3D(string name, Vector3 position, float maxSoundDistance, float volumeProportion = 1, bool looped = false)
+        public int PlaySound3D(string name, Vector3 position, float maxSoundDistance, float volumeProportion = 1, bool looped = false)
         {
             AudioClip clip = _soundAudioList.GetClipByName(name);
             if (clip == null)
                 Debug.LogWarning("Audio clip with name " + name + " not found.");
-            return ((ISoundPlayer)this).PlayAudioClip3D(clip, position, maxSoundDistance, volumeProportion, looped);
+            return ((ISoundPlayer)this).PlaySound3D(clip, position, maxSoundDistance, volumeProportion, looped);
         }
 
         void ISoundPlayer.StopPlayingClip(int audioCode)

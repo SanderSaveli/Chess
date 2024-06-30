@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d61d053a6e7a7a34d99d88bb2666e56d, type: 3}
+  m_Name: SoundList
+  m_EditorClassIdentifier: 
+  data:
+  - Name: FigureTaken
+    clip: {fileID: 8300000, guid: d3d66b4fed5c5594b997447cfb765ae9, type: 3}
+  - Name: Win
+    clip: {fileID: 8300000, guid: fa6da59d08ae08545824a0d24b91010d, type: 3}
+  - Name: CellHover
+    clip: {fileID: 8300000, guid: c628d41681b0b7445b5ee0be0ef6d5cd, type: 3}
+  - Name: ButtonClick
+    clip: {fileID: 8300000, guid: 6e499be02afacfe458dfa47e2a68bde9, type: 3}
+  - Name: FigurePlace
+    clip: {fileID: 8300000, guid: 4574414eca570be4c8b906f74d9a5c5b, type: 3}

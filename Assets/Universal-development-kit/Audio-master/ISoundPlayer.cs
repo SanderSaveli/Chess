@@ -11,7 +11,7 @@ namespace UDK.Audio
         /// <param name="volumeProportion">volume in range 1 - 0, when plays its also affected by global volume setting.</param>
         /// <param name="looped">should clip play be looped</param>
         /// <returns> returns code for this sound call to control playback for concrete clip played.</returns>
-        public int PlayAudioClip2D(AudioClip clip, float volumeProportion = 1f, bool looped = false);
+        public int PlaySound2D(AudioClip clip, float volumeProportion = 1f, bool looped = false);
         /// <summary>
         /// plays audio clip if sound enabled.
         /// </summary>
@@ -19,7 +19,7 @@ namespace UDK.Audio
         /// <param name="volumeProportion">volume in range 1 - 0, when plays its also affected by global volume setting.</param>
         /// <param name="looped">should clip play be looped</param>
         /// <returns> returns code for this sound call to control playback for concrete clip played.</returns>
-        public int PlayAudioClip2D(string name, float volumeProportion = 1f, bool looped = false);
+        public int PlaySound2D(string name, float volumeProportion = 1f, bool looped = false);
 
         /// <summary>
         /// Plays audio clip in concrete 3d position
@@ -31,7 +31,7 @@ namespace UDK.Audio
         /// <param name="looped">should clip play be looped</param>
         /// <returns></returns>
         /// 
-        public int PlayAudioClip3D(AudioClip clip, Vector3 position, float maxSoundDistance, float volumeProportion = 1f, bool looped = false);
+        public int PlaySound3D(AudioClip clip, Vector3 position, float maxSoundDistance, float volumeProportion = 1f, bool looped = false);
 
         /// <summary>
         /// Plays audio clip in concrete 3d position
@@ -43,7 +43,7 @@ namespace UDK.Audio
         /// <param name="looped">should clip play be looped</param>
         /// <returns></returns>
         /// 
-        public int PlayAudioClip3D(string name, Vector3 position, float maxSoundDistance, float volumeProportion = 1f, bool looped = false);
+        public int PlaySound3D(string name, Vector3 position, float maxSoundDistance, float volumeProportion = 1f, bool looped = false);
         /// <summary>
         /// stop playing concrete clip.
         /// </summary>
