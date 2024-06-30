@@ -11,10 +11,13 @@ namespace OFG.Chess
         [SerializeField] private Transform levelButtonsViewParent;
         [SerializeField] private GameObject levelButtonViewPreffab;
         private SceneLoader loader;
+        List<LevelButtonView> buttonViews; 
 
         private void Start()
         {
             loader = SceneLoader.instance;
+            buttonViews = CreateViews(SceneManager.sceneCountInBuildSettings - NotLevelsSceneCount);
+
             ActivateViews();
         }
         public void LoadLevel(int index)
@@ -22,10 +25,8 @@ namespace OFG.Chess
             loader.LoadScene("Level" + index, 1);
         }
 
-        private void ActivateViews()
+        public void ActivateViews()
         {
-            List<LevelButtonView> buttonViews = CreateViews(SceneManager.sceneCountInBuildSettings - NotLevelsSceneCount);
-
             int openLevelCount = GetLastOpenLevel();
             for(int i = 1; i <= openLevelCount; i++)
             {
