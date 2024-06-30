@@ -16,6 +16,12 @@ namespace UDK.ViewElements
         private Vector3 _targetScale;
         private RectTransform _rectTransform;
 
+        private void OnDisable()
+        {
+            _rectTransform.localScale = _originalScale;
+            _targetScale = _originalScale;
+        }
+
         void Start()
         {
             _rectTransform = GetComponent<RectTransform>();

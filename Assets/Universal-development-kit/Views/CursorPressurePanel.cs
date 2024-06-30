@@ -29,7 +29,6 @@ namespace UDK.ViewElements
                 _lastHoverPos = screenPosition;
                 Vector3 rotationVec = _mainCamera.WorldToScreenPoint(transform.position) - screenPosition;
                 rotationVec.z = 0;
-                Debug.Log(transform.position);
                 rotationVec = Vector3.Normalize(rotationVec) * depth;
                 transform.rotation = Quaternion.Euler(-rotationVec.y, rotationVec.x, rotationVec.z);
             }
