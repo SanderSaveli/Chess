@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using IUP.Toolkit;
+using UDK.Audio;
 using UnityEngine;
 
 namespace OFG.Chess
@@ -23,7 +24,15 @@ namespace OFG.Chess
 
         public void Init(GameField gameField) => _gameField = gameField;
 
-        public void SelectFigureUpdate()
+        private IMusicPlayer musicPlayer;
+        private ISoundPlayer soundPlayer;
+        private void Awake()
+        {
+            musicPlayer = AudioControllerWrapper.instance.musicPlayer;
+            soundPlayer = AudioControllerWrapper.instance.soundPlayer;
+        }
+
+            public void SelectFigureUpdate()
         {
             ResetPreviousHoveredPosition();
             if (_pointerController.TryGetHoveredFigure(out Figure hoveredFigure, out Vector2Int position2) &&
@@ -88,6 +97,7 @@ namespace OFG.Chess
         {
             UpdateAvailableFigurePositions(cardType);
             SelectAvailablePositions();
+            soundPlayer.PlaySound2D("CellHover");
         }
 
         private void SetCursorSelection(Vector2Int position2)

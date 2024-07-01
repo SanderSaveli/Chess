@@ -23,3 +23,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 6e499be02afacfe458dfa47e2a68bde9, type: 3}
   - Name: FigurePlace
     clip: {fileID: 8300000, guid: 4574414eca570be4c8b906f74d9a5c5b, type: 3}
+  - Name: Lose
+    clip: {fileID: 8300000, guid: 4574414eca570be4c8b906f74d9a5c5b, type: 3}
+  - Name: FigureSelect
+    clip: {fileID: 8300000, guid: 4574414eca570be4c8b906f74d9a5c5b, type: 3}

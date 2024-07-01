@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f9eb00d5834c264c8d2e9ee5c1db96d, type: 3}
+  m_Name: Level8
+  m_EditorClassIdentifier: 
+  _levelPrefab: {fileID: 3175044567177973393, guid: 70051d946b36b964fb42be6810131d90,
+    type: 3}
+  _cardsInHand: 01000000010000000200000003000000
+  _cardsInDeck: 06000000030000000200000006000000

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UDK.Audio;
 using UDK.SceneLoad;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,7 +12,14 @@ namespace OFG.Chess
         [SerializeField] private Transform levelButtonsViewParent;
         [SerializeField] private GameObject levelButtonViewPreffab;
         private SceneLoader loader;
-        List<LevelButtonView> buttonViews; 
+        List<LevelButtonView> buttonViews;
+
+        private IMusicPlayer musicPlayer;
+        private void Awake()
+        {
+            musicPlayer = AudioControllerWrapper.instance.musicPlayer;
+            musicPlayer.PlayMusicClip("MenuTheme");
+        }
 
         private void Start()
         {
@@ -22,7 +30,7 @@ namespace OFG.Chess
         }
         public void LoadLevel(int index)
         {
-            loader.LoadScene("Level" + index, 1);
+            loader.LoadScene("Level" + index, 0);
         }
 
         public void ActivateViews()

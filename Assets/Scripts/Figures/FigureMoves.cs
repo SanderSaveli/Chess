@@ -44,6 +44,44 @@ namespace OFG.Chess
             }
         }
 
+        public static void GetTackCell(
+            ref List<Vector2Int> moves,
+            Vector2Int position,
+            GameField gameField,
+            FigureType figureType,
+            FigureColor figureColor)
+        {
+            switch (figureType)
+            {
+                case FigureType.Pawn:
+                    GetPawnMoves(ref moves, position, gameField, figureColor);
+                    break;
+
+                case FigureType.Knight:
+                    GetKnightMoves(ref moves, position, gameField, figureColor);
+                    break;
+
+                case FigureType.Bishop:
+                    GetBishopMoves(ref moves, position, gameField, figureColor);
+                    break;
+
+                case FigureType.Rook:
+                    GetRookMoves(ref moves, position, gameField, figureColor);
+                    break;
+
+                case FigureType.Queen:
+                    GetQueenMoves(ref moves, position, gameField, figureColor);
+                    break;
+
+                case FigureType.King:
+                    GetKingMoves(ref moves, position, gameField, figureColor);
+                    break;
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(figureType));
+            }
+        }
+
         public static void GetPawnMoves(
             ref List<Vector2Int> moves,
             Vector2Int position,
@@ -98,6 +136,7 @@ namespace OFG.Chess
             AddStraight(ref moves, position, gameField, figureColor);
             AddDiagonal(ref moves, position, gameField, figureColor);
         }
+
 
         public static void GetKingMoves(
             ref List<Vector2Int> moves,
@@ -208,12 +247,181 @@ namespace OFG.Chess
                         moves.Add(checkedPosition);
                         break;
                     }
+                    break;
                 }
                 else
                 {
                     moves.Add(checkedPosition);
                 }
             }
+        }
+        public static void GetAtackCell(
+       ref List<Vector2Int> moves,
+       Vector2Int position,
+       GameField gameField,
+       FigureType figureType,
+       FigureColor figureColor)
+        {
+            switch (figureType)
+            {
+                case FigureType.Pawn:
+                    GetPawnAtack(ref moves, position, gameField, figureColor);
+                    break;
+
+                case FigureType.Knight:
+                    GetKnightAtack(ref moves, position, gameField, figureColor);
+                    break;
+
+                case FigureType.Bishop:
+                    GetBishopAtack(ref moves, position, gameField, figureColor);
+                    break;
+
+                case FigureType.Rook:
+                    GetRookAtack(ref moves, position, gameField, figureColor);
+                    break;
+
+                case FigureType.Queen:
+                    GetQueenAtack(ref moves, position, gameField, figureColor);
+                    break;
+
+                case FigureType.King:
+                    GetKingAtack(ref moves, position, gameField, figureColor);
+                    break;
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(figureType));
+            }
+        }
+
+        public static void GetPawnAtack(
+            ref List<Vector2Int> moves,
+            Vector2Int position,
+            GameField gameField,
+            FigureColor figureColor)
+        {
+            Vector2Int checkedPosition = position + new Vector2Int(1, 1);
+            moves.Add(checkedPosition);
+            checkedPosition = position + new Vector2Int(-1, 1);
+            moves.Add(checkedPosition);
+        }
+
+        public static void GetRookAtack(
+            ref List<Vector2Int> moves,
+            Vector2Int position,
+            GameField gameField,
+            FigureColor figureColor)
+        {
+            AddStraightAtack(ref moves, position, gameField, figureColor);
+        }
+
+        public static void GetBishopAtack(
+            ref List<Vector2Int> moves,
+            Vector2Int position,
+            GameField gameField,
+            FigureColor figureColor)
+        {
+            AddDiagonalAtack(ref moves, position, gameField, figureColor);
+        }
+
+        public static void GetKnightAtack(
+            ref List<Vector2Int> moves,
+            Vector2Int position,
+            GameField gameField,
+            FigureColor figureColor)
+        {
+            AddIfEmptyOrEnemy(ref moves, position, gameField, figureColor, new Vector2Int(2, 1));
+            AddIfEmptyOrEnemy(ref moves, position, gameField, figureColor, new Vector2Int(2, -1));
+            AddIfEmptyOrEnemy(ref moves, position, gameField, figureColor, new Vector2Int(1, 2));
+            AddIfEmptyOrEnemy(ref moves, position, gameField, figureColor, new Vector2Int(1, -2));
+            AddIfEmptyOrEnemy(ref moves, position, gameField, figureColor, new Vector2Int(-1, 2));
+            AddIfEmptyOrEnemy(ref moves, position, gameField, figureColor, new Vector2Int(-1, -2));
+            AddIfEmptyOrEnemy(ref moves, position, gameField, figureColor, new Vector2Int(-2, 1));
+            AddIfEmptyOrEnemy(ref moves, position, gameField, figureColor, new Vector2Int(-2, -1));
+        }
+
+        public static void GetQueenAtack(
+            ref List<Vector2Int> moves,
+            Vector2Int position,
+            GameField gameField,
+            FigureColor figureColor)
+        {
+            AddStraightAtack(ref moves, position, gameField, figureColor);
+            AddDiagonalAtack(ref moves, position, gameField, figureColor);
+        }
+
+
+        public static void GetKingAtack(
+            ref List<Vector2Int> moves,
+            Vector2Int position,
+            GameField gameField,
+            FigureColor figureColor)
+        {
+            AddIfEmpty(ref moves, position, gameField, new Vector2Int(0, 1));
+            AddIfEmpty(ref moves, position, gameField, new Vector2Int(1, 0));
+            AddIfEmpty(ref moves, position, gameField, new Vector2Int(1, 1));
+            AddIfEmpty(ref moves, position, gameField, new Vector2Int(0, -1));
+            AddIfEmpty(ref moves, position, gameField, new Vector2Int(-1, 0));
+            AddIfEmpty(ref moves, position, gameField, new Vector2Int(-1, -1));
+            AddIfEmpty(ref moves, position, gameField, new Vector2Int(-1, 1));
+            AddIfEmpty(ref moves, position, gameField, new Vector2Int(1, -1));
+        }
+
+        public static void AddDirectionAtack(
+            ref List<Vector2Int> moves,
+            Vector2Int position,
+            GameField gameField,
+            FigureColor figureColor,
+            Vector2Int direction)
+        {
+            Vector2Int checkedPosition = position;
+            while (true)
+            {
+                checkedPosition += direction;
+                if (!gameField.InBounds(checkedPosition))
+                {
+                    break;
+                }
+                if (gameField.TryGetFigure(out Figure otherFigure, checkedPosition))
+                {
+                    if (otherFigure.FigureColor != figureColor)
+                    {
+                        moves.Add(checkedPosition);
+                    }
+                    else
+                    {
+                        moves.Add(checkedPosition);
+                        break;
+                    }
+                }
+                else
+                {
+                    moves.Add(checkedPosition);
+                }
+            }
+        }
+
+        public static void AddStraightAtack(
+    ref List<Vector2Int> moves,
+    Vector2Int position,
+    GameField gameField,
+    FigureColor figureColor)
+        {
+            AddDirectionAtack(ref moves, position, gameField, figureColor, new Vector2Int(0, 1));
+            AddDirectionAtack(ref moves, position, gameField, figureColor, new Vector2Int(0, -1));
+            AddDirectionAtack(ref moves, position, gameField, figureColor, new Vector2Int(1, 0));
+            AddDirectionAtack(ref moves, position, gameField, figureColor, new Vector2Int(-1, 0));
+        }
+
+        public static void AddDiagonalAtack(
+            ref List<Vector2Int> moves,
+            Vector2Int position,
+            GameField gameField,
+            FigureColor figureColor)
+        {
+            AddDirectionAtack(ref moves, position, gameField, figureColor, new Vector2Int(1, 1));
+            AddDirectionAtack(ref moves, position, gameField, figureColor, new Vector2Int(1, -1));
+            AddDirectionAtack(ref moves, position, gameField, figureColor, new Vector2Int(-1, 1));
+            AddDirectionAtack(ref moves, position, gameField, figureColor, new Vector2Int(-1, -1));
         }
     }
 }

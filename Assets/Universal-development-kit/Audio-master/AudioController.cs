@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OFG.Chess;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -360,7 +361,9 @@ namespace UDK.Audio
             _musicAudioList = musicList;    
             _soundAudioList = soundList;
             _presenter = new GameObject("AUDIO").AddComponent<AudioPresenter>();
+            _presenter.gameObject.AddComponent<DontDestroy>();
             var listener = new GameObject("LISTENER").AddComponent<AudioListener>();
+            listener.gameObject.AddComponent<DontDestroy>();
             listener.transform.SetParent(_presenter.transform);
             _presenter.AudioListener = listener;
         }

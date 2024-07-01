@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MusicList
   m_EditorClassIdentifier: 
   data:
-  - Name: GameTheme
+  - Name: MainTheme
     clip: {fileID: 8300000, guid: f603c4cd7c2fed148b8d9867e7662f85, type: 3}
   - Name: MenuTheme
     clip: {fileID: 8300000, guid: 5c64c10e87e7e474a8e484f25dd7cf5d, type: 3}

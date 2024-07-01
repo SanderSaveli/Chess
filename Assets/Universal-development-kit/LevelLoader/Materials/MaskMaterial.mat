@@ -60,7 +60,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _LayerMask: 0
-    - _MaskAmount: -0.0503749
+    - _MaskAmount: -0.05241465
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:

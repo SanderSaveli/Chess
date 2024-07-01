@@ -468,7 +468,7 @@ MonoBehaviour:
   _selectionController: {fileID: 2110415200}
   _levelBuilder: {fileID: 281547665}
   _opponentAI: {fileID: 2110415202}
-  _levelTemplate: {fileID: 11400000, guid: b1990d4d78264b144a13712122cf38ed, type: 2}
+  _levelTemplate: {fileID: 11400000, guid: 543b5c02030264842a93f184e07d1ffe, type: 2}
 --- !u!4 &281547668
 Transform:
   m_ObjectHideFlags: 0
@@ -2015,8 +2015,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupData:
-  - {fileID: 11400000, guid: 36d05c6421fadf8468737b89134e2b35, type: 2}
-  - {fileID: 11400000, guid: f2d6a8d97732ae249bdcc2d2978a8032, type: 2}
+  - {fileID: 11400000, guid: dd8aa5f87b37d78438da077dc2dc3b21, type: 2}
+  - {fileID: 11400000, guid: df27a339eda55c54ba42d5d8604fbcf6, type: 2}
+  - {fileID: 11400000, guid: 58961cea6c2e15242b4e60b07ca301d4, type: 2}
   popupObj: {fileID: 1425266942}
 --- !u!4 &1514918881
 Transform:

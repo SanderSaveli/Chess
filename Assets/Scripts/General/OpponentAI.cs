@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 using Random = System.Random;
@@ -23,16 +24,51 @@ namespace OFG.Chess
         public bool TryMakeTurn()
         {
             FigureMoves.GetKingMoves(ref _moves, _kingPosition, _gameField, _king.FigureColor);
+            List<Vector2Int> atackedCells = getAllAtackedCells();
+
+            foreach (var cell in _moves)
+            {
+                if (!atackedCells.Contains(cell))
+                {
+                    Move(cell);
+                    return true;
+                }
+            }
+
+            if (atackedCells.Contains(_kingPosition))
+            {
+                _king.View.Defeat();
+                return false;
+            }
             if (_moves.Count == 0)
             {
                 _king.View.Defeat();
                 return false;
             }
-            Random random = new();
-            int randomMoveI = random.Next(0, _moves.Count);
-            Vector2Int newPosition = _moves[randomMoveI];
-            Move(newPosition);
-            return true;
+            return false;
+        }
+
+        private List<Vector2Int> getAllAtackedCells()
+        {
+            HashSet<Vector2Int> atackedCells = new HashSet<Vector2Int>();
+            for(int i =0; i < _gameField.Figures.Count; i++)
+            {
+                Figure figure = _gameField.Figures[i];
+                Vector2Int pos = _gameField.Figures.CalculatePosition2(i);
+                if (figure != null)
+                {
+                    if (figure.FigureColor == FigureColor.White)
+                    {
+                        List<Vector2Int> figureMoves = new List<Vector2Int>();  
+                        FigureMoves.GetAtackCell(ref figureMoves, pos, _gameField, figure.FigureType, figure.FigureColor);
+                        foreach (var move in figureMoves)
+                        {
+                            atackedCells.Add(move);
+                        }
+                    }
+                }
+            }
+            return atackedCells.ToList();
         }
 
         private void Move(Vector2Int newPosition)
