@@ -13,6 +13,7 @@ namespace OFG.Chess
         [SerializeField] private Color _colorCursor;
         [SerializeField] private Color _colorMovement;
         [SerializeField] private Color _colorAttack;
+        [SerializeField] private Color _colorCanMove;
 
         public SelectionType SelectionType { get; private set; }
 
@@ -32,6 +33,7 @@ namespace OFG.Chess
                 SelectionType.Cursor => _colorCursor,
                 SelectionType.Movement => _colorMovement,
                 SelectionType.Attack => _colorAttack,
+                SelectionType.CanMove => _colorCanMove,
                 _ => throw new NotImplementedException()
             };
         }

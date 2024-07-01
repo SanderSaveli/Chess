@@ -5,6 +5,7 @@
         None,
         Cursor,
         Movement,
-        Attack
+        Attack,
+        CanMove
     }
 }
