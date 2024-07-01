@@ -6,13 +6,16 @@ namespace OFG.Chess
     {
         [Header(H.ComponentReferences)]
         [SerializeField] private Camera _camera;
-        [SerializeField] private GameField _gameField;
 
         [Header(H.Params)]
         [SerializeField] private LayerMask _figureLayerMask;
         [SerializeField] private LayerMask _cardLayerMask;
 
+        private GameField _gameField;
+
         public Ray GetRay() => _camera.ScreenPointToRay(Input.mousePosition);
+
+        public void Init(GameField gameField) => _gameField = gameField;
 
         public bool TryGetCard(out Card card, Ray ray)
         {

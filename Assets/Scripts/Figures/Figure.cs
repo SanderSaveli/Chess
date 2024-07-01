@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace OFG.Chess
 {
+    [RequireComponent(typeof(FigureView))]
     public sealed class Figure : MonoBehaviour
     {
         [Header(H.Params)]
@@ -12,5 +13,10 @@ namespace OFG.Chess
         public bool IsBlack => FigureColor == FigureColor.Black;
         public FigureColor FigureColor => _figureColor;
         public FigureType FigureType => _figureType;
+        public FigureView View { get; private set; }
+
+        private void Awake() => InitComponentReferences();
+
+        private void InitComponentReferences() => View = GetComponent<FigureView>();
     }
 }

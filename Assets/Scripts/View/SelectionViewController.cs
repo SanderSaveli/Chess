@@ -1,13 +1,11 @@
 using IUP.Toolkit;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 namespace OFG.Chess
 {
     public class SelectionViewController : MonoBehaviour
     {
         [Header(H.ComponentReferences)]
-        [SerializeField] private Tilemap _tilemap;
         [SerializeField] private Transform _selectionsParent;
 
         [Header(H.Params)]
@@ -18,6 +16,26 @@ namespace OFG.Chess
         [SerializeField] private GameObject _selectionViewPrefab;
 
         private Matrix<SelectionView> _selectionViews;
+        private GameField _gameField;
+
+        public void Init(GameField gameField)
+        {
+            _gameField = gameField;
+            _selectionViews = new Matrix<SelectionView>(_width, _height);
+            InstantiateSelections();
+        }
+
+        public void ResetAllSelections()
+        {
+            for (int i = 0; i < _selectionViews.Count; i += 1)
+            {
+                SelectionView selectionView = _selectionViews[i];
+                if (selectionView != null)
+                {
+                    selectionView.SetSelection(SelectionType.None);
+                }
+            }
+        }
 
         public SelectionType GetSelection(Vector2Int position) => _selectionViews[position].SelectionType;
 
@@ -25,12 +43,6 @@ namespace OFG.Chess
 
         public void SetSelection(Vector2Int position, SelectionType selectionType) =>
             _selectionViews[position].SetSelection(selectionType);
-
-        private void Awake()
-        {
-            _selectionViews = new Matrix<SelectionView>(_width, _height);
-            InstantiateSelections();
-        }
 
         private void InstantiateSelections()
         {
@@ -43,7 +55,7 @@ namespace OFG.Chess
         private void InstantiateSelection(int i)
         {
             Vector3Int cellPosition = _selectionViews.CalculatePosition3(i);
-            Vector3 worldPosition = _tilemap.CellToWorld(cellPosition);
+            Vector3 worldPosition = _gameField.Position3ToWorld(cellPosition);
             GameObject cellObject = Instantiate(
                 _selectionViewPrefab,
                 worldPosition,

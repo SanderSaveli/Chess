@@ -67,7 +67,7 @@ namespace OFG.Chess
         private void OnDrawGizmos() // TODO: clear this piece of shit.
         {
             float sizeX = _cellTilemap.cellSize.x * _width;
-            float sizeY = 1.0f;
+            float sizeY = _cellTilemap.cellSize.x;
             float sizeZ = _cellTilemap.cellSize.y * _height;
             Vector3 size = new Vector3(sizeX, sizeY, sizeZ);
             Vector3 center = size / 2.0f;
