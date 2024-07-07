@@ -742,7 +742,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 618823710}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -793,7 +793,7 @@ Transform:
   m_GameObject: {fileID: 618823710}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.5, y: -1.65, z: 5.99}
+  m_LocalPosition: {x: 6.5, y: -0.03, z: 5.99}
   m_LocalScale: {x: 4.88, y: 4.88, z: 4.88}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2079,6 +2079,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3315041740063442800, guid: 8f56ea72d1b88a44ab00b4b260de3bcf,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3819501729582196389, guid: 8f56ea72d1b88a44ab00b4b260de3bcf,
         type: 3}
       propertyPath: m_Name
@@ -2221,6 +2226,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: mountain2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3621150041982139276, guid: 668dd1f9ed192794fadec05bab7d5f77,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

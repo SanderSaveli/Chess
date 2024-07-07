@@ -39,8 +39,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _CloudScale: 120
-    - _CloudsAlpha: 6.97
-    - _CloudsPower: 2
+    - _CloudsAlpha: 6.6
+    - _CloudsPower: 1.6
     - _DistortScale: 59.98
     - _QueueControl: 0
     - _QueueOffset: 0
