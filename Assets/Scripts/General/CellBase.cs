@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace OFG.Chess
+namespace OFG.ChessPeak
 {
     public abstract class CellBase : MonoBehaviour { }
 }

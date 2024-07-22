@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace OFG.Chess
+namespace OFG.ChessPeak
 {
     [RequireComponent(typeof(FigureView))]
     public sealed class Figure : MonoBehaviour
@@ -14,6 +14,8 @@ namespace OFG.Chess
         public FigureColor FigureColor => _figureColor;
         public FigureType FigureType => _figureType;
         public FigureView View { get; private set; }
+
+        public bool IsEnemy(FigureColor otherFigureColor) => FigureColor != otherFigureColor;
 
         private void Awake() => InitComponentReferences();
 

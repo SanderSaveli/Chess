@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-using IUP.Toolkit;
-using UDK.Audio;
 using UnityEngine;
 
-namespace OFG.Chess
+namespace OFG.ChessPeak
 {
     public sealed class FigureController : MonoBehaviour
     {
@@ -19,20 +17,12 @@ namespace OFG.Chess
         private Vector2Int _selectedFigurePosition;
 
         private readonly HashSet<Vector2Int> _availableFigurePositions = new();
-        private List<Vector2Int> _moves = new();
-        private Dictionary<Vector2Int, SelectionType> _selections = new();
+        private readonly List<Vector2Int> _moves = new();
+        private readonly Dictionary<Vector2Int, SelectionType> _selections = new();
 
         public void Init(GameField gameField) => _gameField = gameField;
 
-        private IMusicPlayer musicPlayer;
-        private ISoundPlayer soundPlayer;
-        private void Awake()
-        {
-            musicPlayer = AudioControllerWrapper.instance.musicPlayer;
-            soundPlayer = AudioControllerWrapper.instance.soundPlayer;
-        }
-
-            public void SelectFigureUpdate()
+        public void SelectFigureUpdate()
         {
             ResetPreviousHoveredPosition();
             if (_pointerController.TryGetHoveredFigure(out Figure hoveredFigure, out Vector2Int position2) &&
@@ -97,7 +87,6 @@ namespace OFG.Chess
         {
             UpdateAvailableFigurePositions(cardType);
             SelectAvailablePositions();
-            soundPlayer.PlaySound2D("CellHover");
         }
 
         private void SetCursorSelection(Vector2Int position2)
@@ -142,7 +131,7 @@ namespace OFG.Chess
                 Figure figure = _gameField.Figures[i];
                 if ((figure != null) && (figure.FigureType == figureType) && (figure.IsWhite))
                 {
-                    Vector2Int position2 = _gameField.Figures.CalculatePosition2(i);
+                    Vector2Int position2 = _gameField.Figures.ToCoordinate(i);
                     _availableFigurePositions.Add(position2);
                 }
             }
@@ -152,12 +141,12 @@ namespace OFG.Chess
         {
             _selectedFigurePosition = position2;
             _selectedFigure = figure;
-            FigureMoves.GetMoves(ref _moves, position2, _gameField, figure.FigureType, figure.FigureColor);
-            FigureSelections.GetSelections(ref _moves, ref _selections, _gameField, figure.FigureColor);
+            FigureMoves.GetMoves(_moves, position2, _gameField, figure.FigureType, figure.FigureColor);
+            FigureSelections.GetSelections(_moves, _selections, _gameField, figure.FigureColor);
             _selections.Add(_selectedFigurePosition, SelectionType.CanMove);
             SelectOptions();
             _selectedFigure.View.Up();
-            EventBus.InvokeEvent<EventFigureSelected>();
+            EventBusProvider.EventBus.InvokeEvent<EventFigureSelected>();
         }
 
         private void UnselectFigure()
@@ -168,7 +157,7 @@ namespace OFG.Chess
             _moves.Clear();
             _selections.Clear();
             _selectionController.ResetAllSelections();
-            EventBus.InvokeEvent<EventFigureUnselected>();
+            EventBusProvider.EventBus.InvokeEvent<EventFigureUnselected>();
         }
 
         private void SelectOptions()
@@ -194,12 +183,12 @@ namespace OFG.Chess
             if ((defeatedFigure != null) && defeatedFigure.IsBlack)
             {
                 defeatedFigure.View.Defeat();
-                EventBus.InvokeEvent<EventBlackKingDefeated>();
+                EventBusProvider.EventBus.InvokeEvent<EventBlackKingDefeated>();
             }
             else
             {
                 _gameField.Figures[_previousCursorPosition] = _selectedFigure;
-                EventBus.InvokeEvent<EventFigureMoved>();
+                EventBusProvider.EventBus.InvokeEvent<EventFigureMoved>();
             }
         }
     }

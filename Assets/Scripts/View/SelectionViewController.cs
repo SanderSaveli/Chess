@@ -1,7 +1,7 @@
 using IUP.Toolkit;
 using UnityEngine;
 
-namespace OFG.Chess
+namespace OFG.ChessPeak
 {
     public class SelectionViewController : MonoBehaviour
     {
@@ -54,7 +54,8 @@ namespace OFG.Chess
 
         private void InstantiateSelection(int i)
         {
-            Vector3Int cellPosition = _selectionViews.CalculatePosition3(i);
+            Vector2Int coordinate = _selectionViews.ToCoordinate(i);
+            Vector3Int cellPosition = new(coordinate.x, coordinate.y, 0);
             Vector3 worldPosition = _gameField.Position3ToWorld(cellPosition);
             GameObject cellObject = Instantiate(
                 _selectionViewPrefab,

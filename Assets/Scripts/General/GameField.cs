@@ -2,7 +2,7 @@
 using UnityEngine.Tilemaps;
 using IUP.Toolkit;
 
-namespace OFG.Chess
+namespace OFG.ChessPeak
 {
     public sealed class GameField : MonoBehaviour
     {
@@ -15,8 +15,9 @@ namespace OFG.Chess
         [SerializeField] private GameObject _blackCell;
 
         [Header(H.Params)]
-        [SerializeField] private int _width;
-        [SerializeField] private int _height;
+        [SerializeField][Min(0)] private int _width;
+        [SerializeField][Min(0)] private int _height;
+        [SerializeField] private bool _isFirstChessSquareBlack = true;
 
         public Matrix<Figure> Figures => _figures;
         public Matrix<CellBase> Cells => _cells;
@@ -24,11 +25,23 @@ namespace OFG.Chess
         private Matrix<Figure> _figures;
         private Matrix<CellBase> _cells;
 
+        public bool HasWhiteFigure()
+        {
+            foreach (Figure figure in Figures)
+            {
+                if ((figure != null) && figure.IsWhite)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public bool InBounds(int i) => _cells.InBounds(i);
 
-        public bool InBounds(int x, int y) => _cells.InBounds(x, y);
-
         public bool InBounds(Vector2Int position2) => _cells.InBounds(position2);
+
+        public bool OutBounds(Vector2Int position2) => _cells.OutBounds(position2);
 
         public Vector3 Position2ToWorld(Vector2Int position2)
         {
@@ -46,10 +59,9 @@ namespace OFG.Chess
 
         public Vector3Int WorldToPosition3(Vector3 worldPosition) => _cellTilemap.WorldToCell(worldPosition);
 
-        public bool HasFigure(Vector2Int position2)
-        {
-            return Figures[position2] != null;
-        }
+        public bool NoFigure(Vector2Int position2) => Figures[position2] == null;
+
+        public bool HasFigure(Vector2Int position2) => Figures[position2] != null;
 
         public bool TryGetFigure(out Figure figure, Vector2Int position2)
         {
@@ -64,43 +76,14 @@ namespace OFG.Chess
             FillCells();
         }
 
-        private void OnDrawGizmos() // TODO: clear this piece of shit.
-        {
-            float sizeX = _cellTilemap.cellSize.x * _width;
-            float sizeY = _cellTilemap.cellSize.x;
-            float sizeZ = _cellTilemap.cellSize.y * _height;
-            Vector3 size = new Vector3(sizeX, sizeY, sizeZ);
-            Vector3 center = size / 2.0f;
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireCube(center, size);
-
-            Vector3 cellSize = _cellTilemap.cellSize;
-            (cellSize.y, cellSize.z) = (cellSize.z, cellSize.y);
-            cellSize.y = 0.1f;
-            Vector3 cellHalfSize = cellSize / 2.0f;
-            int cellsCount = _width * _height;
-            for (int i = 0; i < cellsCount; i += 1)
-            {
-                int xCellPosition = i % _width;
-                int yCellPosition = i / _width;
-                Vector3Int cellPosition = new(xCellPosition, yCellPosition, 0);
-                Vector3 cellWorldPosition = _cellTilemap.CellToWorld(cellPosition);
-                cellWorldPosition += cellHalfSize;
-                cellWorldPosition.y = 0.0f;
-                int yOffset = yCellPosition % 2;
-                if (((xCellPosition + yOffset) % 2) == 0)
-                {
-                    Gizmos.DrawCube(cellWorldPosition, cellSize);
-                }
-            }
-        }
+        private void OnDrawGizmos() => 
+            MatrixUtils.DrawChessGizmos(_width, _height, _cellTilemap, Color.green, Color.black);
 
         private void InitMatrixByTilemap<T>(ref Matrix<T> matrix, Tilemap tilemap) where T : Component
         {
             matrix = new Matrix<T>(_width, _height);
-            for (int i = 0; i < tilemap.transform.childCount; i += 1)
+            foreach (Transform child in tilemap.transform)
             {
-                Transform child = tilemap.transform.GetChild(i);
                 Vector2Int position = WorldToPosition2(child.position);
                 matrix[position] = child.GetComponent<T>();
             }
@@ -112,7 +95,7 @@ namespace OFG.Chess
             {
                 if (_cells[i] == null)
                 {
-                    if (_cells.IsChessSquareBlack(i))
+                    if (_cells.IsChessSquareBlack(i, _isFirstChessSquareBlack))
                     {
                         InstantiateCell(i, _blackCell);
                     }
@@ -126,7 +109,8 @@ namespace OFG.Chess
 
         private void InstantiateCell(int i, GameObject cellPrefab)
         {
-            Vector3Int cellPosition = _cells.CalculatePosition3(i);
+            Vector2Int coordinate = _cells.ToCoordinate(i);
+            Vector3Int cellPosition = new(coordinate.x, coordinate.y, 0);
             Vector3 worldPosition = _cellTilemap.CellToWorld(cellPosition);
             GameObject cellObject = Instantiate(
                 cellPrefab,

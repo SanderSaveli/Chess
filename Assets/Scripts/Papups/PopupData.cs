@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace OFG.Chess.Popup
+namespace OFG.ChessPeak.Popup
 {
     [CreateAssetMenu(fileName = "new Popup Data", menuName = "Popup/Popup Data")]
     public class PopupData : ScriptableObject

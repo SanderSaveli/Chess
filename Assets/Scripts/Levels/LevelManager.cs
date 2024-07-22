@@ -1,72 +1,103 @@
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using UDK.Audio;
-using UDK.SceneLoad;
+using OFG.ChessPeak.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace OFG.Chess
+namespace OFG.ChessPeak
 {
-    public class LevelManager : MonoBehaviour
+    public sealed class LevelManager : MonoBehaviour
     {
-        [SerializeField] private int NotLevelsSceneCount = 1;
-        [SerializeField] private Transform levelButtonsViewParent;
-        [SerializeField] private GameObject levelButtonViewPreffab;
-        private SceneLoader loader;
-        List<LevelButtonView> buttonViews;
+        [Header(H.ComponentReferences)]
+        [Header(H.Prefabs)]
+        [SerializeField] private GameObject _transitionScreenPrefab;
 
-        private IMusicPlayer musicPlayer;
+        [Header(H.Params)]
+        [SerializeField][Min(0.0f)] private float _transitionDuration;
+        [SerializeField] private int _sceneBuildIndexMainMenu;
+        [SerializeField] private int _sceneBuildIndexGame;
+        [SerializeField] private List<LevelTemplate> _levels;
+
+        public bool IsActiveGameScene
+        {
+            get
+            {
+                Scene activeScene = SceneManager.GetActiveScene();
+                return activeScene.buildIndex == _sceneBuildIndexGame;
+            }
+        }
+
+        private TransitionScreen TransitionScreen
+        {
+            get
+            {
+                if (_transitionScreen == null)
+                {
+                    GameObject transitionScreenObject = Instantiate(_transitionScreenPrefab, transform);
+                    if (!transitionScreenObject.TryGetComponent(out _transitionScreen))
+                    {
+                        throw new NullReferenceException(
+                            $"Prefab {_transitionScreenPrefab} does not contains" +
+                            $"{typeof(TransitionScreen)} component.");
+                    }
+                }
+                return _transitionScreen;
+            }
+        }
+
+        private TransitionScreen _transitionScreen;
+
+        public void LoadLevel(int levelNumber)
+        {
+            LevelTemplate levelTemplate = _levels[levelNumber];
+            _ = StartCoroutine(RoutineLoadingLevel(levelTemplate));
+        }
+
         private void Awake()
         {
-            musicPlayer = AudioControllerWrapper.instance.musicPlayer;
-            musicPlayer.PlayMusicClip("MenuTheme");
+            EventBusProvider.EventBus.RegisterCallback<EventInputLoadLevel>(OnInputLoadLevel);
+            DontDestroyOnLoad(gameObject);
         }
 
-        private void Start()
-        {
-            loader = SceneLoader.instance;
-            buttonViews = CreateViews(SceneManager.sceneCountInBuildSettings - NotLevelsSceneCount);
+        private void OnInputLoadLevel(EventInputLoadLevel context) => LoadLevel(context.LevelNumber);
 
-            ActivateViews();
-        }
-        public void LoadLevel(int index)
+        private IEnumerator RoutineLoadingLevel(LevelTemplate levelTemplate)
         {
-            loader.LoadScene("Level" + index, 0);
-        }
-
-        public void ActivateViews()
-        {
-            int openLevelCount = GetLastOpenLevel();
-            for(int i = 1; i <= openLevelCount; i++)
+            EventLoadLevelComplete context = new(levelTemplate);
+            if (IsActiveGameScene)
             {
-                buttonViews[i - 1].Activate(i, LoadLevel);
+                yield return TransitionScreen.Show(_transitionDuration);
+                EventBusProvider.EventBus.InvokeEvent(context);
+                yield return TransitionScreen.Hide(_transitionDuration);
             }
-            for (int i = openLevelCount+1; i <= SceneManager.sceneCountInBuildSettings - NotLevelsSceneCount; i++)
+            else
             {
-                buttonViews[i - 1].Deactivate();
+                AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(_sceneBuildIndexGame);
+                asyncOperation.allowSceneActivation = false;
+                yield return TransitionScreen.Show(_transitionDuration);
+                yield return WaitLoadingToContinue(asyncOperation);
+                asyncOperation.allowSceneActivation = true;
+                yield return WaitLoadingIsDone(asyncOperation);
+                EventBusProvider.EventBus.InvokeEvent(context);
+                yield return TransitionScreen.Hide(_transitionDuration);
             }
         }
 
-        private int GetLastOpenLevel()
+        private IEnumerator WaitLoadingToContinue(AsyncOperation asyncOperation)
         {
-            if (!PlayerPrefs.HasKey("Levels"))
+            while (asyncOperation.progress < 0.9f)
             {
-                PlayerPrefs.SetInt("Levels", 1);
+                yield return null;
             }
-            return PlayerPrefs.GetInt("Levels");
         }
-        private List<LevelButtonView> CreateViews(int count)
+
+        private IEnumerator WaitLoadingIsDone(AsyncOperation asyncOperation)
         {
-            List<LevelButtonView> buttonViews = new List<LevelButtonView>();
-
-            for (int i = 0; i < count; i++)
+            while (!asyncOperation.isDone)
             {
-                GameObject newView = Instantiate(levelButtonViewPreffab, levelButtonsViewParent);
-                LevelButtonView buttonView = newView.GetComponent<LevelButtonView>();
-                buttonViews.Add(buttonView);
+                yield return null;
             }
-
-            Debug.Log(buttonViews.Count);
-            return buttonViews;
         }
     }
 }

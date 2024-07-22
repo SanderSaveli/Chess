@@ -1,7 +1,7 @@
 ﻿using IUP.Toolkit;
 using UnityEngine;
 
-namespace OFG.Chess
+namespace OFG.ChessPeak
 {
     public sealed class GameManager : MonoBehaviour
     {
@@ -14,44 +14,37 @@ namespace OFG.Chess
         [SerializeField] private LevelBuilder _levelBuilder;
         [SerializeField] private OpponentAI _opponentAI;
 
-        [Header(H.Params)]
-        [SerializeField] private LevelTemplate _levelTemplate;
-
         private GameField _gameField;
+        private EventRegistrar _eventRegistrar;
 
-        private void Awake()
-        {
-            SubscribeOnEvents();
-            _gameField = _levelBuilder.BuildLevel(_levelTemplate);
-            _pointerController.Init(_gameField);
-            _figureController.Init(_gameField);
-            _selectionController.Init(_gameField);
-            _cardController.Init(_levelTemplate.CardsInHand, _levelTemplate.CardsInDeck);
-            _opponentAI.Init(_gameField);
-        }
+        private void Awake() => SubscribeOnEvents();
 
         private void Start() => _fsm.SetSelectCardState();
 
         private void OnDestroy() => UnsubscribeFromEvents();
 
-        private void SubscribeOnEvents()
-        {
-            EventBus.RegisterCallback<EventCardSelected>(OnCardSelected);
-            EventBus.RegisterCallback<EventCardUnselected>(OnCardUnselected);
-            EventBus.RegisterCallback<EventFigureSelected>(OnFigureSelected);
-            EventBus.RegisterCallback<EventFigureUnselected>(OnFigureUnselected);
-            EventBus.RegisterCallback<EventFigureMoved>(OnFigureMoved);
-            EventBus.RegisterCallback<EventBlackKingDefeated>(OnBlackKingDefeated);
-        }
+        private void SubscribeOnEvents() =>
+            _eventRegistrar = new EventRegistrar(EventBusProvider.EventBus)
+                .RegisterCallback<EventLoadLevelComplete>(OnLoadLevelComplete)
+                .RegisterCallback<EventCardSelected>(OnCardSelected)
+                .RegisterCallback<EventCardUnselected>(OnCardUnselected)
+                .RegisterCallback<EventFigureSelected>(OnFigureSelected)
+                .RegisterCallback<EventFigureUnselected>(OnFigureUnselected)
+                .RegisterCallback<EventFigureMoved>(OnFigureMoved)
+                .RegisterCallback<EventBlackKingDefeated>(OnBlackKingDefeated);
 
-        private void UnsubscribeFromEvents()
+        private void UnsubscribeFromEvents() => _eventRegistrar.UnregisterAll();
+
+        private void OnLoadLevelComplete(EventLoadLevelComplete context)
         {
-            EventBus.UnregisterCallback<EventCardSelected>(OnCardSelected);
-            EventBus.UnregisterCallback<EventCardUnselected>(OnCardUnselected);
-            EventBus.UnregisterCallback<EventFigureSelected>(OnFigureSelected);
-            EventBus.UnregisterCallback<EventFigureUnselected>(OnFigureUnselected);
-            EventBus.UnregisterCallback<EventFigureMoved>(OnFigureMoved);
-            EventBus.UnregisterCallback<EventBlackKingDefeated>(OnBlackKingDefeated);
+            _gameField = _levelBuilder.BuildLevel(context.LoadedLevelTemplate);
+            _cardController.Init(
+                context.LoadedLevelTemplate.CardsInHand,
+                context.LoadedLevelTemplate.CardsInDeck);
+            _pointerController.Init(_gameField);
+            _figureController.Init(_gameField);
+            _selectionController.Init(_gameField);
+            _opponentAI.Init(_gameField);
         }
 
         private void OnCardSelected(EventCardSelected context)
@@ -79,7 +72,7 @@ namespace OFG.Chess
             _cardController.RemoveSelectedCard();
             if (_opponentAI.TryMakeTurn())
             {
-                if (HasWhiteFigure() && _cardController.HasCardOnHandsOrDeck())
+                if (_gameField.HasWhiteFigure() && _cardController.HasCardOnHandsOrDeck())
                 {
                     _fsm.SetSelectCardState();
                     _ = _cardController.TryAddCardFromDeck();
@@ -88,36 +81,20 @@ namespace OFG.Chess
                 else
                 {
                     _fsm.SetIdleState();
-                    EventBus.InvokeEvent<EventLosing>();
-                    Debug.Log("YOU LOSE");
+                    EventBusProvider.EventBus.InvokeEvent<EventLosing>();
                 }
             }
             else
             {
                 _fsm.SetIdleState();
-                EventBus.InvokeEvent<EventWinning>();
-                Debug.Log("YOU WIN");
+                EventBusProvider.EventBus.InvokeEvent<EventWinning>();
             }
         }
 
         private void OnBlackKingDefeated(EventBlackKingDefeated context)
         {
             _fsm.SetIdleState();
-            EventBus.InvokeEvent<EventWinning>();
-            Debug.Log("YOU WIN");
-        }
-
-        private bool HasWhiteFigure()
-        {
-            for (int i = 0; i < _gameField.Figures.Count; i += 1)
-            {
-                Figure figure = _gameField.Figures[i];
-                if ((figure != null) && figure.IsWhite)
-                {
-                    return true;
-                }
-            }
-            return false;
+            EventBusProvider.EventBus.InvokeEvent<EventWinning>();
         }
     }
 }

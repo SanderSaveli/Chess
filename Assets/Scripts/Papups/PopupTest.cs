@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace OFG.Chess.Popup
+namespace OFG.ChessPeak.Popup
 {
     public class PopupTest : MonoBehaviour
     {

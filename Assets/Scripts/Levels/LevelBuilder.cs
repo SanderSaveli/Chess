@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace OFG.Chess
+namespace OFG.ChessPeak
 {
     public sealed class LevelBuilder : MonoBehaviour
     {
@@ -11,6 +11,10 @@ namespace OFG.Chess
 
         public GameField BuildLevel(LevelTemplate levelTemplate)
         {
+            if (_levelObject != null)
+            {
+                DestroyLevel();
+            }
             _levelObject = Instantiate(levelTemplate.LevelPrefab, _levelParent);
             return _levelObject.GetComponent<GameField>();
         }

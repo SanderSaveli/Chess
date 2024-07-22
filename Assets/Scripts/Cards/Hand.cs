@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace OFG.Chess
+namespace OFG.ChessPeak
 {
     public sealed class Hand : MonoBehaviour
     {
@@ -14,13 +14,14 @@ namespace OFG.Chess
         [SerializeField] private GameObject _cardPrefab;
 
         private readonly List<CardType> _cards = new();
-        private readonly List<Card> _cardViews = new();
+        private readonly List<CardView> _cardViews = new();
 
-        public bool IsEmpty() => _cards.Count == 0;
+        public bool IsEmpty() => _cards.IsEmpty();
+        public bool IsNonEmpty() => _cards.IsNonEmpty();
 
         public void AddCard(CardType cardType) => InstantiateCard(cardType);
 
-        public void RemoveCard(Card cardView)
+        public void RemoveCard(CardView cardView)
         {
             int i = _cardViews.IndexOf(cardView);
             RemoveCard(i);
@@ -28,7 +29,7 @@ namespace OFG.Chess
 
         public void RemoveCard(int i)
         {
-            Card cardView = _cardViews[i];
+            CardView cardView = _cardViews[i];
             cardView.Destroy();
             _cards.RemoveAt(i);
             _cardViews.RemoveAt(i);
@@ -41,7 +42,7 @@ namespace OFG.Chess
             {
                 float xOffset = i * _cardViewOffset;
                 Vector3 localPosition = new(xOffset, 0.0f, 0.0f);
-                Card cardView = _cardViews[i];
+                CardView cardView = _cardViews[i];
                 cardView.TargetPosition = _cardViewRoot.TransformPoint(localPosition);
             }
         }
@@ -56,8 +57,8 @@ namespace OFG.Chess
                 _cardViewRoot.rotation,
                 _cardViewRoot);
             _cards.Add(cardType);
-            Card cardView = cardViewObject.GetComponent<Card>();
-            cardView.InitCard(cardType);
+            CardView cardView = cardViewObject.GetComponent<CardView>();
+            cardView.Init(cardType);
             cardView.TargetPosition = _cardViewRoot.TransformPoint(localPosition);
             _cardViews.Add(cardView);
         }

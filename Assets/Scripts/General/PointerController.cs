@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace OFG.Chess
+namespace OFG.ChessPeak
 {
     public sealed class PointerController : MonoBehaviour
     {
@@ -17,7 +17,7 @@ namespace OFG.Chess
 
         public void Init(GameField gameField) => _gameField = gameField;
 
-        public bool TryGetCard(out Card card, Ray ray)
+        public bool TryGetCard(out CardView card, Ray ray)
         {
             if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, _cardLayerMask))
             {
@@ -27,7 +27,7 @@ namespace OFG.Chess
             return false;
         }
 
-        public bool TryGetCard(out Card card)
+        public bool TryGetCard(out CardView card)
         {
             Ray ray = GetRay();
             return TryGetCard(out card, ray);
@@ -106,13 +106,14 @@ namespace OFG.Chess
             return false;
         }
 
-        private bool TEMP_TryGetFigurePosition(Figure figure, out Vector2Int position2) // TODO: optimized to near to O(1).
+        // TODO: optimized to near to O(1).
+        private bool TEMP_TryGetFigurePosition(Figure figure, out Vector2Int position2)
         {
             for (int i = 0; i < _gameField.Figures.Count; i += 1)
             {
                 if (_gameField.Figures[i] == figure)
                 {
-                    position2 = _gameField.Figures.CalculatePosition2(i);
+                    position2 = _gameField.Figures.ToCoordinate(i);
                     return true;
                 }
             }

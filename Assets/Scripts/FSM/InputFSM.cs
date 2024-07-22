@@ -1,7 +1,7 @@
 ﻿using IUP.Toolkit;
 using UnityEngine;
 
-namespace OFG.Chess
+namespace OFG.ChessPeak
 {
     public sealed class InputFSM : MonoBehaviour
     {

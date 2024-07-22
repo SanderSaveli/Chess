@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace OFG.Chess.Popup
+namespace OFG.ChessPeak.Popup
 {
     public class PopupManager : MonoBehaviour
     {

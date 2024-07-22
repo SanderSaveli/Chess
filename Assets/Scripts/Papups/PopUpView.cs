@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace OFG.Chess.Popup
+namespace OFG.ChessPeak.Popup
 {
     public class PopUpView : MonoBehaviour, IPointerClickHandler
     {

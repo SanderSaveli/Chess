@@ -1,4 +1,4 @@
-﻿namespace OFG.Chess
+﻿namespace OFG.ChessPeak
 {
     public enum FigureColor
     {

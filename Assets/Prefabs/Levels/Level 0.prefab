@@ -124,6 +124,7 @@ MonoBehaviour:
     type: 3}
   _width: 8
   _height: 8
+  _isFirstChessSquareBlack: 1
 --- !u!1 &5418937979028808594
 GameObject:
   m_ObjectHideFlags: 0

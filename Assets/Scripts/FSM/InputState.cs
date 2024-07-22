@@ -1,6 +1,6 @@
 ﻿using IUP.Toolkit;
 
-namespace OFG.Chess
+namespace OFG.ChessPeak
 {
     public abstract class InputState : FSM_State
     {

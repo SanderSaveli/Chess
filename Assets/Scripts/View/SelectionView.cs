@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace OFG.Chess
+namespace OFG.ChessPeak
 {
     public sealed class SelectionView : MonoBehaviour
     {

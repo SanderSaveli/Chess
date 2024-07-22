@@ -1,49 +1,19 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
 
-namespace OFG.Chess
+namespace OFG.ChessPeak
 {
-    public sealed class Deck : MonoBehaviour
+    public sealed class Deck : IReadOnlyList<CardType>
     {
-        [Header(H.ComponentReferences)]
-        [SerializeField] private SpriteRenderer _spriteRenderer;
+        public CardType this[int i] => _cards[i];
 
-        public IReadOnlyList<CardType> Cards => _cards;
+        public int Count => _cards.Count;
 
         private readonly List<CardType> _cards = new();
 
-        public bool IsEmpty() => _cards.Count == 0;
+        public IEnumerator<CardType> GetEnumerator() => 
+            ((IEnumerable<CardType>)_cards).GetEnumerator();
 
-        public void Init(IEnumerable<CardType> cards)
-        {
-            _cards.Clear();
-            _cards.AddRange(cards);
-            UpdateView();
-        }
-
-        public bool TryGetCard(out CardType cardType)
-        {
-            if (_cards.Count != 0)
-            {
-                cardType = _cards[0];
-                _cards.RemoveAt(0);
-                UpdateView();
-                return true;
-            }
-            cardType = CardType.None;
-            return false;
-        }
-
-        private void UpdateView()
-        {
-            if (_cards.Count == 0)
-            {
-                _spriteRenderer.enabled = false;
-            }
-            else
-            {
-                _spriteRenderer.enabled = true;
-            }
-        }
+        IEnumerator IEnumerable.GetEnumerator() => _cards.GetEnumerator();
     }
 }

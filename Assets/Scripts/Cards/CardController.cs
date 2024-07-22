@@ -1,35 +1,34 @@
 ﻿using System.Collections.Generic;
-using IUP.Toolkit;
 using UnityEngine;
 
-namespace OFG.Chess
+namespace OFG.ChessPeak
 {
     public sealed class CardController : MonoBehaviour
     {
         [Header(H.ComponentReferences)]
         [SerializeField] private PointerController _pointerController;
         [SerializeField] private Hand _hand;
-        [SerializeField] private Deck _deck;
+        [SerializeField] private DeckView _deck;
 
-        public Card SelectedCard { get; private set; }
+        public CardView SelectedCard { get; private set; }
 
-        private Card _previousHoveredCard;
+        private CardView _previousHoveredCard;
 
         public void Init(IReadOnlyList<CardType> cardsInHand, IReadOnlyList<CardType> cardsInDeck)
         {
-            _deck.Init(cardsInDeck);
-            foreach (CardType cardType in cardsInHand)
-            {
-                _hand.AddCard(cardType);
-            }
+            //_deck.Init(cardsInDeck);
+            //foreach (CardType cardType in cardsInHand)
+            //{
+            //    _hand.AddCard(cardType);
+            //}
         }
 
-        public bool HasCardOnHandsOrDeck() => !_hand.IsEmpty() || !_deck.IsEmpty();
+        public bool HasCardOnHandsOrDeck() => _hand.IsNonEmpty() || _deck.IsNonEmpty();
 
         public void SelectCardUpdate()
         {
             UnhoverPreviousCard();
-            if (_pointerController.TryGetCard(out Card hoveredCard))
+            if (_pointerController.TryGetCard(out CardView hoveredCard))
             {
                 if (Input.GetMouseButtonDown(0))
                 {
@@ -44,7 +43,7 @@ namespace OFG.Chess
 
         public void UnselectCardUpdate()
         {
-            if (_pointerController.TryGetCard(out Card hoveredCard) &&
+            if (_pointerController.TryGetCard(out CardView hoveredCard) &&
                 Input.GetMouseButtonDown(0) &&
                 (hoveredCard == SelectedCard))
             {
@@ -70,9 +69,9 @@ namespace OFG.Chess
             SelectedCard = null;
         }
 
-        private void HoverCard(Card card)
+        private void HoverCard(CardView card)
         {
-            card.HoverCard();
+            card.Hover();
             _previousHoveredCard = card;
         }
 
@@ -80,24 +79,24 @@ namespace OFG.Chess
         {
             if (_previousHoveredCard != null)
             {
-                _previousHoveredCard.UnhoverCard();
+                _previousHoveredCard.Unhover();
                 _previousHoveredCard = null;
             }
         }
 
-        private void SelectCard(Card card)
+        private void SelectCard(CardView card)
         {
-            card.SelectCard();
+            card.Select();
             SelectedCard = card;
             EventCardSelected context = new(SelectedCard.CardType);
-            EventBus.InvokeEvent(context);
+            EventBusProvider.EventBus.InvokeEvent(context);
         }
 
         private void UnselectCard()
         {
-            SelectedCard.UnselectCard();
+            SelectedCard.Unselect();
             SelectedCard = null;
-            EventBus.InvokeEvent<EventCardUnselected>();
+            EventBusProvider.EventBus.InvokeEvent<EventCardUnselected>();
         }
     }
 }

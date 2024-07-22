@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OFG.Chess
+namespace OFG.ChessPeak
 {
     public static class CardTypeExtensions
     {

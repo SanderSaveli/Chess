@@ -1,427 +1,151 @@
 ﻿using System;
 using System.Collections.Generic;
+using IUP.Toolkit;
 using UnityEngine;
 
-namespace OFG.Chess
+namespace OFG.ChessPeak
 {
     public static class FigureMoves
     {
-        public static void GetMoves(
-            ref List<Vector2Int> moves,
+        public static int GetMoves(
+            IList<Vector2Int> moves,
             Vector2Int position,
             GameField gameField,
             FigureType figureType,
-            FigureColor figureColor)
-        {
-            switch (figureType)
+            FigureColor figureColor) => figureType switch
             {
-                case FigureType.Pawn:
-                    GetPawnMoves(ref moves, position, gameField, figureColor);
-                    break;
+                FigureType.Pawn => GetPawnMoves(moves, position, gameField, figureColor),
+                FigureType.Knight => GetKnightMoves(moves, position, gameField, figureColor),
+                FigureType.Bishop => GetBishopMoves(moves, position, gameField, figureColor),
+                FigureType.Rook => GetRookMoves(moves, position, gameField, figureColor),
+                FigureType.Queen => GetQueenMoves(moves, position, gameField, figureColor),
+                FigureType.King => GetKingMoves(moves, position, gameField, figureColor),
+                _ => throw new ArgumentOutOfRangeException(nameof(figureType))
+            };
 
-                case FigureType.Knight:
-                    GetKnightMoves(ref moves, position, gameField, figureColor);
-                    break;
-
-                case FigureType.Bishop:
-                    GetBishopMoves(ref moves, position, gameField, figureColor);
-                    break;
-
-                case FigureType.Rook:
-                    GetRookMoves(ref moves, position, gameField, figureColor);
-                    break;
-
-                case FigureType.Queen:
-                    GetQueenMoves(ref moves, position, gameField, figureColor);
-                    break;
-
-                case FigureType.King:
-                    GetKingMoves(ref moves, position, gameField, figureColor);
-                    break;
-
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(figureType));
-            }
-        }
-
-        public static void GetTackCell(
-            ref List<Vector2Int> moves,
+        public static int GetPawnMoves(
+            IList<Vector2Int> moves,
             Vector2Int position,
             GameField gameField,
-            FigureType figureType,
             FigureColor figureColor)
         {
-            switch (figureType)
+            int counter = FigureUtils.AddIfEmpty(moves, position, gameField, Direction.Up);
+            counter += FigureUtils.AddIfEnemy(moves, position, gameField, figureColor, Direction.UpLeft);
+            counter += FigureUtils.AddIfEnemy(moves, position, gameField, figureColor, Direction.UpRight);
+            return counter;
+        }
+
+        public static int GetKnightMoves(
+            IList<Vector2Int> moves,
+            Vector2Int position,
+            GameField gameField,
+            FigureColor figureColor)
+        {
+            int counter = 0;
+            foreach (Vector2Int direction in Direction.Knight)
             {
-                case FigureType.Pawn:
-                    GetPawnMoves(ref moves, position, gameField, figureColor);
-                    break;
-
-                case FigureType.Knight:
-                    GetKnightMoves(ref moves, position, gameField, figureColor);
-                    break;
-
-                case FigureType.Bishop:
-                    GetBishopMoves(ref moves, position, gameField, figureColor);
-                    break;
-
-                case FigureType.Rook:
-                    GetRookMoves(ref moves, position, gameField, figureColor);
-                    break;
-
-                case FigureType.Queen:
-                    GetQueenMoves(ref moves, position, gameField, figureColor);
-                    break;
-
-                case FigureType.King:
-                    GetKingMoves(ref moves, position, gameField, figureColor);
-                    break;
-
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(figureType));
+                counter += FigureUtils.AddIfEmptyOrEnemy(moves, position, gameField, figureColor, direction);
             }
+            return counter;
         }
 
-        public static void GetPawnMoves(
-            ref List<Vector2Int> moves,
+        public static int GetRookMoves(
+            IList<Vector2Int> moves,
+            Vector2Int position,
+            GameField gameField,
+            FigureColor figureColor) => AddStraight(moves, position, gameField, figureColor);
+
+        public static int GetBishopMoves(
+            IList<Vector2Int> moves,
+            Vector2Int position,
+            GameField gameField,
+            FigureColor figureColor) => AddDiagonal(moves, position, gameField, figureColor);
+
+        public static int GetQueenMoves(
+            IList<Vector2Int> moves,
             Vector2Int position,
             GameField gameField,
             FigureColor figureColor)
         {
-            AddIfEmpty(ref moves, position, gameField, Vector2Int.up);
-            AddIfEnemy(ref moves, position, gameField, figureColor, new Vector2Int(1, 1));
-            AddIfEnemy(ref moves, position, gameField, figureColor, new Vector2Int(-1, 1));
+            int counter = AddStraight(moves, position, gameField, figureColor);
+            counter += AddDiagonal(moves, position, gameField, figureColor);
+            return counter;
         }
 
-        public static void GetRookMoves(
-            ref List<Vector2Int> moves,
+        public static int GetKingMoves(
+            IList<Vector2Int> moves,
             Vector2Int position,
             GameField gameField,
             FigureColor figureColor)
         {
-            AddStraight(ref moves, position, gameField, figureColor);
-        }
-
-        public static void GetBishopMoves(
-            ref List<Vector2Int> moves,
-            Vector2Int position,
-            GameField gameField,
-            FigureColor figureColor)
-        {
-            AddDiagonal(ref moves, position, gameField, figureColor);
-        }
-
-        public static void GetKnightMoves(
-            ref List<Vector2Int> moves,
-            Vector2Int position,
-            GameField gameField,
-            FigureColor figureColor)
-        {
-            AddIfEmptyOrEnemy(ref moves, position, gameField, figureColor, new Vector2Int(2, 1));
-            AddIfEmptyOrEnemy(ref moves, position, gameField, figureColor, new Vector2Int(2, -1));
-            AddIfEmptyOrEnemy(ref moves, position, gameField, figureColor, new Vector2Int(1, 2));
-            AddIfEmptyOrEnemy(ref moves, position, gameField, figureColor, new Vector2Int(1, -2));
-            AddIfEmptyOrEnemy(ref moves, position, gameField, figureColor, new Vector2Int(-1, 2));
-            AddIfEmptyOrEnemy(ref moves, position, gameField, figureColor, new Vector2Int(-1, -2));
-            AddIfEmptyOrEnemy(ref moves, position, gameField, figureColor, new Vector2Int(-2, 1));
-            AddIfEmptyOrEnemy(ref moves, position, gameField, figureColor, new Vector2Int(-2, -1));
-        }
-
-        public static void GetQueenMoves(
-            ref List<Vector2Int> moves,
-            Vector2Int position,
-            GameField gameField,
-            FigureColor figureColor)
-        {
-            AddStraight(ref moves, position, gameField, figureColor);
-            AddDiagonal(ref moves, position, gameField, figureColor);
-        }
-
-
-        public static void GetKingMoves(
-            ref List<Vector2Int> moves,
-            Vector2Int position,
-            GameField gameField,
-            FigureColor figureColor)
-        {
-            AddIfEmptyOrEnemy(ref moves, position, gameField, figureColor, new Vector2Int(0, 1));
-            AddIfEmptyOrEnemy(ref moves, position, gameField, figureColor, new Vector2Int(1, 0));
-            AddIfEmptyOrEnemy(ref moves, position, gameField, figureColor, new Vector2Int(1, 1));
-            AddIfEmptyOrEnemy(ref moves, position, gameField, figureColor, new Vector2Int(0, -1));
-            AddIfEmptyOrEnemy(ref moves, position, gameField, figureColor, new Vector2Int(-1, 0));
-            AddIfEmptyOrEnemy(ref moves, position, gameField, figureColor, new Vector2Int(-1, -1));
-            AddIfEmptyOrEnemy(ref moves, position, gameField, figureColor, new Vector2Int(-1, 1));
-            AddIfEmptyOrEnemy(ref moves, position, gameField, figureColor, new Vector2Int(1, -1));
-        }
-
-        public static void AddIfEmpty(
-            ref List<Vector2Int> moves,
-            Vector2Int position,
-            GameField gameField,
-            Vector2Int direction)
-        {
-            Vector2Int checkedPosition = position + direction;
-            if (gameField.InBounds(checkedPosition) &&
-                !gameField.HasFigure(checkedPosition))
+            int counter = 0;
+            foreach (Vector2Int direction in Direction.All)
             {
-                moves.Add(checkedPosition);
+                counter += FigureUtils.AddIfEmptyOrEnemy(moves, position, gameField, figureColor, direction);
             }
+            return counter;
         }
 
-        public static void AddIfEnemy(
-            ref List<Vector2Int> moves,
-            Vector2Int position,
-            GameField gameField,
-            FigureColor figureColor,
-            Vector2Int direction)
-        {
-            Vector2Int checkedPosition = position + direction;
-            if (gameField.InBounds(checkedPosition) &&
-                gameField.TryGetFigure(out Figure figure, checkedPosition) &&
-                figure.FigureColor != figureColor)
-            {
-                moves.Add(checkedPosition);
-            }
-        }
-
-        public static void AddIfEmptyOrEnemy(
-            ref List<Vector2Int> moves,
-            Vector2Int position,
-            GameField gameField,
-            FigureColor figureColor,
-            Vector2Int direction)
-        {
-            Vector2Int checkedPosition = position + direction;
-            if (gameField.InBounds(checkedPosition) &&
-                    (!gameField.HasFigure(checkedPosition) ||
-                        (gameField.TryGetFigure(out Figure otherFigure, checkedPosition) &&
-                            (otherFigure.FigureColor != figureColor))))
-            {
-                moves.Add(checkedPosition);
-            }
-        }
-
-        public static void AddStraight(
-            ref List<Vector2Int> moves,
+        public static int AddStraight(
+            IList<Vector2Int> moves,
             Vector2Int position,
             GameField gameField,
             FigureColor figureColor)
         {
-            AddDirection(ref moves, position, gameField, figureColor, new Vector2Int(0, 1));
-            AddDirection(ref moves, position, gameField, figureColor, new Vector2Int(0, -1));
-            AddDirection(ref moves, position, gameField, figureColor, new Vector2Int(1, 0));
-            AddDirection(ref moves, position, gameField, figureColor, new Vector2Int(-1, 0));
+            int counter = 0;
+            foreach (Vector2Int direction in Direction.Straight)
+            {
+                counter += AddDirection(moves, position, gameField, figureColor, direction);
+            }
+            return counter;
         }
 
-        public static void AddDiagonal(
-            ref List<Vector2Int> moves,
+        public static int AddDiagonal(
+            IList<Vector2Int> moves,
             Vector2Int position,
             GameField gameField,
             FigureColor figureColor)
         {
-            AddDirection(ref moves, position, gameField, figureColor, new Vector2Int(1, 1));
-            AddDirection(ref moves, position, gameField, figureColor, new Vector2Int(1, -1));
-            AddDirection(ref moves, position, gameField, figureColor, new Vector2Int(-1, 1));
-            AddDirection(ref moves, position, gameField, figureColor, new Vector2Int(-1, -1));
+            int counter = 0;
+            foreach (Vector2Int direction in Direction.Diagonal)
+            {
+                counter += AddDirection(moves, position, gameField, figureColor, direction);
+            }
+            return counter;
         }
 
-        public static void AddDirection(
-            ref List<Vector2Int> moves,
+        public static int AddDirection(
+            IList<Vector2Int> moves,
             Vector2Int position,
             GameField gameField,
             FigureColor figureColor,
             Vector2Int direction)
         {
             Vector2Int checkedPosition = position;
+            int counter = 0;
             while (true)
             {
                 checkedPosition += direction;
-                if (!gameField.InBounds(checkedPosition))
+                if (gameField.OutBounds(checkedPosition))
                 {
                     break;
                 }
-                if (gameField.TryGetFigure(out Figure otherFigure, checkedPosition))
+                else if (gameField.TryGetFigure(out Figure figure, checkedPosition))
                 {
-                    if (otherFigure.FigureColor != figureColor)
+                    if (figure.IsEnemy(figureColor))
                     {
                         moves.Add(checkedPosition);
-                        break;
+                        counter += 1;
                     }
                     break;
                 }
                 else
                 {
                     moves.Add(checkedPosition);
+                    counter += 1;
                 }
             }
-        }
-        public static void GetAtackCell(
-       ref List<Vector2Int> moves,
-       Vector2Int position,
-       GameField gameField,
-       FigureType figureType,
-       FigureColor figureColor)
-        {
-            switch (figureType)
-            {
-                case FigureType.Pawn:
-                    GetPawnAtack(ref moves, position, gameField, figureColor);
-                    break;
-
-                case FigureType.Knight:
-                    GetKnightAtack(ref moves, position, gameField, figureColor);
-                    break;
-
-                case FigureType.Bishop:
-                    GetBishopAtack(ref moves, position, gameField, figureColor);
-                    break;
-
-                case FigureType.Rook:
-                    GetRookAtack(ref moves, position, gameField, figureColor);
-                    break;
-
-                case FigureType.Queen:
-                    GetQueenAtack(ref moves, position, gameField, figureColor);
-                    break;
-
-                case FigureType.King:
-                    GetKingAtack(ref moves, position, gameField, figureColor);
-                    break;
-
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(figureType));
-            }
-        }
-
-        public static void GetPawnAtack(
-            ref List<Vector2Int> moves,
-            Vector2Int position,
-            GameField gameField,
-            FigureColor figureColor)
-        {
-            Vector2Int checkedPosition = position + new Vector2Int(1, 1);
-            moves.Add(checkedPosition);
-            checkedPosition = position + new Vector2Int(-1, 1);
-            moves.Add(checkedPosition);
-        }
-
-        public static void GetRookAtack(
-            ref List<Vector2Int> moves,
-            Vector2Int position,
-            GameField gameField,
-            FigureColor figureColor)
-        {
-            AddStraightAtack(ref moves, position, gameField, figureColor);
-        }
-
-        public static void GetBishopAtack(
-            ref List<Vector2Int> moves,
-            Vector2Int position,
-            GameField gameField,
-            FigureColor figureColor)
-        {
-            AddDiagonalAtack(ref moves, position, gameField, figureColor);
-        }
-
-        public static void GetKnightAtack(
-            ref List<Vector2Int> moves,
-            Vector2Int position,
-            GameField gameField,
-            FigureColor figureColor)
-        {
-            AddIfEmptyOrEnemy(ref moves, position, gameField, figureColor, new Vector2Int(2, 1));
-            AddIfEmptyOrEnemy(ref moves, position, gameField, figureColor, new Vector2Int(2, -1));
-            AddIfEmptyOrEnemy(ref moves, position, gameField, figureColor, new Vector2Int(1, 2));
-            AddIfEmptyOrEnemy(ref moves, position, gameField, figureColor, new Vector2Int(1, -2));
-            AddIfEmptyOrEnemy(ref moves, position, gameField, figureColor, new Vector2Int(-1, 2));
-            AddIfEmptyOrEnemy(ref moves, position, gameField, figureColor, new Vector2Int(-1, -2));
-            AddIfEmptyOrEnemy(ref moves, position, gameField, figureColor, new Vector2Int(-2, 1));
-            AddIfEmptyOrEnemy(ref moves, position, gameField, figureColor, new Vector2Int(-2, -1));
-        }
-
-        public static void GetQueenAtack(
-            ref List<Vector2Int> moves,
-            Vector2Int position,
-            GameField gameField,
-            FigureColor figureColor)
-        {
-            AddStraightAtack(ref moves, position, gameField, figureColor);
-            AddDiagonalAtack(ref moves, position, gameField, figureColor);
-        }
-
-
-        public static void GetKingAtack(
-            ref List<Vector2Int> moves,
-            Vector2Int position,
-            GameField gameField,
-            FigureColor figureColor)
-        {
-            AddIfEmpty(ref moves, position, gameField, new Vector2Int(0, 1));
-            AddIfEmpty(ref moves, position, gameField, new Vector2Int(1, 0));
-            AddIfEmpty(ref moves, position, gameField, new Vector2Int(1, 1));
-            AddIfEmpty(ref moves, position, gameField, new Vector2Int(0, -1));
-            AddIfEmpty(ref moves, position, gameField, new Vector2Int(-1, 0));
-            AddIfEmpty(ref moves, position, gameField, new Vector2Int(-1, -1));
-            AddIfEmpty(ref moves, position, gameField, new Vector2Int(-1, 1));
-            AddIfEmpty(ref moves, position, gameField, new Vector2Int(1, -1));
-        }
-
-        public static void AddDirectionAtack(
-            ref List<Vector2Int> moves,
-            Vector2Int position,
-            GameField gameField,
-            FigureColor figureColor,
-            Vector2Int direction)
-        {
-            Vector2Int checkedPosition = position;
-            while (true)
-            {
-                checkedPosition += direction;
-                if (!gameField.InBounds(checkedPosition))
-                {
-                    break;
-                }
-                if (gameField.TryGetFigure(out Figure otherFigure, checkedPosition))
-                {
-                    if (otherFigure.FigureColor != figureColor)
-                    {
-                        moves.Add(checkedPosition);
-                    }
-                    else
-                    {
-                        moves.Add(checkedPosition);
-                        break;
-                    }
-                }
-                else
-                {
-                    moves.Add(checkedPosition);
-                }
-            }
-        }
-
-        public static void AddStraightAtack(
-    ref List<Vector2Int> moves,
-    Vector2Int position,
-    GameField gameField,
-    FigureColor figureColor)
-        {
-            AddDirectionAtack(ref moves, position, gameField, figureColor, new Vector2Int(0, 1));
-            AddDirectionAtack(ref moves, position, gameField, figureColor, new Vector2Int(0, -1));
-            AddDirectionAtack(ref moves, position, gameField, figureColor, new Vector2Int(1, 0));
-            AddDirectionAtack(ref moves, position, gameField, figureColor, new Vector2Int(-1, 0));
-        }
-
-        public static void AddDiagonalAtack(
-            ref List<Vector2Int> moves,
-            Vector2Int position,
-            GameField gameField,
-            FigureColor figureColor)
-        {
-            AddDirectionAtack(ref moves, position, gameField, figureColor, new Vector2Int(1, 1));
-            AddDirectionAtack(ref moves, position, gameField, figureColor, new Vector2Int(1, -1));
-            AddDirectionAtack(ref moves, position, gameField, figureColor, new Vector2Int(-1, 1));
-            AddDirectionAtack(ref moves, position, gameField, figureColor, new Vector2Int(-1, -1));
+            return counter;
         }
     }
 }

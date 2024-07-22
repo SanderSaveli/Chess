@@ -1,13 +1,12 @@
-using IUP.Toolkit;
 using UnityEngine;
 
-namespace OFG.Chess
+namespace OFG.ChessPeak
 {
     public class LevelComplete : MonoBehaviour
     {
-
         [SerializeField] private GameObject winPanel;
         [SerializeField] private GameObject losePanel;
+
         private void Awake()
         {
             SubscribeOnEvents();
@@ -19,14 +18,14 @@ namespace OFG.Chess
 
         private void SubscribeOnEvents()
         {
-            EventBus.RegisterCallback<EventWinning>(LevelCompl);
-            EventBus.RegisterCallback<EventLosing>(LevelRestart);
+            EventBusProvider.EventBus.RegisterCallback<EventWinning>(LevelCompl);
+            EventBusProvider.EventBus.RegisterCallback<EventLosing>(LevelRestart);
         }
 
         private void UnsubscribeFromEvents()
         {
-            EventBus.UnregisterCallback<EventWinning>(LevelCompl);
-            EventBus.UnregisterCallback<EventLosing>(LevelRestart);
+            EventBusProvider.EventBus.UnregisterCallback<EventWinning>(LevelCompl);
+            EventBusProvider.EventBus.UnregisterCallback<EventLosing>(LevelRestart);
         }
 
         private void LevelCompl(EventWinning ctx)
