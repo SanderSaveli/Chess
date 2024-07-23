@@ -69,22 +69,37 @@ namespace OFG.ChessPeak
             return figure != null;
         }
 
+        public void ChangeFieldSize(Vector2Int size)
+        {
+            _width = size.x; 
+            _height = size.y;
+            DestroyOutboundElement(_cellTilemap);
+            DestroyOutboundElement(_figureTilemap);
+            InitGameField();
+        }
+
         private void Awake()
         {
-            InitMatrixByTilemap(ref _figures, _figureTilemap);
-            InitMatrixByTilemap(ref _cells, _cellTilemap);
-            FillCells();
+            InitGameField();
         }
 
         private void OnDrawGizmos() => 
             MatrixUtils.DrawChessGizmos(_width, _height, _cellTilemap, Color.green, Color.black);
 
+        private void InitGameField()
+        {
+            InitMatrixByTilemap(ref _figures, _figureTilemap);
+            InitMatrixByTilemap(ref _cells, _cellTilemap);
+            FillCells();
+        }
         private void InitMatrixByTilemap<T>(ref Matrix<T> matrix, Tilemap tilemap) where T : Component
         {
             matrix = new Matrix<T>(_width, _height);
+            int i = 1;
             foreach (Transform child in tilemap.transform)
             {
                 Vector2Int position = WorldToPosition2(child.position);
+                Debug.Log(position);
                 matrix[position] = child.GetComponent<T>();
             }
         }
@@ -118,6 +133,20 @@ namespace OFG.ChessPeak
                 Quaternion.identity,
                 _cellTilemap.transform);
             _cells[i] = cellObject.GetComponent<CellBase>();
+        }
+
+        private void DestroyOutboundElement(Tilemap tilemap)
+        {
+            for (int i = 0; i < tilemap.transform.childCount; i++)
+            {
+                Transform cellTransform = tilemap.transform.GetChild(i);
+                Vector2Int cellCoordinate = WorldToPosition2(cellTransform.position);
+                if (cellCoordinate.x >= _width || cellCoordinate.y >= _height)
+                {
+                    DestroyImmediate(cellTransform.gameObject);
+                    i--;
+                }
+            }
         }
     }
 }

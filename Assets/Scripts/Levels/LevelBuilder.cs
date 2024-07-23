@@ -19,6 +19,16 @@ namespace OFG.ChessPeak
             return _levelObject.GetComponent<GameField>();
         }
 
+        public GameField BuildLevel(GameObject levelObject)
+        {
+            if (_levelObject != null)
+            {
+                DestroyLevel();
+            }
+            _levelObject = Instantiate(levelObject, _levelParent);
+            return _levelObject.GetComponent<GameField>();
+        }
+
         public void DestroyLevel() => Destroy(_levelObject);
     }
 }
