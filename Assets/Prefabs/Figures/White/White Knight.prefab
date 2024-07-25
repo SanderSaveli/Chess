@@ -135,5 +135,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _yOffsetOnSelected: 1
+  _yOffsetOnCreate: 20
   _yOffsetOnDefeated: 20
   _positionSmoothTime: 0.1

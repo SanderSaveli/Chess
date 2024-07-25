@@ -6,6 +6,7 @@ namespace OFG.ChessPeak
     {
         [Header(H.Params)]
         [SerializeField] private float _yOffsetOnSelected;
+        [SerializeField] private float _yOffsetOnCreate;
         [SerializeField] private float _yOffsetOnDefeated;
         [SerializeField] private float _positionSmoothTime = 0.5f;
 
@@ -18,6 +19,14 @@ namespace OFG.ChessPeak
             Vector3 newTargetPosition = TargetPosition;
             newTargetPosition.y += _yOffsetOnDefeated;
             TargetPosition = newTargetPosition;
+        }
+
+        public void Create()
+        {
+            TargetPosition = transform.position;
+            Vector3 newPosition = TargetPosition;
+            newPosition.y += _yOffsetOnCreate;
+            transform.position = newPosition;
         }
 
         public void MoveTo(Vector3 position3)

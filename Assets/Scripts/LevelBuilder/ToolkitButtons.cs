@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace OFG.ChessPeak
 {
@@ -7,12 +6,10 @@ namespace OFG.ChessPeak
     {
         public void ToolSelected(ToolEnumWrapper enumWrapper)
         {
-            Debug.Log(enumWrapper.ToolType);
+            EventToolSelected context = new EventToolSelected(enumWrapper.ToolType);
+            EventBusProvider.EventBus.InvokeEvent(context);
+            Debug.Log(context.Tool);
         }
 
-        public void SelectButton(Button button)
-        {
-            button.Select();
-        }
     }
 }

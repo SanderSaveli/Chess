@@ -20,6 +20,7 @@ namespace OFG.ChessPeak
         [SerializeField] private bool _isFirstChessSquareBlack = true;
 
         public Matrix<Figure> Figures => _figures;
+        public Tilemap FigureTilemap => _figureTilemap;
         public Matrix<CellBase> Cells => _cells;
 
         private Matrix<Figure> _figures;
@@ -78,6 +79,16 @@ namespace OFG.ChessPeak
             InitGameField();
         }
 
+        public void SetFigure(Vector2Int position2)
+        {
+
+        }
+
+        public void DeleteFigure(Vector2Int position2)
+        {
+
+        }
+
         private void Awake()
         {
             InitGameField();
@@ -95,11 +106,9 @@ namespace OFG.ChessPeak
         private void InitMatrixByTilemap<T>(ref Matrix<T> matrix, Tilemap tilemap) where T : Component
         {
             matrix = new Matrix<T>(_width, _height);
-            int i = 1;
             foreach (Transform child in tilemap.transform)
             {
                 Vector2Int position = WorldToPosition2(child.position);
-                Debug.Log(position);
                 matrix[position] = child.GetComponent<T>();
             }
         }
