@@ -24,6 +24,7 @@ namespace OFG.ChessPeak
         private Tilemap _figureTilemap;
         private EventRegistrar _eventRegistrar;
         private Dictionary<ToolTypes, GameObject> _toolPair;
+        private ToolTypes _currentTool;
 
         public void Init(GameField gameField)
         {
@@ -36,7 +37,7 @@ namespace OFG.ChessPeak
             if (_gameField.OutBounds(position2))
                 return;
 
-            if (_curentTool == ToolTypes.DeleteFigures)
+            if (_currentTool == ToolTypes.DeleteFigures)
             {
                 if (_gameField.TryGetFigure(out Figure figure, position2))
                 {
@@ -63,8 +64,6 @@ namespace OFG.ChessPeak
 
         private void OnDisable() => UnsubscribeFromEvents();
 
-        private ToolTypes _curentTool;
-
         private void SubscribeOnEvents() =>
             _eventRegistrar = new EventRegistrar(EventBusProvider.EventBus)
                 .RegisterCallback<EventToolSelected>(OnNewToolSelected);
@@ -84,18 +83,21 @@ namespace OFG.ChessPeak
 
         private void OnNewToolSelected(EventToolSelected context)
         {
-            _curentTool = context.Tool;
+            _currentTool = context.Tool;
         }
 
         private void CreateFigure(Vector2Int position2)
         {
-            GameObject figureObj = _toolPair[_curentTool];
+            GameObject figureObj = _toolPair[_currentTool];
             Vector3 worldPos = _gameField.Position2ToWorld(position2);
             figureObj = Instantiate(figureObj, worldPos, Quaternion.identity);
             figureObj.transform.parent = _figureTilemap.transform;
             Figure figure = figureObj.GetComponent<Figure>();
             _gameField.Figures[position2] = figure;
             figure.View.Create();
+
+            EventFigurePlacedInBuilder context = new EventFigurePlacedInBuilder(position2);
+            EventBusProvider.EventBus.InvokeEvent(context);
         }
     }
 }

@@ -6,7 +6,9 @@ namespace OFG.ChessPeak
     {
         [Header(H.ComponentReferences)]
         [SerializeField] private LevelBuilder _levelBuilder;
-        [SerializeField] private GameObject defaultLevelPrefab;
+
+        [Header(H.Prefabs)]
+        [SerializeField] private GameObject defaultLevel;
 
         private LevelDecore _levelDecore;
         private GameField _field;
@@ -24,7 +26,7 @@ namespace OFG.ChessPeak
 
         public GameField CreateField()
         {
-            _field = _levelBuilder.BuildLevel(defaultLevelPrefab);
+            _field = _levelBuilder.BuildLevel(defaultLevel);
             _levelDecore = _field.gameObject.GetComponentInChildren<LevelDecore>();
             return _field;
         }
