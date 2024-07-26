@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace OFG.ChessPeak
+namespace OFG.ChessPeak.LevelBuild
 {
     public class ToolkitButtons : MonoBehaviour
     {

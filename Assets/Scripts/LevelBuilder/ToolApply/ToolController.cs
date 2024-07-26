@@ -1,25 +1,24 @@
 using UnityEngine;
 
-namespace OFG.ChessPeak
+namespace OFG.ChessPeak.LevelBuild
 {
     public class ToolController : MonoBehaviour
     {
         [Header(H.ComponentReferences)]
         [SerializeField] private PointerController _pointerController;
-        [SerializeField] private ToolHandler _tollHandler;
-        [SerializeField] private FieldCreator _fieldCreator;
         [SerializeField] private LevelBuilderFieldHilighter _fieldHilighter;
 
+        private ToolHandler _tollHandler;
         private GameField _gameField;
-        private void Start()
+
+        public void Init(ToolHandler toolHandler, GameField gameField)
         {
-            _gameField = _fieldCreator.CreateField();
-            _tollHandler.Init(_gameField);
+            _gameField = gameField;
+            _tollHandler = toolHandler;
             _pointerController.Init(_gameField);
             _fieldHilighter.Init(_gameField);
         }
-
-        private void Update()
+        public void OnUpdate()
         {
             if (Input.GetMouseButtonUp(0))
             {
@@ -27,7 +26,8 @@ namespace OFG.ChessPeak
                 {
                     _tollHandler.ApplyTool(position2);
                 }
-            }          
+            }
+            _fieldHilighter.CheckForCursorPaint();
         }
     }
 }

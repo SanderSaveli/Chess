@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace OFG.ChessPeak
+namespace OFG.ChessPeak.LevelBuild
 {
     [Serializable]
     public class ToolFigurePair
@@ -78,7 +78,6 @@ namespace OFG.ChessPeak
             {
                 _toolPair.Add(pair.Tool, pair.Figure);
             }
-            Debug.Log(_toolPair.Count);
         }
 
         private void OnNewToolSelected(EventToolSelected context)

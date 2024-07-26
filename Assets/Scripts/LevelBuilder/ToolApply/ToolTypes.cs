@@ -1,37 +1,37 @@
-namespace OFG.ChessPeak
+namespace OFG.ChessPeak.LevelBuild
 {
     public enum ToolTypes
     {
         /// <summary>
-        /// Пешка.
+        /// Разместить пешку.
         /// </summary>
         Pawn,
         /// <summary>
-        /// Конь.
+        /// Разместить коня.
         /// </summary>
         Knight,
         /// <summary>
-        /// Слон.
+        /// Разместить слона.
         /// </summary>
         Bishop,
         /// <summary>
-        /// Ладья.
+        /// Разместить ладью.
         /// </summary>
         Rook,
         /// <summary>
-        /// Ферзь.
+        /// Разместить ферзя.
         /// </summary>
         Queen,
         /// <summary>
-        /// Король.
+        /// Разместить короля.
         /// </summary>
         King,
         /// <summary>
-        /// Черный король.
+        /// Разместить черного короля.
         /// </summary>
         BlackKing,
         /// <summary>
-        /// Удаление фигур
+        /// Удаление фигур.
         /// </summary>
         DeleteFigures
     }

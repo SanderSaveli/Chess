@@ -1,7 +1,7 @@
 using IUP.Toolkit;
 using UnityEngine;
 
-namespace OFG.ChessPeak
+namespace OFG.ChessPeak.LevelBuild
 {
     public class LevelBuilderFieldHilighter : MonoBehaviour
     {
@@ -25,7 +25,7 @@ namespace OFG.ChessPeak
 
         private void OnDisable() => UnsubscribeFromEvents();
 
-        void Update()
+        public void CheckForCursorPaint()
         {
             if (_pointerController.TryGetHoveredCell(out _, out Vector2Int pos))
             {

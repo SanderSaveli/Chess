@@ -1,4 +1,4 @@
-namespace OFG.ChessPeak
+namespace OFG.ChessPeak.LevelBuild
 {
     public readonly struct EventToolSelected
     {
