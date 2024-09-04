@@ -8,15 +8,20 @@ namespace OFG.ChessPeak.LevelBuild
         [SerializeField] private ToolHandler _tollHandler;
         [SerializeField] private FieldCreator _fieldCreator;
         [SerializeField] private BuilderInputFSM _builderInputFSM;
+        [SerializeField] private DeckBuilder _deckBuilder;
 
         [Header("Controllers")]
         [SerializeField] private ToolController _toolController;
         [SerializeField] private DeckBuilderController _deckBuilderController;
 
         private GameField _gameField;
+        private IStorageService _storageService;
+        private LevelSaver _levelSaver;
         private void Start()
         {
             _gameField = _fieldCreator.CreateField();
+            _storageService = new JsonToFileStorageService();
+            _levelSaver = new(_gameField, _deckBuilder);
             _tollHandler.Init(_gameField);
             _toolController.Init(_tollHandler, _gameField);
             _builderInputFSM.SetApplyToolState();
@@ -27,5 +32,8 @@ namespace OFG.ChessPeak.LevelBuild
 
         public void CloseDeckBuildWindow() =>
             _builderInputFSM.SetApplyToolState();
+
+        public void SaveLevel() =>
+            _levelSaver.Save();
     }
 }

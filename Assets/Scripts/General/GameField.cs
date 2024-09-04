@@ -22,6 +22,8 @@ namespace OFG.ChessPeak
         public Matrix<Figure> Figures => _figures;
         public Tilemap FigureTilemap => _figureTilemap;
         public Matrix<CellBase> Cells => _cells;
+        public int width => _width;
+        public int height => _height;
 
         private Matrix<Figure> _figures;
         private Matrix<CellBase> _cells;
