@@ -19,11 +19,6 @@ namespace OFG.ChessPeak
 
         private void Awake() => SubscribeOnEvents();
 
-        private void Start()
-        {
-            _fsm.SetSelectCardState();
-        }
-
         private void OnDestroy() => UnsubscribeFromEvents();
 
         private void SubscribeOnEvents() =>
@@ -48,6 +43,7 @@ namespace OFG.ChessPeak
             _figureController.Init(_gameField);
             _selectionController.Init(_gameField);
             _opponentAI.Init(_gameField);
+            _fsm.SetSelectCardState();
         }
 
         private void OnCardSelected(EventCardSelected context)

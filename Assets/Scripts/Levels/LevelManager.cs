@@ -17,6 +17,7 @@ namespace OFG.ChessPeak
         [SerializeField][Min(0.0f)] private float _transitionDuration;
         [SerializeField] private int _sceneBuildIndexMainMenu;
         [SerializeField] private int _sceneBuildIndexGame;
+        [SerializeField] private int _sceneBuildIndexLevelBuilder;
         [SerializeField] private List<LevelTemplate> _levels;
 
         private IStorageService _storageService;
@@ -66,10 +67,18 @@ namespace OFG.ChessPeak
         private void Awake()
         {
             EventBusProvider.EventBus.RegisterCallback<EventInputLoadLevel>(OnInputLoadLevel);
+            EventBusProvider.EventBus.RegisterCallback<EventInputLoadMenu>(LoadMainMenu);
+            EventBusProvider.EventBus.RegisterCallback<EventInputLoadLevelBuilder>(LoadLevelBuilder);
             DontDestroyOnLoad(gameObject);
         }
 
-        private void OnInputLoadLevel(EventInputLoadLevel context) => LoadLevel(context.LevelNumber);
+        private void OnInputLoadLevel(EventInputLoadLevel context) => 
+            LoadLevel(context.LevelNumber);
+
+        private void LoadMainMenu(EventInputLoadMenu context) => 
+            StartCoroutine(LoadSceneWithTransition(_sceneBuildIndexMainMenu));
+        private void LoadLevelBuilder(EventInputLoadLevelBuilder context) => 
+            StartCoroutine(LoadSceneWithTransition(_sceneBuildIndexLevelBuilder));
 
         private IEnumerator RoutineLoadingLevel(LevelData levelTemplate)
         {
@@ -82,15 +91,22 @@ namespace OFG.ChessPeak
             }
             else
             {
-                AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(_sceneBuildIndexGame);
-                asyncOperation.allowSceneActivation = false;
-                yield return TransitionScreen.Show(_transitionDuration);
-                yield return WaitLoadingToContinue(asyncOperation);
-                asyncOperation.allowSceneActivation = true;
-                yield return WaitLoadingIsDone(asyncOperation);
-                EventBusProvider.EventBus.InvokeEvent(context);
-                yield return TransitionScreen.Hide(_transitionDuration);
+                yield return LoadSceneWithTransition(_sceneBuildIndexGame, data => { 
+                    EventBusProvider.EventBus.InvokeEvent(context); 
+                });
             }
+        }
+
+        private IEnumerator LoadSceneWithTransition(int buildIndex, Action<bool> sceneLoaded = null)
+        {
+            AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(buildIndex);
+            asyncOperation.allowSceneActivation = false;
+            yield return TransitionScreen.Show(_transitionDuration);
+            yield return WaitLoadingToContinue(asyncOperation);
+            asyncOperation.allowSceneActivation = true;
+            yield return WaitLoadingIsDone(asyncOperation);
+            sceneLoaded?.Invoke(true);
+            yield return TransitionScreen.Hide(_transitionDuration);
         }
 
         private IEnumerator WaitLoadingToContinue(AsyncOperation asyncOperation)

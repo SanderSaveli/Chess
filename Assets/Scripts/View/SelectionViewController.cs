@@ -46,6 +46,7 @@ namespace OFG.ChessPeak
 
         private void InstantiateSelections()
         {
+            DeleteSelectionIfExists();
             for (int i = 0; i < _selectionViews.Count; i += 1)
             {
                 InstantiateSelection(i);
@@ -63,6 +64,18 @@ namespace OFG.ChessPeak
                 Quaternion.identity,
                 _selectionsParent);
             _selectionViews[i] = cellObject.GetComponent<SelectionView>();
+        }
+
+        private void DeleteSelectionIfExists()
+        {
+            for(int i =0;  i < _selectionsParent.childCount;i++)
+            {
+                var child = _selectionsParent.GetChild(i);
+                if (child.TryGetComponent<SelectionView>(out _))
+                {
+                    Destroy(child.gameObject);
+                }
+            }
         }
     }
 }

@@ -23,6 +23,14 @@ namespace OFG.ChessPeak
 
         public void AddCard(CardType cardType) => InstantiateCard(cardType);
 
+        public void ClearHand()
+        {
+            for(int i = _cards.Count -1; i >= 0; i--)
+            {
+                RemoveCard(i);
+            }
+        }
+
         public void RemoveCard(CardView cardView)
         {
             int i = _cardViews.IndexOf(cardView);
@@ -34,6 +42,7 @@ namespace OFG.ChessPeak
             CardView cardView = _cardViews[i];
             cardView.Destroy();
             _cards.RemoveAt(i);
+            Destroy(_cardViews[i].gameObject);
             _cardViews.RemoveAt(i);
             UpdateCardTargetPositions();
         }

@@ -10,8 +10,17 @@ namespace OFG.ChessPeak
         private void Awake()
         {
             SubscribeOnEvents();
-            winPanel.SetActive(false);
-            losePanel.SetActive(false);
+            DisableWindows();
+        }
+
+        private void OnEnable()
+        {
+            SubscribeOnEvents();
+        }
+
+        private void OnDisable()
+        {
+            UnsubscribeFromEvents();
         }
 
         private void OnDestroy() => UnsubscribeFromEvents();
@@ -20,12 +29,14 @@ namespace OFG.ChessPeak
         {
             EventBusProvider.EventBus.RegisterCallback<EventWinning>(LevelCompl);
             EventBusProvider.EventBus.RegisterCallback<EventLosing>(LevelRestart);
+            EventBusProvider.EventBus.RegisterCallback<EventLoadLevelComplete>(DisableWindows);
         }
 
         private void UnsubscribeFromEvents()
         {
             EventBusProvider.EventBus.UnregisterCallback<EventWinning>(LevelCompl);
             EventBusProvider.EventBus.UnregisterCallback<EventLosing>(LevelRestart);
+            EventBusProvider.EventBus.UnregisterCallback<EventLoadLevelComplete>(DisableWindows);
         }
 
         private void LevelCompl(EventWinning ctx)
@@ -37,6 +48,17 @@ namespace OFG.ChessPeak
         private void LevelRestart(EventLosing ctx)
         {
             losePanel.SetActive(true);
+        }
+
+        private void DisableWindows(EventLoadLevelComplete ctx)
+        {
+            DisableWindows();
+        }
+
+        private void DisableWindows()
+        {
+            winPanel.SetActive(false);
+            losePanel.SetActive(false);
         }
     }
 }

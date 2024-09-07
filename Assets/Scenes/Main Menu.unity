@@ -2053,6 +2053,7 @@ MonoBehaviour:
   _transitionDuration: 1.5
   _sceneBuildIndexMainMenu: 0
   _sceneBuildIndexGame: 1
+  _sceneBuildIndexLevelBuilder: 2
   _levels:
   - {fileID: 11400000, guid: bbfda36bd9f5dc748b90edf7b8f9fd09, type: 2}
   - {fileID: 11400000, guid: 30db3a823d723814dbf07cfd1f785333, type: 2}

@@ -9,7 +9,8 @@ namespace OFG.ChessPeak
     {
         public void LoadMainMenu()
         {
-            SceneManager.LoadScene(0);
+            EventInputLoadMenu context = new EventInputLoadMenu();
+            EventBusProvider.EventBus.InvokeEvent(context);
         }
     }
 }

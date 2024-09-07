@@ -21,13 +21,12 @@ namespace OFG.ChessPeak
         private void placeFigure(FigureData data, GameField field, float delay)
         {
             GameObject figurePrefab = _figurePrefabs.GetFigurePrefab(data.type, data.color);
-            Transform root = _firueRoot.GetChild(0).GetChild(0).GetChild(1);
+            Transform root = _firueRoot.GetComponentInChildren<LevelView>().figureRoot;
             GameObject figureObj = Instantiate(figurePrefab, root);
             Figure figure = figureObj.GetComponent<Figure>();
 
             field.Figures[data.pos] = figure;
             figureObj.transform.position = field.Position2ToWorld(data.pos);
-            Debug.Log(data.pos + " " + field.Position2ToWorld(data.pos));
             figure.View.Create(delay);
         }
     }

@@ -1,6 +1,5 @@
 ﻿using IUP.Toolkit;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace OFG.ChessPeak
 {
@@ -50,7 +49,8 @@ namespace OFG.ChessPeak
 
         public void OpenLevelBuild()
         {
-            SceneManager.LoadScene(2);
+            EventInputLoadLevelBuilder context = new EventInputLoadLevelBuilder();
+            EventBusProvider.EventBus.InvokeEvent(context);
         }
     }
 }

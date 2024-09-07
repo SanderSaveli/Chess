@@ -17,6 +17,7 @@ namespace OFG.ChessPeak
         public void Init(IReadOnlyList<CardType> cardsInHand, IReadOnlyList<CardType> cardsInDeck)
         {
             _deck.Init(cardsInDeck);
+            _hand.ClearHand();
             foreach (CardType cardType in cardsInHand)
             {
                 _hand.AddCard(cardType);

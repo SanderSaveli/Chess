@@ -28,6 +28,7 @@ namespace OFG.ChessPeak.LevelBuild
         {
             if(_levelObject != null)
             {
+                Debug.Log("Level destructed");
                 DestroyLevel();
             }
             _levelObject = Instantiate(defaultLevel, _levelParent);
@@ -36,6 +37,6 @@ namespace OFG.ChessPeak.LevelBuild
             return _field;
         }
 
-        public void DestroyLevel() => Destroy(_levelObject);
+        public void DestroyLevel() => DestroyImmediate(_levelObject);
     }
 }
