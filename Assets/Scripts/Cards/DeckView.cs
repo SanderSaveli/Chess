@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace OFG.ChessPeak
 {
     public sealed class DeckView : MonoBehaviour
     {
         [Header(H.ComponentReferences)]
-        [SerializeField] private SpriteRenderer _spriteRenderer;
+        [SerializeField] private Image _spriteRenderer;
 
         public IReadOnlyList<CardType> Cards => _cards;
 

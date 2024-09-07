@@ -19,28 +19,28 @@ namespace OFG.ChessPeak
             {
                 storageService.Load<LevelData>(key, data =>
                 {
-                    Debug.Log("Field size: " + data.fieldWidth + " / " + data.fieldHeight);
+                    Debug.Log("Field size: " + data.FieldWidth + " / " + data.FieldHeight);
                     string cardsInHand = "";
-                    foreach (var card in data.cardsInHand)
+                    foreach (var card in data.CardsInHand)
                     {
                         cardsInHand += card.ToString() + ", ";
                     }
                     Debug.Log("Cards in hand: " + cardsInHand);
                     string cardsInDeck = "";
-                    foreach (var card in data.cardsInDeck)
+                    foreach (var card in data.CardsInDeck)
                     {
                         cardsInDeck += card.ToString() + ", ";
                     }
                     Debug.Log("Cards in deck: " + cardsInDeck);
                     string cells = "";
-                    foreach (var cell in data.cells)
+                    foreach (var cell in data.Cells)
                     {
                         cells += cell.type.ToString() + " on " + cell.pos.ToString() + ", ";
                     }
                     Debug.Log("Cells: " + cells);
 
                     string figures = "";
-                    foreach (var figure in data.figures)
+                    foreach (var figure in data.Figures)
                     {
                         figures += figure.color + " " + figure.type.ToString() + " on " + figure.pos.ToString() + ", ";
                     }

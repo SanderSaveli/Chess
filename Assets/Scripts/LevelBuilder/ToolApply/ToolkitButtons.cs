@@ -10,6 +10,5 @@ namespace OFG.ChessPeak.LevelBuild
             EventBusProvider.EventBus.InvokeEvent(context);
             Debug.Log(context.Tool);
         }
-
     }
 }

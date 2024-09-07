@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace OFG.ChessPeak
 {
@@ -27,6 +28,23 @@ namespace OFG.ChessPeak
             Vector3 newPosition = TargetPosition;
             newPosition.y += _yOffsetOnCreate;
             transform.position = newPosition;
+        }
+
+        public void Create(float delayTime)
+        {
+            StartCoroutine(WaitAndCreate(delayTime));
+        }
+
+        private IEnumerator WaitAndCreate(float Seconds)
+        {
+            Vector3 targetPos = transform.position;
+            Vector3 newPosition = targetPos;
+            newPosition.y += _yOffsetOnCreate;
+            TargetPosition = newPosition;
+            transform.position = newPosition;
+            yield return new WaitForSeconds(Seconds);
+
+            TargetPosition = targetPos;
         }
 
         public void MoveTo(Vector3 position3)

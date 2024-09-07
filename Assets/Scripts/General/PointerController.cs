@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace OFG.ChessPeak
 {
@@ -6,6 +9,8 @@ namespace OFG.ChessPeak
     {
         [Header(H.ComponentReferences)]
         [SerializeField] private Camera _camera;
+        [SerializeField] private GraphicRaycaster _graphicRaycaster;
+        [SerializeField] private EventSystem _eventSystem;
 
         [Header(H.Params)]
         [SerializeField] private LayerMask _figureLayerMask;
@@ -17,21 +22,42 @@ namespace OFG.ChessPeak
 
         public void Init(GameField gameField) => _gameField = gameField;
 
-        public bool TryGetCard(out CardView card, Ray ray)
+        public bool TryGetCard(out CardView card)
         {
-            if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, _cardLayerMask))
+            PointerEventData pointerEventData = new PointerEventData(_eventSystem)
             {
-                return hit.collider.TryGetComponent(out card);
+                position = Input.mousePosition
+            };
+
+            List<RaycastResult> results = new List<RaycastResult>();
+
+            _graphicRaycaster.Raycast(pointerEventData, results);
+
+            foreach (RaycastResult result in results)
+            {
+                if (result.gameObject.TryGetComponent<CardView>(out card))
+                {
+                    return true;
+                }
             }
             card = null;
             return false;
         }
+        //public bool TryGetCard(out CardView card, Ray ray)
+        //{
+        //    if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, _cardLayerMask))
+        //    {
+        //        return hit.collider.TryGetComponent(out card);
+        //    }
+        //    card = null;
+        //    return false;
+        //}
 
-        public bool TryGetCard(out CardView card)
-        {
-            Ray ray = GetRay();
-            return TryGetCard(out card, ray);
-        }
+        //public bool TryGetCard(out CardView card)
+        //{
+        //    Ray ray = GetRay();
+        //    return TryGetCard(out card, ray);
+        //}
 
         public Vector3 RayToWorldPosition()
         {

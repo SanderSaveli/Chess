@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using OFG.ChessPeak.LevelBuild;
+using UnityEngine;
 
 namespace OFG.ChessPeak
 {
@@ -6,29 +7,17 @@ namespace OFG.ChessPeak
     {
         [Header(H.ComponentReferences)]
         [SerializeField] private Transform _levelParent;
+        [SerializeField] private FieldCreator _fieldCreator;
+        [SerializeField] private FigurePlacer _figurePlacer;
 
-        private GameObject _levelObject;
+        private GameField _gameField;
 
-        public GameField BuildLevel(LevelTemplate levelTemplate)
+        public GameField BuildLevel(LevelData levelTemplate)
         {
-            if (_levelObject != null)
-            {
-                DestroyLevel();
-            }
-            _levelObject = Instantiate(levelTemplate.LevelPrefab, _levelParent);
-            return _levelObject.GetComponent<GameField>();
+            _gameField = _fieldCreator.CreateField();
+            _fieldCreator.ChangeFieldSize(levelTemplate.fieldSize);
+            _figurePlacer.ArrangeFigures(levelTemplate.Figures, _gameField);
+            return _gameField;
         }
-
-        public GameField BuildLevel(GameObject levelObject)
-        {
-            if (_levelObject != null)
-            {
-                DestroyLevel();
-            }
-            _levelObject = Instantiate(levelObject, _levelParent);
-            return _levelObject.GetComponent<GameField>();
-        }
-
-        public void DestroyLevel() => Destroy(_levelObject);
     }
 }

@@ -39,15 +39,15 @@ namespace OFG.ChessPeak
         {
             LevelData data = new LevelData();
 
-            data.fieldWidth = _gameField.width;
-            data.fieldHeight = _gameField.height;
+            data.FieldWidth = _gameField.width;
+            data.FieldHeight = _gameField.height;
 
-            data.cardsInHand = _deckBuilder.CardsInHand.ToArray();
-            data.cardsInDeck = _deckBuilder.CardsInDeck.ToArray();
+            data.CardsInHand = _deckBuilder.CardsInHand.ToArray();
+            data.CardsInDeck = _deckBuilder.CardsInDeck.ToArray();
 
-            data.figures = GetFiguresData();
+            data.Figures = GetFiguresData();
 
-            data.cells = GetCellsData();
+            data.Cells = GetCellsData();
 
             return data;
         }

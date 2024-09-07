@@ -16,11 +16,11 @@ namespace OFG.ChessPeak
 
         public void Init(IReadOnlyList<CardType> cardsInHand, IReadOnlyList<CardType> cardsInDeck)
         {
-            //_deck.Init(cardsInDeck);
-            //foreach (CardType cardType in cardsInHand)
-            //{
-            //    _hand.AddCard(cardType);
-            //}
+            _deck.Init(cardsInDeck);
+            foreach (CardType cardType in cardsInHand)
+            {
+                _hand.AddCard(cardType);
+            }
         }
 
         public bool HasCardOnHandsOrDeck() => _hand.IsNonEmpty() || _deck.IsNonEmpty();
@@ -32,6 +32,10 @@ namespace OFG.ChessPeak
             {
                 if (Input.GetMouseButtonDown(0))
                 {
+                    if(SelectedCard != hoveredCard)
+                    {
+                        UnselectCard();
+                    }
                     SelectCard(hoveredCard);
                 }
                 else
@@ -94,6 +98,10 @@ namespace OFG.ChessPeak
 
         private void UnselectCard()
         {
+            if(SelectedCard == null) 
+            {
+                return;
+            }
             SelectedCard.Unselect();
             SelectedCard = null;
             EventBusProvider.EventBus.InvokeEvent<EventCardUnselected>();

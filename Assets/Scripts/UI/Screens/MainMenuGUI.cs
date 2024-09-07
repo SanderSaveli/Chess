@@ -1,5 +1,6 @@
 ﻿using IUP.Toolkit;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace OFG.ChessPeak
 {
@@ -40,6 +41,16 @@ namespace OFG.ChessPeak
             {
                 tween.Hide();
             }
+        }
+
+        public void Quit()
+        {
+            Application.Quit();
+        }
+
+        public void OpenLevelBuild()
+        {
+            SceneManager.LoadScene(2);
         }
     }
 }

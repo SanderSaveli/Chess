@@ -2,9 +2,9 @@
 {
     public readonly struct EventLoadLevelComplete
     {
-        public EventLoadLevelComplete(LevelTemplate loadedLevelTemplate) =>
+        public EventLoadLevelComplete(LevelData loadedLevelTemplate) =>
             LoadedLevelTemplate = loadedLevelTemplate;
 
-        public readonly LevelTemplate LoadedLevelTemplate { get; }
+        public readonly LevelData LoadedLevelTemplate { get; }
     }
 }

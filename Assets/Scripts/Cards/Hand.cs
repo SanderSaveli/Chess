@@ -5,9 +5,11 @@ namespace OFG.ChessPeak
 {
     public sealed class Hand : MonoBehaviour
     {
+        [Header(H.ComponentReferences)]
+        [SerializeField] private CardImages _cardImages;
+
         [Header(H.Params)]
         [SerializeField] private Transform _cardViewRoot;
-        [SerializeField] private Transform _cardStartPoint;
         [SerializeField] private float _cardViewOffset;
 
         [Header(H.Prefabs)]
@@ -53,12 +55,10 @@ namespace OFG.ChessPeak
             Vector3 localPosition = new(xOffset, 0.0f, 0.0f);
             GameObject cardViewObject = Instantiate(
                 _cardPrefab,
-                _cardStartPoint.position,
-                _cardViewRoot.rotation,
                 _cardViewRoot);
             _cards.Add(cardType);
             CardView cardView = cardViewObject.GetComponent<CardView>();
-            cardView.Init(cardType);
+            cardView.Init(cardType, _cardImages);
             cardView.TargetPosition = _cardViewRoot.TransformPoint(localPosition);
             _cardViews.Add(cardView);
         }

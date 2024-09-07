@@ -19,6 +19,13 @@ namespace OFG.ChessPeak
         [SerializeField] private int _sceneBuildIndexGame;
         [SerializeField] private List<LevelTemplate> _levels;
 
+        private IStorageService _storageService;
+
+        private void Start()
+        {
+            _storageService = new JsonToFileStorageService();
+        }
+
         public bool IsActiveGameScene
         {
             get
@@ -50,8 +57,10 @@ namespace OFG.ChessPeak
 
         public void LoadLevel(int levelNumber)
         {
-            LevelTemplate levelTemplate = _levels[levelNumber];
-            _ = StartCoroutine(RoutineLoadingLevel(levelTemplate));
+            _storageService.Load<LevelData>("custom_level", data =>
+            {
+                _ = StartCoroutine(RoutineLoadingLevel(data));
+            });
         }
 
         private void Awake()
@@ -62,7 +71,7 @@ namespace OFG.ChessPeak
 
         private void OnInputLoadLevel(EventInputLoadLevel context) => LoadLevel(context.LevelNumber);
 
-        private IEnumerator RoutineLoadingLevel(LevelTemplate levelTemplate)
+        private IEnumerator RoutineLoadingLevel(LevelData levelTemplate)
         {
             EventLoadLevelComplete context = new(levelTemplate);
             if (IsActiveGameScene)

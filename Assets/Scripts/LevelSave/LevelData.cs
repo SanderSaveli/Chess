@@ -7,15 +7,16 @@ namespace OFG.ChessPeak
     [Serializable]
     public struct LevelData
     {
-        public int fieldWidth;
-        public int fieldHeight;
+        public Vector2Int fieldSize => new Vector2Int(FieldWidth, FieldHeight);
+        public int FieldWidth;
+        public int FieldHeight;
 
-        public List<FigureData> figures;
+        public List<FigureData> Figures;
 
-        public List<CellData> cells;
+        public List<CellData> Cells;
 
-        public CardType[] cardsInHand;
-        public CardType[] cardsInDeck;
+        public CardType[] CardsInHand;
+        public CardType[] CardsInDeck;
     }
 
     [Serializable]

@@ -23,10 +23,11 @@ namespace OFG.ChessPeak
         private Vector3 _positionVelocity;
         private Vector3 _scaleVelocity;
 
-        public void Init(CardType cardType)
+        public void Init(CardType cardType, CardImages cardImages)
         {
             CardType = cardType;
             _image.enabled = true;
+            _image.sprite = cardImages.GetImageOfCard(CardType);
         }
 
         public void Hover() => TargetScale = Vector3.one * _scaleSelectedFactor;
@@ -55,16 +56,16 @@ namespace OFG.ChessPeak
 
         private void Update()
         {
-            transform.position = Vector3.SmoothDamp(
-                transform.position,
-                TargetPosition,
-                ref _positionVelocity,
-                _positionSmoothTime);
-            transform.localScale = Vector3.SmoothDamp(
-                transform.localScale,
-                TargetScale,
-                ref _scaleVelocity,
-                _scaleSmoothTime);
+            //transform.position = Vector3.SmoothDamp(
+            //    transform.position,
+            //    TargetPosition,
+            //    ref _positionVelocity,
+            //    _positionSmoothTime);
+            //transform.localScale = Vector3.SmoothDamp(
+            //    transform.localScale,
+            //    TargetScale,
+            //    ref _scaleVelocity,
+            //    _scaleSmoothTime);
         }
 
         private void InitComponentReferences() => _image = GetComponent<Image>();

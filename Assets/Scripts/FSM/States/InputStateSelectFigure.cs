@@ -8,6 +8,7 @@
         {
             CardController.UnselectCardUpdate();
             FigureController.SelectFigureUpdate();
+            CardController.SelectCardUpdate();
         }
     }
 }

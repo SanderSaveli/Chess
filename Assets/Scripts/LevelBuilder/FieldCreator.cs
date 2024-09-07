@@ -4,12 +4,12 @@ namespace OFG.ChessPeak.LevelBuild
 {
     public class FieldCreator : MonoBehaviour
     {
-        [Header(H.ComponentReferences)]
-        [SerializeField] private LevelBuilder _levelBuilder;
 
         [Header(H.Prefabs)]
         [SerializeField] private GameObject defaultLevel;
+        [SerializeField] private Transform _levelParent;
 
+        private GameObject _levelObject;
         private LevelDecore _levelDecore;
         private GameField _field;
 
@@ -26,9 +26,16 @@ namespace OFG.ChessPeak.LevelBuild
 
         public GameField CreateField()
         {
-            _field = _levelBuilder.BuildLevel(defaultLevel);
+            if(_levelObject != null)
+            {
+                DestroyLevel();
+            }
+            _levelObject = Instantiate(defaultLevel, _levelParent);
+            _field = _levelObject.GetComponent<GameField>();
             _levelDecore = _field.gameObject.GetComponentInChildren<LevelDecore>();
             return _field;
         }
+
+        public void DestroyLevel() => Destroy(_levelObject);
     }
 }

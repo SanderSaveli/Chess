@@ -19,7 +19,10 @@ namespace OFG.ChessPeak
 
         private void Awake() => SubscribeOnEvents();
 
-        private void Start() => _fsm.SetSelectCardState();
+        private void Start()
+        {
+            _fsm.SetSelectCardState();
+        }
 
         private void OnDestroy() => UnsubscribeFromEvents();
 
