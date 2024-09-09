@@ -60,7 +60,7 @@ namespace OFG.ChessPeak
         {
             _storageService.Load<LevelData>("level" + levelNumber, data =>
             {
-                _ = StartCoroutine(RoutineLoadingLevel(data));
+                _ = StartCoroutine(RoutineLoadingLevel(data, levelNumber));
             });
         }
 
@@ -80,9 +80,9 @@ namespace OFG.ChessPeak
         private void LoadLevelBuilder(EventInputLoadLevelBuilder context) => 
             StartCoroutine(LoadSceneWithTransition(_sceneBuildIndexLevelBuilder));
 
-        private IEnumerator RoutineLoadingLevel(LevelData levelTemplate)
+        private IEnumerator RoutineLoadingLevel(LevelData levelTemplate, int levelNumber)
         {
-            EventLoadLevelComplete context = new(levelTemplate);
+            EventLoadLevelComplete context = new(levelTemplate, levelNumber);
             if (IsActiveGameScene)
             {
                 yield return TransitionScreen.Show(_transitionDuration);

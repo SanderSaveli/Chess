@@ -21,14 +21,12 @@ namespace OFG.ChessPeak
 
                 string streamingAssetsPath = BuildStreamingAssetsPath(key);
                 File.Copy(tempPath, streamingAssetsPath, true);
-                //File.Delete(tempPath); 
-
-                Debug.Log($"Файл сохранён в {streamingAssetsPath}");
+                File.Delete(tempPath); 
                 callback?.Invoke(true);
             }
             catch (Exception ex)
             {
-                Debug.LogError($"Ошибка при сохранении файла: {ex.Message}");
+                Debug.LogError($"Error in data save: {ex.Message}");
                 callback?.Invoke(false);
             }
         }
@@ -39,7 +37,7 @@ namespace OFG.ChessPeak
 
             if (!File.Exists(path))
             {
-                Debug.LogError($"Файл {key} не найден в " + BuildStreamingAssetsPath(key));
+                Debug.LogError($"There is no file {key} in " + BuildStreamingAssetsPath(key));
                 callback.Invoke(default(T));
                 return;
             }
@@ -52,12 +50,10 @@ namespace OFG.ChessPeak
                     T data = JsonConvert.DeserializeObject<T>(jsonFile);
                     callback.Invoke(data);
                 }
-
-                Debug.Log($"Файл {key} загружен из {path}.");
             }
             catch (Exception ex)
             {
-                Debug.LogError($"Ошибка при загрузке из StreamingAssets: {ex.Message}");
+                Debug.LogError($"Error with load from StreamingAssets: {ex.Message}");
                 callback?.Invoke(default(T));
             }
         }

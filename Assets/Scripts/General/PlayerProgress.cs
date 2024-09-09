@@ -8,7 +8,7 @@ namespace OFG.ChessPeak
 
         public static int CurrentLevel
         {
-            get => AdvancedPrefs.GetIntOrDefault(PrefsKey.CurrentLevel, 4);
+            get => AdvancedPrefs.GetIntOrDefault(PrefsKey.CurrentLevel, 1);
             set => AdvancedPrefs.SetSaveInt(PrefsKey.CurrentLevel, value);
         }
     }

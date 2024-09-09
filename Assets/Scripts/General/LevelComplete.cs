@@ -7,6 +7,8 @@ namespace OFG.ChessPeak
         [SerializeField] private GameObject winPanel;
         [SerializeField] private GameObject losePanel;
 
+        private int _thisLevelNumber;
+
         private void Awake()
         {
             SubscribeOnEvents();
@@ -30,6 +32,7 @@ namespace OFG.ChessPeak
             EventBusProvider.EventBus.RegisterCallback<EventWinning>(LevelCompl);
             EventBusProvider.EventBus.RegisterCallback<EventLosing>(LevelRestart);
             EventBusProvider.EventBus.RegisterCallback<EventLoadLevelComplete>(DisableWindows);
+            EventBusProvider.EventBus.RegisterCallback<EventLoadLevelComplete>(SetThisLevelNumber);
         }
 
         private void UnsubscribeFromEvents()
@@ -37,12 +40,16 @@ namespace OFG.ChessPeak
             EventBusProvider.EventBus.UnregisterCallback<EventWinning>(LevelCompl);
             EventBusProvider.EventBus.UnregisterCallback<EventLosing>(LevelRestart);
             EventBusProvider.EventBus.UnregisterCallback<EventLoadLevelComplete>(DisableWindows);
+            EventBusProvider.EventBus.UnregisterCallback<EventLoadLevelComplete>(SetThisLevelNumber);
         }
 
         private void LevelCompl(EventWinning ctx)
         {
             winPanel.SetActive(true);
-            PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level") + 1);
+            if(_thisLevelNumber == PlayerProgress.CurrentLevel)
+            {
+                UnlockNextLevel();
+            }
         }
 
         private void LevelRestart(EventLosing ctx)
@@ -59,6 +66,17 @@ namespace OFG.ChessPeak
         {
             winPanel.SetActive(false);
             losePanel.SetActive(false);
+        }
+
+        private void SetThisLevelNumber(EventLoadLevelComplete ctx)
+        {
+            _thisLevelNumber = ctx.LevelNumber;
+        }
+
+        private void UnlockNextLevel()
+        {
+            int nextLevel = PlayerProgress.CurrentLevel += 1;
+            PlayerPrefs.SetInt(PrefsKey.CurrentLevel, nextLevel);
         }
     }
 }

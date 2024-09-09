@@ -2979,6 +2979,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1035232753}
+        m_TargetAssemblyTypeName: OFG.ChessPeak.LevelBuild.BuilderManager, Assembly-CSharp
+        m_MethodName: OpenCreateLevelWindow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &615220421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4843,6 +4855,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1035232753}
+        m_TargetAssemblyTypeName: OFG.ChessPeak.LevelBuild.BuilderManager, Assembly-CSharp
+        m_MethodName: CloseCreateLevelWindow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &978372657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5349,7 +5373,7 @@ MonoBehaviour:
   _deckBuilder: {fileID: 1035232751}
   _toolController: {fileID: 1243182982}
   _deckBuilderController: {fileID: 1243182984}
-  LevelName: {fileID: 804366110}
+  LevelName: {fileID: 1049464901}
 --- !u!1 &1035590334 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7864588781887327922, guid: f4fa7566b827e0b48916912ef9e58ff0,

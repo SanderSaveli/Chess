@@ -12,6 +12,11 @@ namespace OFG.ChessPeak
         private UI_TweenPositionAnimation[] _tweensMainMenu;
         private UI_TweenPositionAnimation[] _tweensLevelSelection;
 
+        private void Start()
+        {
+            //PlayerPrefs.DeleteKey(PrefsKey.CurrentLevel);
+        }
+
         private void Awake()
         {
             _tweensMainMenu = _frameMainMenu.GetComponentsInChildren<UI_TweenPositionAnimation>(true);

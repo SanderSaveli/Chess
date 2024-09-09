@@ -1,14 +1,14 @@
 {
-  "FieldWidth": 4,
-  "FieldHeight": 4,
+  "FieldWidth": 8,
+  "FieldHeight": 8,
   "Figures": [],
   "Cells": [],
   "CardsInHand": [],
   "CardsInDeck": [],
   "fieldSize": {
-    "x": 4,
-    "y": 4,
-    "magnitude": 5.656854,
-    "sqrMagnitude": 32
+    "x": 8,
+    "y": 8,
+    "magnitude": 11.3137083,
+    "sqrMagnitude": 128
   }
 }

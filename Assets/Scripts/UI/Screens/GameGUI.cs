@@ -14,7 +14,7 @@ namespace OFG.ChessPeak
 
         public void NextLevel()
         {
-            int levelNumber = PlayerPrefs.GetInt("Level");
+            int levelNumber = PlayerProgress.CurrentLevel;
             EventInputLoadLevel context = new(levelNumber);
             EventBusProvider.EventBus.InvokeEvent(context);
         }

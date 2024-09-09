@@ -11,8 +11,11 @@ namespace OFG.ChessPeak.LevelBuild
 
         private InputStateApplyTool _stateApplyTool;
         private InputStateBuildDeck _stateDeckBuild;
+        private BuilderInputStateIdle _stateIdle;
 
         private FSM<BuilderInputState> _fsm;
+
+        public void SetIdleState() => _fsm.SetState(_stateIdle);
 
         public void SetApplyToolState() => _fsm.SetState(_stateApplyTool);
 
@@ -31,6 +34,7 @@ namespace OFG.ChessPeak.LevelBuild
             BuilderInputFSM_Context context = new(_toolController, _deckBuilderController);
             _stateApplyTool = new InputStateApplyTool(context);
             _stateDeckBuild = new InputStateBuildDeck(context);
+            _stateIdle = new BuilderInputStateIdle(context);
         }
 
         private void InitFSM() => _fsm = new FSM<BuilderInputState>(_stateApplyTool);

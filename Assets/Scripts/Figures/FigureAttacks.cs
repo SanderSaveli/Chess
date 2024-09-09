@@ -19,7 +19,7 @@ namespace OFG.ChessPeak
                FigureType.Rook => GetRookAtack(attacks, position, gameField, figureColor),
                FigureType.Bishop => GetBishopAtack(attacks, position, gameField, figureColor),
                FigureType.Queen => GetQueenAtack(attacks, position, gameField, figureColor),
-               FigureType.King => GetKingAtack(attacks, position, gameField),
+               FigureType.King => GetKingAtack(attacks, position, gameField, figureColor),
                _ => throw new ArgumentOutOfRangeException(nameof(FigureType))
            };
 
@@ -41,7 +41,7 @@ namespace OFG.ChessPeak
             int counter = 0;
             foreach (Vector2Int direction in Direction.Knight)
             {
-                counter += FigureUtils.AddIfEmptyOrEnemy(attacks, position, gameField, figureColor, direction);
+                counter += FigureUtils.AddIfInBounds(attacks, position, gameField, direction);
             }
             return counter;
         }
@@ -73,12 +73,13 @@ namespace OFG.ChessPeak
         public static int GetKingAtack(
             IList<Vector2Int> moves,
             Vector2Int position,
-            GameField gameField)
+            GameField gameField, 
+            FigureColor color)
         {
             int counter = 0;
             foreach (Vector2Int direction in Direction.All)
             {
-                counter += FigureUtils.AddIfEmpty(moves, position, gameField, direction);
+                counter += FigureUtils.AddIfEmptyOrAlly(moves, position, gameField, color, direction);
             }
             return counter;
         }
