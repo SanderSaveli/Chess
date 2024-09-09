@@ -24,7 +24,7 @@ namespace OFG.ChessPeak
 
         private void Start()
         {
-            _storageService = new JsonToFileStorageService();
+            _storageService = new JsonToStreamingAssetsStorageService();
         }
 
         public bool IsActiveGameScene
@@ -58,7 +58,7 @@ namespace OFG.ChessPeak
 
         public void LoadLevel(int levelNumber)
         {
-            _storageService.Load<LevelData>("custom_level", data =>
+            _storageService.Load<LevelData>("level" + levelNumber, data =>
             {
                 _ = StartCoroutine(RoutineLoadingLevel(data));
             });

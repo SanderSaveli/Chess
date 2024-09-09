@@ -1,0 +1,25 @@
+{
+  "FieldWidth": 4,
+  "FieldHeight": 4,
+  "Figures": [
+    {
+      "pos": {
+        "x": 3,
+        "y": 3,
+        "magnitude": 4.2426405,
+        "sqrMagnitude": 18
+      },
+      "type": 0,
+      "color": 1
+    }
+  ],
+  "Cells": [],
+  "CardsInHand": [],
+  "CardsInDeck": [],
+  "fieldSize": {
+    "x": 4,
+    "y": 4,
+    "magnitude": 5.656854,
+    "sqrMagnitude": 32
+  }
+}

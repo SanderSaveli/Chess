@@ -16,6 +16,7 @@ namespace OFG.ChessPeak.LevelBuild
         public void Init(GameField gameField)
         {
             _gameField = gameField;
+            _selectionViewController.Init(_gameField);
         }
 
         private void Awake() => SubscribeOnEvents();

@@ -15,13 +15,15 @@ namespace OFG.ChessPeak
         {
             _gameField = field;
             _deckBuilder = deck;
-            _storageService = new JsonToFileStorageService();
+            _storageService = new JsonToStreamingAssetsStorageService();
         }
 
-        public void Save()
+        public void SaveGameLevel(string number)
         {
             LevelData data = FillLevelData();
-            string key = BuildPath();
+            Debug.Log(number);
+            int num = int.Parse("4");  
+            string key = "level" + number;
             _storageService.Save(key, data, (isSucsess) =>
             {
                 if (isSucsess)
@@ -77,11 +79,6 @@ namespace OFG.ChessPeak
             List<CellData> data = new List<CellData>();
             return data;
 
-        }
-
-        public string BuildPath()
-        {
-            return "custom_level";
         }
     }
 }

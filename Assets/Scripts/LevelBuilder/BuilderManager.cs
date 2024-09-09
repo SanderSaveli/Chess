@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 namespace OFG.ChessPeak.LevelBuild
@@ -13,6 +14,9 @@ namespace OFG.ChessPeak.LevelBuild
         [Header("Controllers")]
         [SerializeField] private ToolController _toolController;
         [SerializeField] private DeckBuilderController _deckBuilderController;
+
+        [SerializeField] private TMP_Text LevelName;
+
 
         private GameField _gameField;
         private IStorageService _storageService;
@@ -34,6 +38,6 @@ namespace OFG.ChessPeak.LevelBuild
             _builderInputFSM.SetApplyToolState();
 
         public void SaveLevel() =>
-            _levelSaver.Save();
+            _levelSaver.SaveGameLevel(LevelName.text);
     }
 }

@@ -1,0 +1,63 @@
+{
+  "FieldWidth": 6,
+  "FieldHeight": 6,
+  "Figures": [
+    {
+      "pos": {
+        "x": 0,
+        "y": 0,
+        "magnitude": 0.0,
+        "sqrMagnitude": 0
+      },
+      "type": 5,
+      "color": 0
+    },
+    {
+      "pos": {
+        "x": 1,
+        "y": 5,
+        "magnitude": 5.09901953,
+        "sqrMagnitude": 26
+      },
+      "type": 3,
+      "color": 1
+    },
+    {
+      "pos": {
+        "x": 5,
+        "y": 4,
+        "magnitude": 6.40312433,
+        "sqrMagnitude": 41
+      },
+      "type": 3,
+      "color": 1
+    },
+    {
+      "pos": {
+        "x": 5,
+        "y": 5,
+        "magnitude": 7.071068,
+        "sqrMagnitude": 50
+      },
+      "type": 5,
+      "color": 1
+    }
+  ],
+  "Cells": [],
+  "CardsInHand": [
+    4,
+    5,
+    1,
+    4
+  ],
+  "CardsInDeck": [
+    4,
+    4
+  ],
+  "fieldSize": {
+    "x": 6,
+    "y": 6,
+    "magnitude": 8.485281,
+    "sqrMagnitude": 72
+  }
+}

@@ -2431,6 +2431,23 @@ PrefabInstance:
       propertyPath: m_text
       value: "\u041D\u0430\u0447\u0430\u0442\u044C \u0438\u0433\u0440\u0443"
       objectReference: {fileID: 0}
+    - target: {fileID: 2173159051797767274, guid: f4fa7566b827e0b48916912ef9e58ff0,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: fd63b515e3e187b43abadcd85433a69f,
+        type: 2}
+    - target: {fileID: 2173159051797767274, guid: f4fa7566b827e0b48916912ef9e58ff0,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 8025161643232552342, guid: fd63b515e3e187b43abadcd85433a69f,
+        type: 2}
+    - target: {fileID: 2173159051797767274, guid: f4fa7566b827e0b48916912ef9e58ff0,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7864588781887327922, guid: f4fa7566b827e0b48916912ef9e58ff0,
         type: 3}
       propertyPath: m_Name
