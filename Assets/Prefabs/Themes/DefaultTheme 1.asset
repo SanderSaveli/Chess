@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c204e3418b2b0142b0f9f9f06f1da33, type: 3}
+  m_Name: DefaultTheme 1
+  m_EditorClassIdentifier: 
+  _backgroundColor: {r: 0.8235294, g: 0.80852234, b: 0.6627451, a: 1}
+  _vignetteColor: {r: 0.25882354, g: 0.23475498, b: 0.00784313, a: 1}
+  _positiveButtonColor: {r: 0.8627451, g: 0.7350131, b: 0.41568628, a: 1}
+  _neutralButtonColor: {r: 0.96862745, g: 0.8925075, b: 0.8039216, a: 1}
+  _negativeButtonColor: {r: 0.9607844, g: 0.5921569, b: 0.5921569, a: 1}
+  _scrollElementUnselected: {r: 0.9686275, g: 0.8941177, b: 0.80392164, a: 1}
+  _scrollElementSelected: {r: 0.8627451, g: 0.60938483, b: 0.41568628, a: 1}
+  _mainMenuImage: {fileID: 21300000, guid: dfcecc7aa51637849a468f9ef708bc7c, type: 3}
+  _mascMaterial: {fileID: 2100000, guid: 880903fe4cb0a934790de3a9477d6395, type: 2}
+  _deckMaterial: {fileID: 2100000, guid: bfd01cb87a69ba748ae6059479a779a2, type: 2}
+  _mountainsMaterial: {fileID: 0}
+  _whiteCellMaterial: {fileID: 2100000, guid: bfea4b65eee1cd746ad2235b1274de73, type: 2}
+  _blackCellMaterial: {fileID: 2100000, guid: f1605a1ca9148e549b8a488753361430, type: 2}
+  _figureSet: {fileID: 11400000, guid: 2ee1e1ab8941d9f4cb31be1d280b7de4, type: 2}
+  _cardSet: {fileID: 11400000, guid: 5bad93a6932a7414890191126d46cf47, type: 2}

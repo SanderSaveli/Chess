@@ -92,8 +92,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scaleFactor: 1.2
   selectedColor: {r: 0.26898536, g: 0.7054135, b: 0.96981126, a: 1}
-  startOffset: 150
   showTime: 0.6
+  startOffset: {x: 50, y: 0, z: 0}
   toolType: 0
   text: {fileID: 2881320749900219058}
 --- !u!1 &7776732899802199840

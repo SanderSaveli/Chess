@@ -9,7 +9,7 @@ namespace OFG.ChessPeak
         public Action<int> OnClicked;
         public RectTransform rectTransform => _rectTransform;
 
-        private int _index;
+        protected int _index;
         private RectTransform _rectTransform;
         public virtual void Ini(int index)
         {

@@ -355,6 +355,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6442989803163678618, guid: ae619f2b21844cc47b538e4e13347bc7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d54a270bcdcc515448616cc00a28fb4e, type: 2}
     - target: {fileID: 8116217803359543942, guid: ae619f2b21844cc47b538e4e13347bc7,
         type: 3}
       propertyPath: m_Name
@@ -369,6 +374,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 8888635017170718849}
   m_SourcePrefab: {fileID: 100100000, guid: ae619f2b21844cc47b538e4e13347bc7, type: 3}
+--- !u!1 &5736728347379505737 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7884178795606092777, guid: ae619f2b21844cc47b538e4e13347bc7,
+    type: 3}
+  m_PrefabInstance: {fileID: 2519428495507763616}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5932463130210652966 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8116217803359543942, guid: ae619f2b21844cc47b538e4e13347bc7,
@@ -387,6 +398,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c37db6fd83042f64ba2f251f738c084c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mountains: {fileID: 5736728347379505737}
+  _deck: {fileID: 6961487197108955119}
+--- !u!1 &6961487197108955119 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4785889783969175119, guid: ae619f2b21844cc47b538e4e13347bc7,
+    type: 3}
+  m_PrefabInstance: {fileID: 2519428495507763616}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8007175839779564239 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5614294244561394543, guid: ae619f2b21844cc47b538e4e13347bc7,

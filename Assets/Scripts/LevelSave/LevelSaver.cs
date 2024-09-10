@@ -21,8 +21,8 @@ namespace OFG.ChessPeak
         public void SaveGameLevel(string number)
         {
             LevelData data = FillLevelData();
-            int num = int.Parse(number);  
-            string key = "level" + num;
+            //int num = int.Parse(number);  
+            string key = "level" + number;
             _storageService.Save(key, data, (isSucsess) =>
             {
                 if (isSucsess)

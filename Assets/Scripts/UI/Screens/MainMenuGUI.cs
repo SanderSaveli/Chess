@@ -57,5 +57,11 @@ namespace OFG.ChessPeak
             EventInputLoadLevelBuilder context = new EventInputLoadLevelBuilder();
             EventBusProvider.EventBus.InvokeEvent(context);
         }
+
+        public void OpenThemes()
+        {
+            EventInputLoadThemeShop context = new EventInputLoadThemeShop();
+            EventBusProvider.EventBus.InvokeEvent(context);
+        }
     }
 }

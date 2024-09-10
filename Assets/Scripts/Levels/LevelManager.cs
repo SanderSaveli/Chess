@@ -18,6 +18,7 @@ namespace OFG.ChessPeak
         [SerializeField] private int _sceneBuildIndexMainMenu;
         [SerializeField] private int _sceneBuildIndexGame;
         [SerializeField] private int _sceneBuildIndexLevelBuilder;
+        [SerializeField] private int _sceneBuildIndexThemeShop;
         [SerializeField] private List<LevelTemplate> _levels;
 
         private IStorageService _storageService;
@@ -69,6 +70,7 @@ namespace OFG.ChessPeak
             EventBusProvider.EventBus.RegisterCallback<EventInputLoadLevel>(OnInputLoadLevel);
             EventBusProvider.EventBus.RegisterCallback<EventInputLoadMenu>(LoadMainMenu);
             EventBusProvider.EventBus.RegisterCallback<EventInputLoadLevelBuilder>(LoadLevelBuilder);
+            EventBusProvider.EventBus.RegisterCallback<EventInputLoadThemeShop>(LoadThemeShop);
             DontDestroyOnLoad(gameObject);
         }
 
@@ -79,6 +81,8 @@ namespace OFG.ChessPeak
             StartCoroutine(LoadSceneWithTransition(_sceneBuildIndexMainMenu));
         private void LoadLevelBuilder(EventInputLoadLevelBuilder context) => 
             StartCoroutine(LoadSceneWithTransition(_sceneBuildIndexLevelBuilder));
+        private void LoadThemeShop(EventInputLoadThemeShop context) =>
+            StartCoroutine(LoadSceneWithTransition(_sceneBuildIndexThemeShop));
 
         private IEnumerator RoutineLoadingLevel(LevelData levelTemplate, int levelNumber)
         {
@@ -88,11 +92,12 @@ namespace OFG.ChessPeak
                 yield return TransitionScreen.Show(_transitionDuration);
                 EventBusProvider.EventBus.InvokeEvent(context);
                 yield return TransitionScreen.Hide(_transitionDuration);
+                InvoceTransitionComplete(true);
             }
             else
             {
                 yield return LoadSceneWithTransition(_sceneBuildIndexGame, data => { 
-                    EventBusProvider.EventBus.InvokeEvent(context); 
+                    EventBusProvider.EventBus.InvokeEvent(context);
                 });
             }
         }
@@ -107,6 +112,7 @@ namespace OFG.ChessPeak
             yield return WaitLoadingIsDone(asyncOperation);
             sceneLoaded?.Invoke(true);
             yield return TransitionScreen.Hide(_transitionDuration);
+            InvoceTransitionComplete(true);
         }
 
         private IEnumerator WaitLoadingToContinue(AsyncOperation asyncOperation)
@@ -122,6 +128,15 @@ namespace OFG.ChessPeak
             while (!asyncOperation.isDone)
             {
                 yield return null;
+            }
+        }
+
+        private void InvoceTransitionComplete(bool isSucsess)
+        {
+            if (isSucsess)
+            {
+                EventTransitionComplete ctx = new EventTransitionComplete();
+                EventBusProvider.EventBus.InvokeEvent(ctx);
             }
         }
     }

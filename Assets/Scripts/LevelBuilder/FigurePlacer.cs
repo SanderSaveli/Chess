@@ -5,22 +5,26 @@ namespace OFG.ChessPeak
 {
     public class FigurePlacer : MonoBehaviour
     {
-        [SerializeField] private FigurePrefabs _figurePrefabs;
         [SerializeField] private Transform _firueRoot;
+        [SerializeField] private float _delayBetwenFiguresSpawn = 0.15f;
+        [SerializeField] private float _delayBeforeFigureSpawn = 1.1f;
+
+        private FigureSet _figureSet;
         public void ArrangeFigures(List<FigureData> figures, GameField field)
         {
-            float delay = 1.1f;
             int index = 0;
             foreach (var figure in figures)
             {
-                placeFigure(figure, field, delay + index * 0.15f);
+                float delay = _delayBeforeFigureSpawn + index * _delayBetwenFiguresSpawn;
+                placeFigure(figure, field, delay);
                 index ++;
             }
         }
 
         private void placeFigure(FigureData data, GameField field, float delay)
         {
-            GameObject figurePrefab = _figurePrefabs.GetFigurePrefab(data.type, data.color);
+            _figureSet = ThemeManager.instance.actualTheme.figureSet;
+            GameObject figurePrefab = _figureSet.GetFigurePrefab(data.type, data.color);
             Transform root = _firueRoot.GetComponentInChildren<LevelView>().figureRoot;
             GameObject figureObj = Instantiate(figurePrefab, root);
             Figure figure = figureObj.GetComponent<Figure>();

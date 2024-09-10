@@ -8,5 +8,6 @@
         public const string IsSoundEnabled = "settings__sound-enabled";
 
         public const string CurrentLevel = "progress__current-level";
+        public const string ActualTheme = "themes__actual-theme";
     }
 }

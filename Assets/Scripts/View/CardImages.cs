@@ -6,12 +6,6 @@ namespace OFG.ChessPeak
 {
     public class CardImages : MonoBehaviour
     {
-        [Serializable]
-        public class CardImagePair
-        {
-            public CardType CardType;
-            public Sprite image;
-        }
         [SerializeField] private List<CardImagePair> imagePairs;
 
         public Sprite GetImageOfCard(CardType cardType)

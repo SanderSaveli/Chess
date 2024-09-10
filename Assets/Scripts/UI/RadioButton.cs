@@ -32,7 +32,7 @@ namespace OFG.ChessPeak
 
         private void Clicked()
         {
-            OnClick.Invoke(this);
+            OnClick?.Invoke(this);
         }
 
         public void SetSelect(bool isSelected)

@@ -8,11 +8,11 @@ using UnityEngine.UI;
 
 public class ScrollSelector : MonoBehaviour
 {
-    [SerializeField] private RectTransform selectPosition;
-    [SerializeField] private RectTransform content;
-    [SerializeField] private float smoothTime = 0.2f;
-    [SerializeField] private float scrollDeadZone = 0.1f;
-    [SerializeField][Min(0)] private int startSelectedIndex = 0;
+    [SerializeField] private RectTransform _selectPosition;
+    [SerializeField] private RectTransform _content;
+    [SerializeField] private float _smoothTime = 0.2f;
+    [SerializeField] private float _scrollDeadZone = 0.1f;
+    [SerializeField][Min(0)] protected int _startSelectedIndex = 0;
 
     private int _selectedIndex = -1;
     private ScrollRect _scrollRect;
@@ -21,10 +21,11 @@ public class ScrollSelector : MonoBehaviour
 
     private bool _isNeedToWatchTargetElement = false;
 
-    private void OnEnable()
+    public void OnEnable()
     {
         _scrollRect = GetComponent<ScrollRect>();
         _scrollRect.onValueChanged.AddListener(OnScroll);
+        _startSelectedIndex = ThemeManager.instance.actualThemeIndex;
         FillAllElements();
     }
 
@@ -34,14 +35,14 @@ public class ScrollSelector : MonoBehaviour
     }
     void Start()
     {
-        _targetPosition = content.position;
+        _targetPosition = _content.position;
         StartCoroutine(WaitAndSelect());
     }
 
     private IEnumerator WaitAndSelect()
     {
         yield return new WaitForSeconds(0.01f);
-        SelectElement(startSelectedIndex);
+        SelectElement(_startSelectedIndex);
     }
 
     private void Update()
@@ -60,9 +61,9 @@ public class ScrollSelector : MonoBehaviour
     private void FillAllElements()
     {
         _elements = new List<ScrollElement>();
-        for (int i = 0; i < content.childCount; i++)
+        for (int i = 0; i < _content.childCount; i++)
         {
-            ScrollElement element = content.GetChild(i).GetComponent<ScrollElement>();
+            ScrollElement element = _content.GetChild(i).GetComponent<ScrollElement>();
             element.Ini(i);
             _elements.Add(element);
             element.OnClicked += SelectElement;
@@ -81,7 +82,7 @@ public class ScrollSelector : MonoBehaviour
         {
             RectTransform element = _elements[i].rectTransform;
 
-            float distanceToCenter = Mathf.Abs(element.position.y - selectPosition.position.y);
+            float distanceToCenter = Mathf.Abs(element.position.y - _selectPosition.position.y);
             if(minDistanceToCenter > distanceToCenter)
             {
                 minDistanceToCenter = distanceToCenter;
@@ -100,8 +101,7 @@ public class ScrollSelector : MonoBehaviour
         }
         DeselectElement(_selectedIndex);
         ScrollElement targetElement = _elements[index];
-        _targetPosition = selectPosition.position + (content.position - targetElement.rectTransform.position);
-        Debug.Log(content.position + " " + selectPosition.position);
+        _targetPosition = _selectPosition.position + (_content.position - targetElement.rectTransform.position);
         targetElement.Select();
         _selectedIndex = index;
     }
@@ -116,9 +116,9 @@ public class ScrollSelector : MonoBehaviour
 
     public void ScrollToElement()
     {
-        if(Vector3.Magnitude(content.position - _targetPosition) > scrollDeadZone) 
+        if(Vector3.Magnitude(_content.position - _targetPosition) > _scrollDeadZone) 
         {
-            content.position = Vector3.Lerp(content.position, _targetPosition, smoothTime* Time.deltaTime);
+            _content.position = Vector3.Lerp(_content.position, _targetPosition, _smoothTime* Time.deltaTime);
         }
     }
 }
