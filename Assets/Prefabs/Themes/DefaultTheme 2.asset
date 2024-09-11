@@ -19,11 +19,14 @@ MonoBehaviour:
   _negativeButtonColor: {r: 0.87169814, g: 0, b: 0.12913291, a: 1}
   _scrollElementUnselected: {r: 0.9686275, g: 0.80392164, b: 0.8078432, a: 1}
   _scrollElementSelected: {r: 0.8415094, g: 0.11273051, b: 0.11273051, a: 1}
-  _mainMenuImage: {fileID: 21300000, guid: dfcecc7aa51637849a468f9ef708bc7c, type: 3}
+  _levelViewCurrentLevel: {r: 0.83396226, g: 0.40754002, b: 0.44085428, a: 1}
+  _levelViewCompletedLevel: {r: 0.6301887, g: 0.11771444, b: 0.1577515, a: 1}
+  _levelViewLockedLevel: {r: 0.25882354, g: 0.007843138, b: 0.027450982, a: 1}
+  _mainMenuImage: {fileID: 21300000, guid: 0907f45a5d9e53b4d8f7885f046c8f62, type: 3}
   _mascMaterial: {fileID: 2100000, guid: 966ffcafbd4bb1748a5b7e1fe102847f, type: 2}
   _deckMaterial: {fileID: 2100000, guid: 33389c3c7ffea8c4ca8aef8d2ea57643, type: 2}
   _mountainsMaterial: {fileID: 0}
   _whiteCellMaterial: {fileID: 2100000, guid: bfea4b65eee1cd746ad2235b1274de73, type: 2}
   _blackCellMaterial: {fileID: 2100000, guid: bd043f6cb5c415c48acba093a2071fa7, type: 2}
   _figureSet: {fileID: 11400000, guid: 2ee1e1ab8941d9f4cb31be1d280b7de4, type: 2}
-  _cardSet: {fileID: 11400000, guid: 5bad93a6932a7414890191126d46cf47, type: 2}
+  _cardSet: {fileID: 11400000, guid: 2d1f4b8bf003bcc48856e931930dd77e, type: 2}

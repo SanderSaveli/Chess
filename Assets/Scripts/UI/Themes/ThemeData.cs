@@ -15,6 +15,9 @@ namespace OFG.ChessPeak
         [SerializeField] private Color _negativeButtonColor = Color.red;
         [SerializeField] private Color _scrollElementUnselected = Color.white;
         [SerializeField] private Color _scrollElementSelected = Color.white;
+        [SerializeField] private Color _levelViewCurrentLevel = Color.white;
+        [SerializeField] private Color _levelViewCompletedLevel = Color.white;
+        [SerializeField] private Color _levelViewLockedLevel =  Color.white;
         [SerializeField] private Sprite _mainMenuImage;
         [SerializeField] private Material _mascMaterial;
 
@@ -37,6 +40,9 @@ namespace OFG.ChessPeak
         public Color scrollElementUnselected => _scrollElementUnselected;
         public Color scrollElementSelected => _scrollElementSelected;
         public Color negativeButtonColor => _negativeButtonColor;
+        public Color levelViewCurrentLevel => _levelViewCurrentLevel;
+        public Color levelViewCompletedLevel => _levelViewCompletedLevel;
+        public Color levelViewLockedLevel => _levelViewLockedLevel;
         public Sprite mainMenuImage => _mainMenuImage;
         public Material mascMaterial => _mascMaterial;
         public Material deckMaterial => _deckMaterial;

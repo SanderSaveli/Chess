@@ -13,14 +13,31 @@ namespace OFG.ChessPeak.UI
         [SerializeField] private TextMeshProUGUI _levelNumberLabel;
         [SerializeField] private Button _button;
 
-        [Header(H.Styles)]
-        [SerializeField] private Color _backgroundColorLocked;
-        [SerializeField] private Color _backgroundColorAvailable;
-        [SerializeField] private Color _backgroundColorComplete;
+        private Color _backgroundColorLocked;
+        private Color _backgroundColorAvailable;
+        private Color _backgroundColorComplete;
 
         public int LevelNumber { get; private set; }
 
         public event Action<int> Clicked;
+
+        private void Awake()
+        {
+            ThemeData data = ThemeManager.instance.actualTheme;
+            SetTheme(data);
+            SubscribeOnEvents();
+        }
+        private void OnDisable()
+        {
+            UnsubscribeFromEvents();
+        }
+        private void SetTheme(EventNewThemeSet data) => SetTheme(data.ThemeData);
+        private void SetTheme(ThemeData data)
+        {
+            _backgroundColorAvailable = data.levelViewCompletedLevel;
+            _backgroundColorLocked = data.levelViewLockedLevel;
+            _backgroundColorComplete = data.levelViewCurrentLevel;
+        }
 
         public void UpdateView(int levelNumber, LevelProgress levelProgress)
         {
@@ -50,13 +67,17 @@ namespace OFG.ChessPeak.UI
             }
         }
 
-        private void Awake() => SubscribeOnEvents();
+        private void SubscribeOnEvents()
+        {
+            _button.onClick.AddListener(OnClicked);
+            EventBusProvider.EventBus.RegisterCallback<EventNewThemeSet>(SetTheme);
+        }
 
-        private void OnDestroy() => UnsubscribeFromEvents();
-
-        private void SubscribeOnEvents() => _button.onClick.AddListener(OnClicked);
-
-        private void UnsubscribeFromEvents() => _button.onClick.RemoveListener(OnClicked);
+        private void UnsubscribeFromEvents()
+        {
+            _button.onClick.RemoveListener(OnClicked);
+            EventBusProvider.EventBus.UnregisterCallback<EventNewThemeSet>(SetTheme);
+        }
 
         private void OnClicked() => Clicked?.Invoke(LevelNumber);
 

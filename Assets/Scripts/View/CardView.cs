@@ -23,11 +23,11 @@ namespace OFG.ChessPeak
         private Vector3 _positionVelocity;
         private Vector3 _scaleVelocity;
 
-        public void Init(CardType cardType, CardImages cardImages)
+        public void Init(CardType cardType)
         {
             CardType = cardType;
             _image.enabled = true;
-            _image.sprite = cardImages.GetImageOfCard(CardType);
+            _image.sprite = ThemeManager.instance.actualTheme.cardSet.GetImageOfCard(CardType);
         }
 
         public void Hover() => TargetScale = Vector3.one * _scaleSelectedFactor;

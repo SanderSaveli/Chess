@@ -1,25 +1,45 @@
+using OFG.ChessPeak.LevelBuild;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace OFG.ChessPeak
 {
     public class LevelBuilderGUI : MonoBehaviour
     {
-        [SerializeField] private GameObject ConfirmPanel;
+        [SerializeField] private GameObject _confirmPanel;
+        [SerializeField] private FieldCreator _filedCreator;
+        [SerializeField] private Slider _filedSizeSlider;
 
         private void Start()
         {
-            ConfirmPanel.SetActive(false);
+            _confirmPanel.SetActive(false);
+        }
+        private void OnEnable()
+        {
+            _filedSizeSlider.onValueChanged.AddListener(FieldSizeValueChanged);
+        }
+
+        private void OnDisable()
+        {
+            _filedSizeSlider.onValueChanged.RemoveListener(FieldSizeValueChanged);
+        }
+
+        public void FieldSizeValueChanged(float fieldSize)
+        {
+            int roundedFieldSize = Mathf.RoundToInt(fieldSize); 
+            Vector2Int sizeVector = new Vector2Int(roundedFieldSize, roundedFieldSize);
+            _filedCreator.ChangeFieldSize(sizeVector);
         }
 
         public void ShowConfirmPanel()
         {
-            ConfirmPanel.SetActive(true);
+            _confirmPanel.SetActive(true);
         }
 
         public void CloseConfirmPanel()
         {
-            ConfirmPanel.SetActive(false);
+            _confirmPanel.SetActive(false);
         }
         public void LoadMainMenu()
         {

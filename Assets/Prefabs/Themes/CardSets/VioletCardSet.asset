@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1610dfeb8e3cfcc4e94017d7826a9b70, type: 3}
+  m_Name: VioletCardSet
+  m_EditorClassIdentifier: 
+  _imagePairs:
+  - CardType: 6
+    image: {fileID: 21300000, guid: 2ec2c0303d3b68042b5ea935d3eee449, type: 3}
+  - CardType: 5
+    image: {fileID: 21300000, guid: c93c03cb87294b745a964a5a9875b03c, type: 3}
+  - CardType: 4
+    image: {fileID: 21300000, guid: 190f14424af3ed342aa46e12fdd983db, type: 3}
+  - CardType: 3
+    image: {fileID: 21300000, guid: c38c977f94694a245b034b8d05717dfa, type: 3}
+  - CardType: 2
+    image: {fileID: 21300000, guid: 9510db49e3b3cfe41a4b9496bc1385b8, type: 3}
+  - CardType: 1
+    image: {fileID: 21300000, guid: cac30378af1aec541ada144db6e5f23a, type: 3}
+  - CardType: 0
+    image: {fileID: 21300000, guid: 892314495519b764aa9f3ed81e67e579, type: 3}
+  _deckCiew: {fileID: 21300000, guid: 892314495519b764aa9f3ed81e67e579, type: 3}
