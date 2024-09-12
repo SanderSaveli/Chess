@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c204e3418b2b0142b0f9f9f06f1da33, type: 3}
   m_Name: DefaultTheme 2
   m_EditorClassIdentifier: 
+  _name: Dragon Fire
   _backgroundColor: {r: 0.8235294, g: 0.6627451, b: 0.67707837, a: 1}
   _vignetteColor: {r: 0.25882354, g: 0.00784313, b: 0.029364487, a: 1}
   _positiveButtonColor: {r: 0.78113204, g: 0.31097892, b: 0.31097892, a: 1}
@@ -23,6 +24,7 @@ MonoBehaviour:
   _levelViewCompletedLevel: {r: 0.6301887, g: 0.11771444, b: 0.1577515, a: 1}
   _levelViewLockedLevel: {r: 0.25882354, g: 0.007843138, b: 0.027450982, a: 1}
   _mainMenuImage: {fileID: 21300000, guid: 0907f45a5d9e53b4d8f7885f046c8f62, type: 3}
+  _deckEditImage: {fileID: 0}
   _mascMaterial: {fileID: 2100000, guid: 966ffcafbd4bb1748a5b7e1fe102847f, type: 2}
   _deckMaterial: {fileID: 2100000, guid: 33389c3c7ffea8c4ca8aef8d2ea57643, type: 2}
   _mountainsMaterial: {fileID: 0}

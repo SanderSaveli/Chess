@@ -473,6 +473,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Edit Mode
       objectReference: {fileID: 0}
+    - target: {fileID: 7864588781887327922, guid: f4fa7566b827e0b48916912ef9e58ff0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8083972464000762576, guid: f4fa7566b827e0b48916912ef9e58ff0,
         type: 3}
       propertyPath: m_Pivot.x

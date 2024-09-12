@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(ScrollRect))]
 
@@ -26,16 +27,22 @@ public class ScrollSelector : MonoBehaviour
         _scrollRect = GetComponent<ScrollRect>();
         _scrollRect.onValueChanged.AddListener(OnScroll);
         _startSelectedIndex = ThemeManager.instance.actualThemeIndex;
-        FillAllElements();
+        EventBusProvider.EventBus.RegisterCallback<EventTransitionComplete>(TransitionEnd);
     }
 
     private void OnDisable()
     {
         _scrollRect.onValueChanged.RemoveListener(OnScroll);
+        EventBusProvider.EventBus.UnregisterCallback<EventTransitionComplete>(TransitionEnd);
     }
     void Start()
     {
         _targetPosition = _content.position;
+    }
+
+    private void TransitionEnd(EventTransitionComplete ctx)
+    {
+        FillAllElements();
         StartCoroutine(WaitAndSelect());
     }
 

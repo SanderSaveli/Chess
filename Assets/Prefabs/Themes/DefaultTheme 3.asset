@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c204e3418b2b0142b0f9f9f06f1da33, type: 3}
   m_Name: DefaultTheme 3
   m_EditorClassIdentifier: 
+  _name: Violet Flower
   _backgroundColor: {r: 0.7954404, g: 0.6627451, b: 0.8235294, a: 1}
   _vignetteColor: {r: 0.25882354, g: 0.00784313, b: 0.25140515, a: 1}
   _positiveButtonColor: {r: 0.8627451, g: 0.41568628, b: 0.75404286, a: 1}
@@ -23,6 +24,7 @@ MonoBehaviour:
   _levelViewCompletedLevel: {r: 0.6377357, g: 0.18169452, b: 0.62348443, a: 1}
   _levelViewLockedLevel: {r: 0.25882354, g: 0.007843138, b: 0.2509804, a: 1}
   _mainMenuImage: {fileID: 21300000, guid: afe52beb7fbd95445a53e41a7b9b20b3, type: 3}
+  _deckEditImage: {fileID: 0}
   _mascMaterial: {fileID: 2100000, guid: 5d56e7a2e0abea84b828f238dd4a8177, type: 2}
   _deckMaterial: {fileID: 2100000, guid: 1546e626612dd074996422d64ef1baca, type: 2}
   _mountainsMaterial: {fileID: 0}

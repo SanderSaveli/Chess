@@ -15,7 +15,7 @@ MonoBehaviour:
   _backgroundColor: {r: 0.6627451, g: 0.81960785, b: 0.8235294, a: 1}
   _vignetteColor: {r: 0.007843138, g: 0.21176471, b: 0.25882354, a: 1}
   _positiveButtonColor: {r: 0.4156863, g: 0.69803923, b: 0.86274517, a: 1}
-  _neutralButtonColor: {r: 0.80392164, g: 0.9568628, b: 0.9686275, a: 1}
+  _neutralButtonColor: {r: 0.7207546, g: 0.7207546, b: 0.7207546, a: 1}
   _negativeButtonColor: {r: 0.9607844, g: 0.5921569, b: 0.5921569, a: 1}
   _scrollElementUnselected: {r: 0.80392164, g: 0.9568628, b: 0.9686275, a: 1}
   _scrollElementSelected: {r: 0.28641498, g: 0.7085004, b: 0.9547169, a: 1}
@@ -23,6 +23,7 @@ MonoBehaviour:
   _levelViewCompletedLevel: {r: 0.31631893, g: 0.60199845, b: 0.6679245, a: 1}
   _levelViewLockedLevel: {r: 0.007843138, g: 0.21176472, b: 0.25882354, a: 1}
   _mainMenuImage: {fileID: 21300000, guid: dfcecc7aa51637849a468f9ef708bc7c, type: 3}
+  _deckEditImage: {fileID: 21300000, guid: 887dc053621209f438128a0e276b4b8f, type: 3}
   _mascMaterial: {fileID: 2100000, guid: 66ede1dae3f3dd24d96edb50f6890923, type: 2}
   _deckMaterial: {fileID: 2100000, guid: d54a270bcdcc515448616cc00a28fb4e, type: 2}
   _mountainsMaterial: {fileID: 2100000, guid: 90e237919ccabf64daeb25ce6aa06cd5, type: 2}

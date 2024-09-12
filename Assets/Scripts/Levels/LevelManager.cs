@@ -2,12 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using OFG.ChessPeak.UI;
+using Singletones;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace OFG.ChessPeak
 {
-    public sealed class LevelManager : MonoBehaviour
+    public sealed class LevelManager : Singletone<LevelManager>
     {
         [Header(H.ComponentReferences)]
         [Header(H.Prefabs)]
@@ -65,13 +66,21 @@ namespace OFG.ChessPeak
             });
         }
 
-        private void Awake()
+        private void OnEnable()
         {
             EventBusProvider.EventBus.RegisterCallback<EventInputLoadLevel>(OnInputLoadLevel);
             EventBusProvider.EventBus.RegisterCallback<EventInputLoadMenu>(LoadMainMenu);
             EventBusProvider.EventBus.RegisterCallback<EventInputLoadLevelBuilder>(LoadLevelBuilder);
             EventBusProvider.EventBus.RegisterCallback<EventInputLoadThemeShop>(LoadThemeShop);
             DontDestroyOnLoad(gameObject);
+        }
+
+        private void OnDisable()
+        {
+            EventBusProvider.EventBus.UnregisterCallback<EventInputLoadLevel>(OnInputLoadLevel);
+            EventBusProvider.EventBus.UnregisterCallback<EventInputLoadMenu>(LoadMainMenu);
+            EventBusProvider.EventBus.UnregisterCallback<EventInputLoadLevelBuilder>(LoadLevelBuilder);
+            EventBusProvider.EventBus.UnregisterCallback<EventInputLoadThemeShop>(LoadThemeShop);
         }
 
         private void OnInputLoadLevel(EventInputLoadLevel context) => 

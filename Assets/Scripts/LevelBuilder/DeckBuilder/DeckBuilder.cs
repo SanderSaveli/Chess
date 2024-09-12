@@ -47,5 +47,27 @@ namespace OFG.ChessPeak.LevelBuild
             _cardsInDeck.RemoveAt(cardIndex);
             OnCardsInDeckRemove?.Invoke(cardIndex);
         }
+
+        public void ClearAll()
+        {
+            ClearHand();
+            ClearDeck();
+        }
+
+        public void ClearHand()
+        {
+            for(int i = _cardsInHand.Count -1; i >= 0; i--)
+            {
+                RemoveCardFromHand(i);  
+            }
+        }
+
+        public void ClearDeck()
+        {
+            for (int i = _cardsInDeck.Count -1; i >= 0; i--)
+            {
+                RemoveCardFromDeck(i);
+            }
+        }
     }
 }

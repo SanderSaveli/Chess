@@ -17,6 +17,7 @@ namespace OFG.ChessPeak
             _gameField = _fieldCreator.CreateField();
             _fieldCreator.ChangeFieldSize(levelTemplate.fieldSize);
             _figurePlacer.ArrangeFigures(levelTemplate.Figures, _gameField);
+            _gameField.InitGameField();
             return _gameField;
         }
     }

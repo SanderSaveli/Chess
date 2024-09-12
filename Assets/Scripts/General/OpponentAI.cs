@@ -17,6 +17,7 @@ namespace OFG.ChessPeak
         {
             _gameField = gameField;
             _ = TryFindBlackKing();
+            _moves.Clear();
         }
 
         public bool TryMakeTurn()
@@ -99,6 +100,7 @@ namespace OFG.ChessPeak
                     if (figure.IsBlack && (figure.FigureType == FigureType.King))
                     {
                         _king = figure;
+                        Debug.Log(_gameField.Figures.ToCoordinate(i));
                         _kingPosition = _gameField.Figures.ToCoordinate(i);
                         return true;
                     }

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c204e3418b2b0142b0f9f9f06f1da33, type: 3}
   m_Name: DefaultTheme 1
   m_EditorClassIdentifier: 
+  _name: Desert
   _backgroundColor: {r: 0.8235294, g: 0.80852234, b: 0.6627451, a: 1}
   _vignetteColor: {r: 0.25882354, g: 0.23475498, b: 0.00784313, a: 1}
   _positiveButtonColor: {r: 0.8627451, g: 0.7350131, b: 0.41568628, a: 1}
@@ -23,6 +24,7 @@ MonoBehaviour:
   _levelViewCompletedLevel: {r: 0.93962264, g: 0.8010392, b: 0.0904165, a: 1}
   _levelViewLockedLevel: {r: 0.509434, g: 0.42197698, b: 0.079779245, a: 1}
   _mainMenuImage: {fileID: 21300000, guid: f353a8f6b327c7d4ba23acb95a824b69, type: 3}
+  _deckEditImage: {fileID: 21300000, guid: c392b45846d5d394198b7a43e1fcbf36, type: 3}
   _mascMaterial: {fileID: 2100000, guid: 880903fe4cb0a934790de3a9477d6395, type: 2}
   _deckMaterial: {fileID: 2100000, guid: bfd01cb87a69ba748ae6059479a779a2, type: 2}
   _mountainsMaterial: {fileID: 0}

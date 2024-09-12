@@ -4,7 +4,7 @@ namespace OFG.ChessPeak
 {
     public static class PlayerProgress
     {
-        public const int LevelsCount = 8;
+        public const int LevelsCount = 7;
 
         public static int CurrentLevel
         {

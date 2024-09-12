@@ -81,16 +81,6 @@ namespace OFG.ChessPeak
             InitGameField();
         }
 
-        public void SetFigure(Vector2Int position2)
-        {
-
-        }
-
-        public void DeleteFigure(Vector2Int position2)
-        {
-
-        }
-
         private void Awake()
         {
             InitGameField();
@@ -99,7 +89,7 @@ namespace OFG.ChessPeak
         private void OnDrawGizmos() => 
             MatrixUtils.DrawChessGizmos(_width, _height, _cellTilemap, Color.green, Color.black);
 
-        private void InitGameField()
+        public void InitGameField()
         {
             InitMatrixByTilemap(ref _figures, _figureTilemap);
             InitMatrixByTilemap(ref _cells, _cellTilemap);

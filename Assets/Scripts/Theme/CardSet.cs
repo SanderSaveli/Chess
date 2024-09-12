@@ -18,7 +18,7 @@ namespace OFG.ChessPeak
         };
 
         [SerializeField] private Sprite _deckCiew;
-        public Sprite deckCiew => _deckCiew;
+        public Sprite deckcView => _deckCiew;
 
         public Sprite GetImageOfCard(CardType cardType)
         {

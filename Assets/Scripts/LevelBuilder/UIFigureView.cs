@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,11 +19,14 @@ namespace OFG.ChessPeak
     {
         [Header(H.ComponentReferences)]
         [SerializeField] private Image _figureImage;
+        [SerializeField] private TMP_Text _figureTitle;
 
         [Header(H.Params)]
         [SerializeField] private Color _blackFigureColor = Color.black;
         [SerializeField] private Color _whiteFigureColor = Color.white;
         [SerializeField] private List<FigureSpritePair> _figurePairsList;
+
+        public Action<UIFigureView> OnDestroyInput;
 
         public FigureType CurentFigure { get; private set; }
 
@@ -36,6 +40,7 @@ namespace OFG.ChessPeak
         {
             _figureImage.sprite = _figurePair[cardType];
             CurentFigure = cardType;
+            _figureTitle.text = cardType.ToString();
         }
 
         public void ChangeViewImage(FigureType cardType, FigureColor color)
@@ -54,6 +59,11 @@ namespace OFG.ChessPeak
             {
                 _figurePair.Add(pair.Tool, pair.Sprite);
             }
+        }
+
+        public void Destroy()
+        {
+            OnDestroyInput?.Invoke(this);
         }
     }
 }

@@ -7,11 +7,31 @@ namespace OFG.ChessPeak
     public sealed class DeckView : MonoBehaviour
     {
         [Header(H.ComponentReferences)]
-        [SerializeField] private Image _spriteRenderer;
+        [SerializeField] private Image _image;
 
         public IReadOnlyList<CardType> Cards => _cards;
 
         private readonly List<CardType> _cards = new();
+
+        private void Start()
+        {
+            ThemeData data = ThemeManager.instance.actualTheme;
+            SetTheme(data);
+        }
+
+        private void OnEnable()
+        {
+            EventBusProvider.EventBus.RegisterCallback<EventNewThemeSet>(SetTheme);
+        }
+        private void OnDisable()
+        {
+            EventBusProvider.EventBus.UnregisterCallback<EventNewThemeSet>(SetTheme);
+        }
+        private void SetTheme(EventNewThemeSet data) => SetTheme(data.ThemeData);
+        private void SetTheme(ThemeData data)
+        {
+            _image.sprite = data.cardSet.deckcView;
+        }
 
         public bool IsEmpty() => _cards.IsEmpty();
         public bool IsNonEmpty() => _cards.IsNonEmpty();
@@ -36,6 +56,6 @@ namespace OFG.ChessPeak
             return false;
         }
 
-        private void UpdateView() => _spriteRenderer.enabled = _cards.IsNonEmpty();
+        private void UpdateView() => _image.enabled = _cards.IsNonEmpty();
     }
 }

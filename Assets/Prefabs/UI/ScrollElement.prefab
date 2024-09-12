@@ -90,12 +90,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a69e332736bca8343a3edad11ffb41db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleFactor: 1.2
-  selectedColor: {r: 0.26898536, g: 0.7054135, b: 0.96981126, a: 1}
-  showTime: 0.6
-  startOffset: {x: 50, y: 0, z: 0}
+  _scaleFactor: 1.2
+  _showTime: 0.6
+  _selectOffset: {x: 50, y: 0, z: 0}
+  _startOffset: {x: 50, y: 0, z: 0}
+  _text: {fileID: 2881320749900219058}
+  _image: {fileID: 8043874845957321982}
   toolType: 0
-  text: {fileID: 2881320749900219058}
 --- !u!1 &7776732899802199840
 GameObject:
   m_ObjectHideFlags: 0

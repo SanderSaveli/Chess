@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace OFG.ChessPeak.LevelBuild
@@ -12,6 +13,9 @@ namespace OFG.ChessPeak.LevelBuild
         [SerializeField] private GameObject _uiFigureView;
         [SerializeField] private Transform _handViewsParent;
         [SerializeField] private Transform _deckViewsParent;
+
+        private List<UIFigureView> _deckViews = new();
+        private List<UIFigureView> _handViews = new();
 
         private void OnEnable()
         {
@@ -31,25 +35,29 @@ namespace OFG.ChessPeak.LevelBuild
 
         private void RemoveHandView(int index) 
         {
-            UIFigureView[] views = _handViewsParent.GetComponentsInChildren<UIFigureView>();
-            Destroy(views[index].gameObject);
+            Destroy(_handViews[index].gameObject);
+            _handViews.RemoveAt(index);
         }
         private void AddHandView(CardType card)
         {
             UIFigureView view = Instantiate(_uiFigureView, _handViewsParent).GetComponent<UIFigureView>();
             view.ChangeViewImage(ConvertToFigure(card));
             view.transform.SetAsLastSibling();
+            _handViews.Add(view);
+            view.OnDestroyInput += DestroyHandView;
         }
         private void RemoveDeckView(int index)
         {
-            UIFigureView[] views = _deckViewsParent.GetComponentsInChildren<UIFigureView>();
-            Destroy(views[index].gameObject);
+            Destroy(_deckViews[index].gameObject);
+            _deckViews.RemoveAt(index);
         }
         private void AddDeckView(CardType card)
         {
             UIFigureView view = Instantiate(_uiFigureView, _deckViewsParent).GetComponent<UIFigureView>();
             view.ChangeViewImage(ConvertToFigure(card));
             view.transform.SetAsLastSibling();
+            _deckViews.Add(view);
+            view.OnDestroyInput += DestroyDeckView;
         }
 
         private FigureType ConvertToFigure(CardType cardType)
@@ -64,6 +72,24 @@ namespace OFG.ChessPeak.LevelBuild
                 case CardType.Rook: return FigureType.Rook;
                 default:
                     throw new Exception("There is no key for CardType " + cardType);
+            }
+        }
+
+        private void DestroyHandView(UIFigureView view)
+        {
+            int index = _handViews.FindIndex(v => v == view);
+            if (index != -1)
+            {
+                _deckBuilder.RemoveCardFromHand(index);
+            }
+        }
+
+        private void DestroyDeckView(UIFigureView view)
+        {
+            int index = _deckViews.FindIndex(v => v == view);
+            if (index != -1)
+            {
+                _deckBuilder.RemoveCardFromDeck(index);
             }
         }
     }

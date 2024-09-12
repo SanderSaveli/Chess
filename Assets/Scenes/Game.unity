@@ -907,7 +907,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3793ac2993b92124f819e6b00fcc5dd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cardImages: {fileID: 0}
   _cardViewRoot: {fileID: 855885184}
   _cardViewOffset: -2.5
   _cardPrefab: {fileID: 6929122751761066531, guid: 3605f24640d2e8c4abf44f2baa439ac7,
@@ -1838,7 +1837,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 29362269}
         m_TargetAssemblyTypeName: OFG.ChessPeak.GameGUI, Assembly-CSharp
-        m_MethodName: NextLevel
+        m_MethodName: ReplayThisLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2269,7 +2268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b4aa198a5500fd4884095dc1cc18f4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spriteRenderer: {fileID: 679424899}
+  _image: {fileID: 679424899}
 --- !u!1 &1857000630
 GameObject:
   m_ObjectHideFlags: 0

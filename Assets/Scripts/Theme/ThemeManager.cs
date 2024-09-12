@@ -48,7 +48,11 @@ namespace OFG.ChessPeak
 
         private void LoadDefaultThemeFromResourses()
         {
-            ThemeData theme = Resources.Load("DefaulTheme") as ThemeData;
+            ThemeData theme = Resources.Load("DefaultTheme") as ThemeData;
+            if (theme == null)
+            {
+                Debug.LogWarning("Cant load Default Theme");
+            }
             SetNewActualTheme(theme, 0);
         }
     }
