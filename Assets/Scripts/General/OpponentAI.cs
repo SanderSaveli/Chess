@@ -22,29 +22,26 @@ namespace OFG.ChessPeak
 
         public bool TryMakeTurn()
         {
-            FigureMoves.GetKingMoves(_moves, _kingPosition, _gameField, _king.FigureColor);
             List<Vector2Int> atackedCells = GetAllAtackedCells();
-
-            foreach (var cell in _moves)
+            if (TryFindMove(out Vector2Int bestMove, atackedCells))
             {
-                if (!atackedCells.Contains(cell))
+                Move(bestMove);
+                return true;
+            }
+            else
+            {
+                if (atackedCells.Contains(_kingPosition))
                 {
-                    Move(cell);
-                    return true;
+                    _king.View.Defeat();
+                    return false;
                 }
-            }
-
-            if (atackedCells.Contains(_kingPosition))
-            {
-                _king.View.Defeat();
+                if (_moves.Count == 0)
+                {
+                    _king.View.Defeat();
+                    return false;
+                }
                 return false;
             }
-            if (_moves.Count == 0)
-            {
-                _king.View.Defeat();
-                return false;
-            }
-            return false;
         }
 
         private List<Vector2Int> GetAllAtackedCells()
@@ -100,7 +97,6 @@ namespace OFG.ChessPeak
                     if (figure.IsBlack && (figure.FigureType == FigureType.King))
                     {
                         _king = figure;
-                        Debug.Log(_gameField.Figures.ToCoordinate(i));
                         _kingPosition = _gameField.Figures.ToCoordinate(i);
                         return true;
                     }
@@ -108,5 +104,75 @@ namespace OFG.ChessPeak
             }
             return false;
         }
+
+        private bool TryFindMove(out Vector2Int bestMove, List<Vector2Int> atackedCells)
+        {
+            FigureMoves.GetKingMoves(_moves, _kingPosition, _gameField, _king.FigureColor);
+
+            bestMove = new Vector2Int(-1,-1);
+            float maxCellPriority = -1;
+            foreach (var cell in _moves)
+            {
+                if (!atackedCells.Contains(cell))
+                {
+                    float cellPriority = 0;
+                    if (_gameField.TryGetFigure(out Figure figure, cell))
+                    {
+                        cellPriority += GetPriorityForFigure(figure.FigureType);
+                    }
+                    cellPriority += GetPriorityForDistanceFromCorner(cell);
+                    if(cellPriority > maxCellPriority)
+                    {
+                        maxCellPriority = cellPriority;
+                        bestMove = cell;
+                    }
+                }
+            }
+            if(bestMove.x == -1)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private float GetPriorityForFigure(FigureType figureType)
+        {
+            switch (figureType)
+            {
+                case FigureType.King:
+                    return 10;
+                case FigureType.Queen:
+                    return 8;
+                case FigureType.Rook:
+                    return 5;
+                case FigureType.Bishop:
+                    return 3;
+                case FigureType.Knight:
+                    return 3;
+                case FigureType.Pawn:
+                    return 1;
+                default: 
+                    return 0;
+            }
+        }
+
+        private float GetPriorityForDistanceFromCorner(Vector2Int cell)
+        {
+            float width = _gameField.width;
+            float height = _gameField.height;
+
+            Vector2 center = new Vector2(width / 2f, height / 2f);
+
+            float maxDistance = Vector2.Distance(Vector2.zero, center);
+
+            Vector2 cellPosition = new Vector2(cell.x, cell.y);
+
+            float distanceToCenter = Vector2.Distance(cellPosition, center);
+
+            float priority = 1 - (distanceToCenter / maxDistance);
+
+            return priority;
+        }
+
     }
 }

@@ -20,7 +20,7 @@ namespace OFG.ChessPeak
             _hand.ClearHand();
             foreach (CardType cardType in cardsInHand)
             {
-                _hand.AddCard(cardType);
+                _hand.AddCardBegin(cardType);
             }
         }
 
@@ -56,13 +56,13 @@ namespace OFG.ChessPeak
             }
         }
 
-        public void AddCard(CardType cardType) => _hand.AddCard(cardType);
+        public void AddCard(CardType cardType) => _hand.AddCardInGame(cardType);
 
         public bool TryAddCardFromDeck()
         {
             if (_deck.TryGetCard(out CardType cardType))
             {
-                _hand.AddCard(cardType);
+                _hand.AddCardInGame(cardType);
                 return true;
             }
             return false;

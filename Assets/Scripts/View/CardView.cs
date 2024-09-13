@@ -14,6 +14,7 @@ namespace OFG.ChessPeak
         [SerializeField] private float _yPositionOffsetOnSelection = 1.0f;
         [SerializeField] private float _yOffsetOnDestroy = 10.0f;
         [SerializeField] private float _timeToDestroy = 1.0f;
+        [SerializeField] private float _delayBetwenCards = 0.3f;
 
         public CardType CardType { get; private set; }
         public Vector3 TargetPosition { get; set; }
@@ -22,12 +23,47 @@ namespace OFG.ChessPeak
         private Image _image;
         private Vector3 _positionVelocity;
         private Vector3 _scaleVelocity;
+        private Vector3 startPos;
+        public bool isAnimate = false;
 
-        public void Init(CardType cardType)
+        private void OnEnable()
+        {
+            EventBusProvider.EventBus.RegisterCallback<EventTransitionComplete>(SetCardStartPosition);
+        }
+
+        private void OnDisable()
+        {
+            EventBusProvider.EventBus.UnregisterCallback<EventTransitionComplete>(SetCardStartPosition);
+        }
+
+        private void Awake() => InitComponentReferences();
+
+        private void Update()
+        {
+            if (!isAnimate)
+            {
+                transform.position = startPos;
+            }
+            transform.position = Vector3.SmoothDamp(
+                transform.position,
+                TargetPosition,
+                ref _positionVelocity,
+                _positionSmoothTime);
+            transform.localScale = Vector3.SmoothDamp(
+                transform.localScale,
+                TargetScale,
+                ref _scaleVelocity,
+                _scaleSmoothTime);
+        }
+
+        public void Init(CardType cardType, Transform startPosition)
         {
             CardType = cardType;
             _image.enabled = true;
-            _image.sprite = ThemeManager.instance.actualTheme.cardSet.GetImageOfCard(CardType);
+            _image.sprite = ThemeManager.instance.actualTheme.cardSet.deckcView;
+            transform.position = startPosition.position;
+            TargetPosition = startPosition.position;
+            startPos = startPosition.position;
         }
 
         public void Hover() => TargetScale = Vector3.one * _scaleSelectedFactor;
@@ -50,32 +86,46 @@ namespace OFG.ChessPeak
             Unhover();
         }
 
-        public void Destroy() => _ = StartCoroutine(DestroyRoutine());
+        public void DestroyWithAnimation() => StartCoroutine(DestroyRoutine());
+        public void Destroy() =>
+            Destroy(transform.parent.gameObject);
 
-        private void Awake() => InitComponentReferences();
-
-        private void Update()
+        private void SetCardStartPosition(EventTransitionComplete ctx)
         {
-            //transform.position = Vector3.SmoothDamp(
-            //    transform.position,
-            //    TargetPosition,
-            //    ref _positionVelocity,
-            //    _positionSmoothTime);
-            //transform.localScale = Vector3.SmoothDamp(
-            //    transform.localScale,
-            //    TargetScale,
-            //    ref _scaleVelocity,
-            //    _scaleSmoothTime);
+            float delay = 0;
+            isAnimate = false;
+            for (int i =0; i < transform.parent.parent.childCount; i++)
+            {
+                if (transform.parent.parent.GetChild(i) == transform.parent)
+                {
+                    break;
+                }
+                delay += _delayBetwenCards;
+            }
+            StartCoroutine(WaitAndShow(delay));
         }
 
+        public IEnumerator WaitAndShow(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            isAnimate = true;
+            _image.sprite = ThemeManager.instance.actualTheme.cardSet.GetImageOfCard(CardType);
+            transform.localScale = new Vector3(0.5f, 0.5f, 0);
+            TargetScale = Vector3.one;  
+            TargetPosition = transform.parent.position;
+        }
         private void InitComponentReferences() => _image = GetComponent<Image>();
 
         private IEnumerator DestroyRoutine()
         {
-            float time = 0.0f;
+            _image.raycastTarget = false;
             Vector3 newTargetPosition = TargetPosition;
+            transform.parent.SetParent(transform.parent.parent.parent);
+            transform.position = TargetPosition;
             newTargetPosition.y += _yOffsetOnDestroy;
             TargetPosition = newTargetPosition;
+
+            float time = 0.0f;
             Color color = _image.color;
             float startAlpha = color.a;
             float finalAlpha = 0.0f;
@@ -89,7 +139,7 @@ namespace OFG.ChessPeak
                 _image.color = color;
             }
             while (time < _timeToDestroy);
-            Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
         }
     }
 }

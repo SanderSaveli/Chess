@@ -103,7 +103,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _MaskAmount: -0.00019790791
+    - _MaskAmount: -0.0019858156
     - _Mask_Amount: 0
     - _Metallic: 0
     - _OcclusionStrength: 1
@@ -123,7 +123,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _MaskColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Mask_Color: {r: 0.0627451, g: 0.21960786, b: 0.2392157, a: 1}
+    - _Mask_Color: {r: 0.06274506, g: 0.2196078, b: 0.23921564, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &3964982400185832781

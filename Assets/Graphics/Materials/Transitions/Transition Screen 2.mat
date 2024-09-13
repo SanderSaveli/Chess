@@ -103,7 +103,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _MaskAmount: -0.0002124533
+    - _MaskAmount: -0.0018498298
     - _Mask_Amount: 0
     - _Metallic: 0
     - _OcclusionStrength: 1

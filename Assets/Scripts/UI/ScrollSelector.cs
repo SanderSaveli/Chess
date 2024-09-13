@@ -13,6 +13,7 @@ public class ScrollSelector : MonoBehaviour
     [SerializeField] private RectTransform _content;
     [SerializeField] private float _smoothTime = 0.2f;
     [SerializeField] private float _scrollDeadZone = 0.1f;
+    [SerializeField] private float _delayBetwenElelments = 0.25f;
     [SerializeField][Min(0)] protected int _startSelectedIndex = 0;
 
     private int _selectedIndex = -1;
@@ -26,7 +27,6 @@ public class ScrollSelector : MonoBehaviour
     {
         _scrollRect = GetComponent<ScrollRect>();
         _scrollRect.onValueChanged.AddListener(OnScroll);
-        _startSelectedIndex = ThemeManager.instance.actualThemeIndex;
         EventBusProvider.EventBus.RegisterCallback<EventTransitionComplete>(TransitionEnd);
     }
 
@@ -70,8 +70,9 @@ public class ScrollSelector : MonoBehaviour
         _elements = new List<ScrollElement>();
         for (int i = 0; i < _content.childCount; i++)
         {
-            ScrollElement element = _content.GetChild(i).GetComponent<ScrollElement>();
-            element.Ini(i);
+            AnimatedScrollElement element = _content.GetChild(i).GetComponent<AnimatedScrollElement>();
+            float delay = Mathf.Abs(_startSelectedIndex - i) * _delayBetwenElelments;
+            element.Ini(i, delay);
             _elements.Add(element);
             element.OnClicked += SelectElement;
         }

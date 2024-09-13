@@ -17,12 +17,18 @@ namespace OFG.ChessPeak.LevelBuild
         private List<UIFigureView> _deckViews = new();
         private List<UIFigureView> _handViews = new();
 
+        private bool _isSenchonized = false;
+
         private void OnEnable()
         {
             _deckBuilder.OnCardsInDeckAdd += AddDeckView;
             _deckBuilder.OnCardsInDeckRemove += RemoveDeckView;
             _deckBuilder.OnCardsInHandAdd += AddHandView;
             _deckBuilder.OnCardsInHandRemove += RemoveHandView;
+            if(!_isSenchonized)
+            {
+                Senhronize();
+            }
         }
 
         private void OnDisable()
@@ -31,6 +37,19 @@ namespace OFG.ChessPeak.LevelBuild
             _deckBuilder.OnCardsInDeckRemove -= RemoveDeckView;
             _deckBuilder.OnCardsInHandAdd -= AddHandView;
             _deckBuilder.OnCardsInHandRemove -= RemoveHandView;
+        }
+
+        private void Senhronize()
+        {
+            foreach (var card in _deckBuilder.CardsInHand) 
+            { 
+                AddHandView(card);
+            }
+            foreach (var card in _deckBuilder.CardsInDeck)
+            {
+                AddDeckView(card);
+            }
+            _isSenchonized = true;
         }
 
         private void RemoveHandView(int index) 

@@ -2,9 +2,9 @@ namespace OFG.ChessPeak
 {
     public class ThemeShopScrollElement : AnimatedScrollElement
     {
-        public override void Ini(int index)
+        public override void Ini(int index, float delay)
         {
-            base.Ini(index);
+            base.Ini(index, delay);
             ThemeData themeData = ThemeManager.instance?.themes[index];
             if (themeData != null)
             {
@@ -14,6 +14,10 @@ namespace OFG.ChessPeak
 
                 _backgroundImage.color = SetColorAlfa(_unselectedColor, _backgroundImage.color.a);
             }
+        }
+        public override void Ini(int index)
+        {
+            Ini(index, 0);
         }
 
         public override void Select()

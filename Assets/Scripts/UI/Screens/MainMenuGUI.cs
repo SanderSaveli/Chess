@@ -8,19 +8,17 @@ namespace OFG.ChessPeak
         [Header(H.ComponentReferences)]
         [SerializeField] private GameObject _frameMainMenu;
         [SerializeField] private GameObject _frameLevelSelection;
+        [SerializeField] private GameObject _frameCustomLevelSelection;
 
         private UI_TweenPositionAnimation[] _tweensMainMenu;
         private UI_TweenPositionAnimation[] _tweensLevelSelection;
-
-        private void Start()
-        {
-            //PlayerPrefs.DeleteKey(PrefsKey.CurrentLevel);
-        }
+        private UI_TweenPositionAnimation[] _tweensCustomLevelSelection;
 
         private void Awake()
         {
             _tweensMainMenu = _frameMainMenu.GetComponentsInChildren<UI_TweenPositionAnimation>(true);
             _tweensLevelSelection = _frameLevelSelection.GetComponentsInChildren<UI_TweenPositionAnimation>(true);
+            _tweensCustomLevelSelection = _frameCustomLevelSelection.GetComponentsInChildren<UI_TweenPositionAnimation>(true);
         }
 
         public void ShowSelectLevelFrame()
@@ -35,6 +33,18 @@ namespace OFG.ChessPeak
             }
         }
 
+        public void ShowSelectCustomLevelFrame()
+        {
+            foreach (var tween in _tweensMainMenu)
+            {
+                tween.Hide();
+            }
+            foreach (var tween in _tweensCustomLevelSelection)
+            {
+                tween.Show();
+            }
+        }
+
         public void ShowMainMenuFrame()
         {
             foreach (var tween in _tweensMainMenu)
@@ -42,6 +52,10 @@ namespace OFG.ChessPeak
                 tween.Show();
             }
             foreach (var tween in _tweensLevelSelection)
+            {
+                tween.Hide();
+            }
+            foreach (var tween in _tweensCustomLevelSelection)
             {
                 tween.Hide();
             }

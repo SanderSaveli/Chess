@@ -12,8 +12,8 @@ namespace IUP.Toolkit.UI
         [Tooltip("The animation speed increases, the higher the speed, the faster the animation.")]
         [SerializeField] private float _transitionSpeed = 10.0f;
 
-        private Vector3 _originalScale;
-        private Vector3 _targetScale;
+        private Vector3 _originalScale = Vector3.one;
+        private Vector3 _targetScale = Vector3.one;
 
         private void OnDisable() => ResetScale();
         

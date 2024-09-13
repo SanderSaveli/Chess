@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c204e3418b2b0142b0f9f9f06f1da33, type: 3}
+  m_Name: Spring Mood
+  m_EditorClassIdentifier: 
+  _name: Spring Mood
+  _backgroundColor: {r: 0.98823535, g: 0.9490197, b: 0.9450981, a: 1}
+  _vignetteColor: {r: 0.47450984, g: 0.6627451, b: 0.23137257, a: 1}
+  _positiveButtonColor: {r: 0.47450984, g: 0.6627451, b: 0.23137257, a: 1}
+  _neutralButtonColor: {r: 0.8078432, g: 0.8862746, b: 0.64705884, a: 1}
+  _negativeButtonColor: {r: 0.27780703, g: 0.3962264, b: 0.12484868, a: 1}
+  _scrollElementUnselected: {r: 0.8078432, g: 0.8862746, b: 0.64705884, a: 1}
+  _scrollElementSelected: {r: 0.47450984, g: 0.6627451, b: 0.23137257, a: 1}
+  _levelViewCurrentLevel: {r: 0.47450984, g: 0.6627451, b: 0.23137257, a: 1}
+  _levelViewCompletedLevel: {r: 0.8078432, g: 0.8862746, b: 0.64705884, a: 1}
+  _levelViewLockedLevel: {r: 0.2784314, g: 0.39607847, b: 0.1254902, a: 1}
+  _mainMenuImage: {fileID: 21300000, guid: 4356f0f7117e8bb46aad0685c6747488, type: 3}
+  _deckEditImage: {fileID: 21300000, guid: 6fdf09e09d5f9154ea5d7ec59fa3fbb2, type: 3}
+  _mascMaterial: {fileID: 2100000, guid: 2f587def88d113c41a1930fa4a13586b, type: 2}
+  _deckMaterial: {fileID: 2100000, guid: 8bc6d56849443874ab8ed00f1edbf51e, type: 2}
+  _mountainsMaterial: {fileID: 0}
+  _whiteCellMaterial: {fileID: 2100000, guid: bfea4b65eee1cd746ad2235b1274de73, type: 2}
+  _blackCellMaterial: {fileID: 2100000, guid: c72b3932f37b3c14c8c2a78b7cd81d9d, type: 2}
+  _figureSet: {fileID: 11400000, guid: 2ee1e1ab8941d9f4cb31be1d280b7de4, type: 2}
+  _cardSet: {fileID: 11400000, guid: 68a0549abee732242890d1a17b422acb, type: 2}

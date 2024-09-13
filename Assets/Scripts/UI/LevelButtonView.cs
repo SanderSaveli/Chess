@@ -1,16 +1,17 @@
 ﻿using System;
 using TMPro;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace OFG.ChessPeak.UI
 {
-    public sealed class LevelButtonView : MonoBehaviour
+    public class LevelButtonView : MonoBehaviour
     {
         [Header(H.ComponentReferences)]
         [SerializeField] private Image _background;
         [SerializeField] private Image _lockIcon;
-        [SerializeField] private TextMeshProUGUI _levelNumberLabel;
+        [SerializeField] protected TextMeshProUGUI _levelNumberLabel;
         [SerializeField] private Button _button;
 
         private Color _backgroundColorLocked;
@@ -32,14 +33,14 @@ namespace OFG.ChessPeak.UI
             UnsubscribeFromEvents();
         }
         private void SetTheme(EventNewThemeSet data) => SetTheme(data.ThemeData);
-        private void SetTheme(ThemeData data)
+        protected virtual void SetTheme(ThemeData data)
         {
             _backgroundColorAvailable = data.levelViewCompletedLevel;
             _backgroundColorLocked = data.levelViewLockedLevel;
             _backgroundColorComplete = data.levelViewCurrentLevel;
         }
 
-        public void UpdateView(int levelNumber, LevelProgress levelProgress)
+        public virtual void UpdateView(int levelNumber, LevelProgress levelProgress)
         {
             SetLevelNumber(levelNumber);
             switch (levelProgress)

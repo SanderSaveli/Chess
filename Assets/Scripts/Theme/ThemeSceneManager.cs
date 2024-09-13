@@ -28,7 +28,7 @@ namespace OFG.ChessPeak
         private void Start()
         {
             _storageService = new JsonToStreamingAssetsStorageService();
-            _storageService.Load<LevelData>(themeLevelKey, BuildLevel);
+            _storageService.Load<LevelData>("Levels/" +themeLevelKey, BuildLevel);
         }
 
         public void BuildLevel(LevelData data) => _levelBuilder.BuildLevel(data);

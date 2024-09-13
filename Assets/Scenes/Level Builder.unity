@@ -3818,6 +3818,7 @@ GameObject:
   - component: {fileID: 1035232751}
   - component: {fileID: 1035232753}
   - component: {fileID: 1035232752}
+  - component: {fileID: 1035232754}
   m_Layer: 0
   m_Name: System
   m_TagString: Untagged
@@ -3839,7 +3840,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelParent: {fileID: 929612298}
   _fieldCreator: {fileID: 1035232748}
-  _figurePlacer: {fileID: 0}
+  _figurePlacer: {fileID: 1035232754}
 --- !u!4 &1035232746
 Transform:
   m_ObjectHideFlags: 0
@@ -3882,7 +3883,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultLevel: {fileID: 1634678623980739863, guid: 7b1bcdfaf90aee5449c1f8efa6860d09,
     type: 3}
-  _levelParent: {fileID: 0}
+  _levelParent: {fileID: 929612298}
 --- !u!114 &1035232749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3969,13 +3970,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa31ec6aaecf0524da338ce94d27c44c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mode: 1
   _tollHandler: {fileID: 1035232749}
+  _builder: {fileID: 1035232743}
   _fieldCreator: {fileID: 1035232748}
   _builderInputFSM: {fileID: 1035232752}
   _deckBuilder: {fileID: 1035232751}
   _toolController: {fileID: 1243182982}
   _deckBuilderController: {fileID: 1243182984}
-  LevelName: {fileID: 0}
+  LevelName: {fileID: 1302537773}
+--- !u!114 &1035232754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035232742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b399cfcf2903a2a4aba6da01f652d722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _firueRoot: {fileID: 929612298}
+  _delayBetwenFiguresSpawn: 0.15
+  _delayBeforeFigureSpawn: 1.1
 --- !u!1 &1035590334 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7864588781887327922, guid: f4fa7566b827e0b48916912ef9e58ff0,
@@ -4573,6 +4591,16 @@ PrefabInstance:
       propertyPath: toolType
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 7713408288630654398, guid: 9000a893c8997234ea317f4f9ff1734b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7713408288630654398, guid: 9000a893c8997234ea317f4f9ff1734b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -155
+      objectReference: {fileID: 0}
     - target: {fileID: 7759450671842338632, guid: 9000a893c8997234ea317f4f9ff1734b,
         type: 3}
       propertyPath: _content
@@ -4593,6 +4621,11 @@ PrefabInstance:
       propertyPath: _selectPosition
       value: 
       objectReference: {fileID: 1149436691}
+    - target: {fileID: 7759450671842338632, guid: 9000a893c8997234ea317f4f9ff1734b,
+        type: 3}
+      propertyPath: _delayBetwenElelments
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 7762484934403985417, guid: 9000a893c8997234ea317f4f9ff1734b,
         type: 3}
       propertyPath: _text

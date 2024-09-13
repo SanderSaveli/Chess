@@ -24,10 +24,26 @@ namespace OFG.ChessPeak.LevelBuild
         /// </summary>
         public Action<int> OnCardsInDeckRemove;
 
+        public void AddCardsToHand(List<CardType> cards)
+        {
+            foreach (var card in cards)
+            {
+                AddCardToHand(card);
+            }
+        }
+
         public void AddCardToHand(CardType card)
         {
             _cardsInHand.Add(card);
             OnCardsInHandAdd?.Invoke(card);
+        }
+
+        public void AddCardsToDeck(List<CardType> cards)
+        {
+            foreach (var card in cards)
+            {
+                AddCardToDeck(card);
+            }
         }
 
         public void AddCardToDeck(CardType card)

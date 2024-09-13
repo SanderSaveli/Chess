@@ -32,11 +32,16 @@ namespace OFG.ChessPeak
             _defaultScale = transform.localScale;
         }
 
-        public override void Ini(int index)
+        public virtual void Ini(int index, float delay)
         {
             base.Ini(index);
             _backgroundImage = GetComponent<Image>();
-            StartCoroutine(this.Show((index+1) * 0.2f));
+            StartCoroutine(Show(delay));
+        }
+
+        public override void Ini(int index)
+        {
+            Ini(index, 0);
         }
 
         public IEnumerator Show(float delay)

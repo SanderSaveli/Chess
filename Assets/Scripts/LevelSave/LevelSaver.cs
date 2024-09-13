@@ -1,5 +1,6 @@
 using IUP.Toolkit;
 using OFG.ChessPeak.LevelBuild;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -11,6 +12,8 @@ namespace OFG.ChessPeak
         private GameField _gameField;
         private DeckBuilder _deckBuilder;
         private IStorageService _storageService;
+
+        private const string editorPositionKey = "Editor/LastPosition"; 
         public LevelSaver(GameField field, DeckBuilder deck)
         {
             _gameField = field;
@@ -18,16 +21,50 @@ namespace OFG.ChessPeak
             _storageService = new JsonToStreamingAssetsStorageService();
         }
 
+        public void SaveEditorState()
+        {
+            LevelData data = FillLevelData();
+            _storageService.Save(editorPositionKey, data, (isSucsess) =>
+            {
+                if (isSucsess)
+                    Debug.Log("Editor state saved!");
+                else
+                    Debug.LogWarning("Data not saved!");
+            });
+        }
+
+        public void TryGetLastSave(Action<LevelData> callback)
+        {
+            LevelData data = FillLevelData();
+            _storageService.Load<LevelData>(editorPositionKey, callback);
+        }
+
         public void SaveGameLevel(string number)
         {
             LevelData data = FillLevelData();
-            //int num = int.Parse(number);  
-            string key = "level" + number;
+            string key = "Levels/level" + number;
             _storageService.Save(key, data, (isSucsess) =>
             {
                 if (isSucsess)
                 {
-                    Debug.Log("Data saved!");
+                    Debug.Log("Game level saved!");
+                }
+                else
+                {
+                    Debug.LogWarning("Data not saved!");
+                }
+            });
+        }
+
+        public void SaveCustomLevel(string name)
+        {
+            LevelData data = FillLevelData();
+            string key = "CustomLevels/" + name;
+            _storageService.Save(key, data, (isSucsess) =>
+            {
+                if (isSucsess)
+                {
+                    Debug.Log("Custom level saved!");
                 }
                 else
                 {

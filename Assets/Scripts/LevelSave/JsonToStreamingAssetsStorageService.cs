@@ -14,14 +14,28 @@ namespace OFG.ChessPeak
 
             try
             {
+                string tempDirectory = Path.GetDirectoryName(tempPath);
+                if (!Directory.Exists(tempDirectory))
+                {
+                    Directory.CreateDirectory(tempDirectory);
+                }
+
                 using (var fileStream = new StreamWriter(tempPath))
                 {
                     fileStream.Write(jsonFile);
                 }
 
                 string streamingAssetsPath = BuildStreamingAssetsPath(key);
+
+                string streamingAssetsDirectory = Path.GetDirectoryName(streamingAssetsPath);
+                if (!Directory.Exists(streamingAssetsDirectory))
+                {
+                    Directory.CreateDirectory(streamingAssetsDirectory);
+                }
+
                 File.Copy(tempPath, streamingAssetsPath, true);
-                File.Delete(tempPath); 
+                File.Delete(tempPath);
+
                 callback?.Invoke(true);
             }
             catch (Exception ex)
@@ -37,7 +51,7 @@ namespace OFG.ChessPeak
 
             if (!File.Exists(path))
             {
-                Debug.LogError($"There is no file {key} in " + BuildStreamingAssetsPath(key));
+                Debug.LogWarning($"There is no file {key} in " + BuildStreamingAssetsPath(key));
                 callback.Invoke(default(T));
                 return;
             }
@@ -48,12 +62,12 @@ namespace OFG.ChessPeak
                 {
                     string jsonFile = fileStream.ReadToEnd();
                     T data = JsonConvert.DeserializeObject<T>(jsonFile);
-                    callback.Invoke(data);
+                    callback?.Invoke(data);
                 }
             }
             catch (Exception ex)
             {
-                Debug.LogError($"Error with load from StreamingAssets: {ex.Message}");
+                Debug.LogWarning($"Error with load from StreamingAssets: {ex.Message}");
                 callback?.Invoke(default(T));
             }
         }

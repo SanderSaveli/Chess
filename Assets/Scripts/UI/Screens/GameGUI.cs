@@ -5,11 +5,16 @@ namespace OFG.ChessPeak
     public class GameGUI : MonoBehaviour
     {
         private int _levelIndex;
+        private LevelData _levelData;
         private void OnEnable()
         {
-            EventBusProvider.EventBus.RegisterCallback<EventLoadLevelComplete>(SetLevelIndex);
+            EventBusProvider.EventBus.RegisterCallback<EventLoadLevelComplete>(SetLevelData);
         }
-        private void SetLevelIndex(EventLoadLevelComplete ctx) => _levelIndex = ctx.LevelNumber;
+        private void SetLevelData(EventLoadLevelComplete ctx)
+        {
+            _levelData = ctx.LoadedLevelTemplate;
+            _levelIndex = ctx.LevelNumber;
+        }
         public void ExitToMenu()
         {
             EventInputLoadMenu context = new EventInputLoadMenu();
@@ -18,13 +23,17 @@ namespace OFG.ChessPeak
 
         public void NextLevel()
         {
+            if(_levelIndex < 0)
+            {
+                return;
+            }
             EventInputLoadLevel context = new(_levelIndex + 1);
             EventBusProvider.EventBus.InvokeEvent(context);
         }
 
         public void ReplayThisLevel()
         {
-            EventInputLoadLevel context = new(_levelIndex);
+            EventInputLoadLevelDirectly context = new(_levelData, _levelIndex);
             EventBusProvider.EventBus.InvokeEvent(context);
         }
     }
