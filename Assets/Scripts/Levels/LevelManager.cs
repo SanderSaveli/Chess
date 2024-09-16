@@ -87,6 +87,7 @@ namespace OFG.ChessPeak
             EventBusProvider.EventBus.RegisterCallback<EventInputLoadCustomLevel>(OnInputLoadCustomLevel);
             EventBusProvider.EventBus.RegisterCallback<EventInputLoadLevelDirectly>(OnInputLoadLevelDirectly);
             DontDestroyOnLoad(gameObject);
+            Debug.Log("Enable!");
         }
 
         private void OnDisable()

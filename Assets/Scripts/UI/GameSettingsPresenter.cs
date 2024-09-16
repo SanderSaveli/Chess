@@ -24,13 +24,19 @@ namespace OFG.ChessPeak
         private void OnMusicViewChanged(bool isInteractable, float value)
         {
             GameSettings.IsMusicEnabled = isInteractable;
-            GameSettings.MusicVolume = value;
+            if(isInteractable)
+            {
+                GameSettings.MusicVolume = value;
+            }
         }
 
         private void OnSoundViewChanged(bool isInteractable, float value)
         {
             GameSettings.IsSoundEnabled = isInteractable;
-            GameSettings.SoundVolume = value;
+            if (isInteractable)
+            {
+                GameSettings.SoundVolume = value;
+            }
         }
 
         private void SubscribeOnEvents()

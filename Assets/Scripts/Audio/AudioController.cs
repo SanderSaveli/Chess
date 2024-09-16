@@ -18,10 +18,27 @@ namespace OFG.ChessPeak
         [SerializeField] private SoundData _cardSelectedSound;
         [SerializeField] private SoundData _figurePlasedSound;
 
+        private float _soundVolume;
+        private float _musicVolume;
+
         private void OnEnable()
         {
             SubscribeToEvents();
+            SetMusicVolume(GameSettings.MusicVolume);
+            SetSoundVolume(GameSettings.SoundVolume);
         }
+
+        private void OnDisable()
+        {
+            UnsbscribeToEvents();
+        }
+
+        private void SetMusicVolume(float volume)
+        {
+            _musicVolume = volume;
+            _soundSource.volume = volume;
+        }
+        private void SetSoundVolume(float volume) =>_soundVolume = volume;
 
         private void SubscribeToEvents()
         {
@@ -31,6 +48,22 @@ namespace OFG.ChessPeak
             EventBusProvider.EventBus.RegisterCallback<EventFigureMoved>(PlayFigureMoveSound);
             EventBusProvider.EventBus.RegisterCallback<EventCardSelected>(PlayCardSelectedSound);
             EventBusProvider.EventBus.RegisterCallback<EventFigurePlacedInBuilder>(PlayFigurePlacedSound);
+
+            GameSettings.OnMusicVolumeChanged += SetMusicVolume;
+            GameSettings.OnSoundVolumeChanged += SetSoundVolume;
+        }
+
+        private void UnsbscribeToEvents()
+        {
+            EventBusProvider.EventBus.UnregisterCallback<EventFigureSelected>(PlayFigureSelectedSound);
+            EventBusProvider.EventBus.UnregisterCallback<EventWinning>(PlayWinSound);
+            EventBusProvider.EventBus.UnregisterCallback<EventLosing>(PlayLoseSound);
+            EventBusProvider.EventBus.UnregisterCallback<EventFigureMoved>(PlayFigureMoveSound);
+            EventBusProvider.EventBus.UnregisterCallback<EventCardSelected>(PlayCardSelectedSound);
+            EventBusProvider.EventBus.UnregisterCallback<EventFigurePlacedInBuilder>(PlayFigurePlacedSound);
+
+            GameSettings.OnMusicVolumeChanged -= SetMusicVolume;
+            GameSettings.OnSoundVolumeChanged -= SetSoundVolume;
         }
 
         public void PlayButtonSound() => PlaySound(_buttonSound);
@@ -53,6 +86,6 @@ namespace OFG.ChessPeak
         public void PlayFigurePlacedSound(EventFigurePlacedInBuilder ctx) => PlaySound(_figurePlasedSound);
 
         private void PlaySound(SoundData soundData) =>
-            _soundSource.PlayOneShot(soundData.Clip, soundData.Volume);
+            _soundSource.PlayOneShot(soundData.Clip, _soundVolume);
     }
 }

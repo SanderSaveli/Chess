@@ -69,7 +69,7 @@ namespace OFG.ChessPeak
         private void OnFigureMoved(EventFigureMoved context)
         {
             _cardController.RemoveSelectedCard();
-            if (_opponentAI.TryMakeTurn())
+            if (_opponentAI.TryMakeTurn(out bool isPate))
             {
                 if (_gameField.HasWhiteFigure() && _cardController.HasCardOnHandsOrDeck())
                 {
@@ -86,7 +86,14 @@ namespace OFG.ChessPeak
             else
             {
                 _fsm.SetIdleState();
-                EventBusProvider.EventBus.InvokeEvent<EventWinning>();
+                if (isPate)
+                {
+                    EventBusProvider.EventBus.InvokeEvent<EventLosing>();
+                }
+                else
+                {
+                    EventBusProvider.EventBus.InvokeEvent<EventWinning>();
+                }
             }
         }
 

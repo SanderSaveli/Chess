@@ -24,7 +24,7 @@ MonoBehaviour:
   _levelViewCompletedLevel: {r: 0.6377357, g: 0.18169452, b: 0.62348443, a: 1}
   _levelViewLockedLevel: {r: 0.25882354, g: 0.007843138, b: 0.2509804, a: 1}
   _mainMenuImage: {fileID: 21300000, guid: afe52beb7fbd95445a53e41a7b9b20b3, type: 3}
-  _deckEditImage: {fileID: 0}
+  _deckEditImage: {fileID: 21300000, guid: 07d53e0ab08e81d469fdf61813fa757f, type: 3}
   _mascMaterial: {fileID: 2100000, guid: 5d56e7a2e0abea84b828f238dd4a8177, type: 2}
   _deckMaterial: {fileID: 2100000, guid: 1546e626612dd074996422d64ef1baca, type: 2}
   _mountainsMaterial: {fileID: 0}

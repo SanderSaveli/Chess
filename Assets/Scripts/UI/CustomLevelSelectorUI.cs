@@ -28,6 +28,7 @@ namespace OFG.ChessPeak
         private void InitLevelIcons()
         {
             GetAllCustomLevels();
+            Debug.Log(_customLevelsNames.Count);
             for (int i = 0; i < _customLevelsNames.Count; i ++)
             {
                 GameObject levelButtonViewObject = Instantiate(_levelIconPrefab, _levelIconsRoot);

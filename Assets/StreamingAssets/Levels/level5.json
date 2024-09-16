@@ -5,49 +5,29 @@
     {
       "pos": {
         "x": 0,
-        "y": 1,
-        "magnitude": 1.0,
-        "sqrMagnitude": 1
+        "y": 4,
+        "magnitude": 4.0,
+        "sqrMagnitude": 16
       },
-      "type": 0,
+      "type": 3,
       "color": 1
-    },
-    {
-      "pos": {
-        "x": 0,
-        "y": 2,
-        "magnitude": 2.0,
-        "sqrMagnitude": 4
-      },
-      "type": 5,
-      "color": 0
     },
     {
       "pos": {
         "x": 1,
-        "y": 0,
-        "magnitude": 1.0,
-        "sqrMagnitude": 1
+        "y": 4,
+        "magnitude": 4.12310553,
+        "sqrMagnitude": 17
       },
-      "type": 0,
-      "color": 1
-    },
-    {
-      "pos": {
-        "x": 2,
-        "y": 1,
-        "magnitude": 2.236068,
-        "sqrMagnitude": 5
-      },
-      "type": 4,
+      "type": 1,
       "color": 1
     },
     {
       "pos": {
         "x": 3,
-        "y": 4,
-        "magnitude": 5.0,
-        "sqrMagnitude": 25
+        "y": 0,
+        "magnitude": 3.0,
+        "sqrMagnitude": 9
       },
       "type": 2,
       "color": 1
@@ -55,11 +35,11 @@
     {
       "pos": {
         "x": 4,
-        "y": 1,
-        "magnitude": 4.12310553,
-        "sqrMagnitude": 17
+        "y": 2,
+        "magnitude": 4.472136,
+        "sqrMagnitude": 20
       },
-      "type": 0,
+      "type": 2,
       "color": 1
     },
     {
@@ -69,19 +49,18 @@
         "magnitude": 5.656854,
         "sqrMagnitude": 32
       },
-      "type": 2,
-      "color": 1
+      "type": 5,
+      "color": 0
     }
   ],
   "Cells": [],
   "CardsInHand": [
-    1,
-    5,
-    1
+    3,
+    3
   ],
   "CardsInDeck": [
-    1,
-    3
+    4,
+    2
   ],
   "fieldSize": {
     "x": 5,

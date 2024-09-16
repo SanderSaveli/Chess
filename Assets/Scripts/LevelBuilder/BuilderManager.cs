@@ -15,6 +15,7 @@ namespace OFG.ChessPeak.LevelBuild
         [SerializeField] private FieldCreator _fieldCreator;
         [SerializeField] private BuilderInputFSM _builderInputFSM;
         [SerializeField] private DeckBuilder _deckBuilder;
+        [SerializeField] private BuilderNotificationManager _notificationManager;
 
         [Header("Controllers")]
         [SerializeField] private ToolController _toolController;
@@ -22,7 +23,7 @@ namespace OFG.ChessPeak.LevelBuild
 
         [SerializeField] private TMP_InputField LevelName;
 
-
+        private OpponentAI _opponentAI;
         private GameField _gameField;
         private LevelSaver _levelSaver;
         private void Start()
@@ -55,16 +56,45 @@ namespace OFG.ChessPeak.LevelBuild
             _builderInputFSM.SetApplyToolState();
         public void SaveLevel()
         {
-            if(_mode == EditorMode.levels)
+            if(!IsPositionCorrect())
             {
-                _levelSaver.SaveGameLevel(LevelName.text);
+                return;
+            }
+
+            if (_mode == EditorMode.levels)
+            {
+                _levelSaver.SaveGameLevel(LevelName.text, ShowGameLevelSaveResult);
             }
             else
             {
-                _levelSaver.SaveCustomLevel(LevelName.text);
+                _levelSaver.SaveCustomLevel(LevelName.text, ShowCustomLevelSaveResult);
             }
         }
 
+        private bool IsPositionCorrect()
+        {
+            if (!_opponentAI.ÑheckPositionPossible(out IncorrectPositionReason reason))
+            {
+                _notificationManager.SwowNotification(reason, ButtonType.negative);
+                return false;
+            }
+            if(!_gameField.HasWhiteFigure()) 
+            {
+                _notificationManager.SwowNotification(IncorrectPositionReason.NoWhiteFigures, ButtonType.negative);
+                return false;
+            }
+            if(_deckBuilder.CardsInHand.Count == 0)
+            {
+                _notificationManager.SwowNotification(IncorrectPositionReason.HandEmpty, ButtonType.negative);
+                return false;
+            }
+            if(LevelName.text == string.Empty)
+            {
+                _notificationManager.SwowNotification(IncorrectPositionReason.NoLevelName, ButtonType.negative);
+                return false;          
+            }
+            return true;
+        }
         private void OnPositionLoad(LevelData data)
         {
             if(!data.Equals(default(LevelData)))
@@ -77,6 +107,8 @@ namespace OFG.ChessPeak.LevelBuild
             {
                 _gameField = _fieldCreator.CreateField();
             }
+            _opponentAI = new OpponentAI(); 
+            _opponentAI.Init(_gameField);
             _levelSaver = new(_gameField, _deckBuilder);
             _tollHandler.Init(_gameField);
             _toolController.Init(_tollHandler, _gameField);
@@ -86,6 +118,30 @@ namespace OFG.ChessPeak.LevelBuild
         private void SaveEditorState(EventInputLoadMenu data)
         {
             _levelSaver.SaveEditorState();
+        }
+
+        private void ShowGameLevelSaveResult(bool isSucsess)
+        {
+            if(isSucsess)
+            {
+                _notificationManager.ShowNotification("New Game Level created!", ButtonType.positive);
+            }
+            else
+            {
+                _notificationManager.ShowNotification("Problem with Game Level creation!", ButtonType.negative);
+            }
+        }
+
+        private void ShowCustomLevelSaveResult(bool isSucsess)
+        {
+            if (isSucsess)
+            {
+                _notificationManager.ShowNotification("New Custom Level created!", ButtonType.positive);
+            }
+            else
+            {
+                _notificationManager.ShowNotification("Problem with Custom Level creation!", ButtonType.negative);
+            }
         }
 
         private enum EditorMode

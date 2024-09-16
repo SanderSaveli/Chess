@@ -14,6 +14,12 @@ namespace OFG.ChessPeak
             _text.text = toolType.ToString();
         }
 
+        public override void Ini(int index, float delay)
+        {
+            base.Ini(index, delay);
+            _text.text = toolType.ToString();
+        }
+
         public override void Select()
         {
             base.Select();

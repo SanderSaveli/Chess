@@ -39,38 +39,18 @@ namespace OFG.ChessPeak
             _storageService.Load<LevelData>(editorPositionKey, callback);
         }
 
-        public void SaveGameLevel(string number)
+        public void SaveGameLevel(string number, Action<bool> isSucsess = null)
         {
             LevelData data = FillLevelData();
             string key = "Levels/level" + number;
-            _storageService.Save(key, data, (isSucsess) =>
-            {
-                if (isSucsess)
-                {
-                    Debug.Log("Game level saved!");
-                }
-                else
-                {
-                    Debug.LogWarning("Data not saved!");
-                }
-            });
+            _storageService.Save(key, data, isSucsess);
         }
 
-        public void SaveCustomLevel(string name)
+        public void SaveCustomLevel(string name, Action<bool> isSucsess = null)
         {
             LevelData data = FillLevelData();
             string key = "CustomLevels/" + name;
-            _storageService.Save(key, data, (isSucsess) =>
-            {
-                if (isSucsess)
-                {
-                    Debug.Log("Custom level saved!");
-                }
-                else
-                {
-                    Debug.LogWarning("Data not saved!");
-                }
-            });
+            _storageService.Save(key, data, isSucsess);
         }
 
         private LevelData FillLevelData()

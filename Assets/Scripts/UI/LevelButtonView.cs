@@ -26,6 +26,9 @@ namespace OFG.ChessPeak.UI
         {
             ThemeData data = ThemeManager.instance.actualTheme;
             SetTheme(data);
+        }
+        private void OnEnable()
+        {
             SubscribeOnEvents();
         }
         private void OnDisable()
@@ -49,6 +52,7 @@ namespace OFG.ChessPeak.UI
                     _lockIcon.enabled = true;
                     _levelNumberLabel.enabled = false;
                     _background.color = _backgroundColorLocked;
+                    _button.onClick.RemoveListener(OnClicked);
                     break;
 
                 case LevelProgress.Available:

@@ -20,8 +20,27 @@ namespace OFG.ChessPeak
             _moves.Clear();
         }
 
-        public bool TryMakeTurn()
+        public bool ÑheckPositionPossible(out IncorrectPositionReason reason)
         {
+            reason = IncorrectPositionReason.PositionCorrect;
+            if (!TryFindBlackKing())
+            {
+                reason = IncorrectPositionReason.NoBlackKing;
+                return false;
+            }
+
+            List<Vector2Int> atackedCells = GetAllAtackedCells();
+            if (IsCellUnderAtack(atackedCells, _kingPosition))
+            {
+                reason = IncorrectPositionReason.BlackKingUnderAttack;
+                return false;
+            }
+
+            return true;
+        }
+        public bool TryMakeTurn(out bool isPate)
+        {
+            isPate = false;
             List<Vector2Int> atackedCells = GetAllAtackedCells();
             if (TryFindMove(out Vector2Int bestMove, atackedCells))
             {
@@ -30,7 +49,8 @@ namespace OFG.ChessPeak
             }
             else
             {
-                if (atackedCells.Contains(_kingPosition))
+                
+                if (IsCellUnderAtack(atackedCells,_kingPosition))
                 {
                     _king.View.Defeat();
                     return false;
@@ -40,6 +60,7 @@ namespace OFG.ChessPeak
                     _king.View.Defeat();
                     return false;
                 }
+                isPate = true;
                 return false;
             }
         }
@@ -89,6 +110,7 @@ namespace OFG.ChessPeak
 
         private bool TryFindBlackKing()
         {
+            int kingCont = 0;
             for (int i = 0; i < _gameField.Figures.Count; i += 1)
             {
                 Figure figure = _gameField.Figures[i];
@@ -98,9 +120,13 @@ namespace OFG.ChessPeak
                     {
                         _king = figure;
                         _kingPosition = _gameField.Figures.ToCoordinate(i);
-                        return true;
+                        kingCont++;
                     }
                 }
+            }
+            if(kingCont == 1)
+            {
+                return true;
             }
             return false;
         }
@@ -133,6 +159,11 @@ namespace OFG.ChessPeak
                 return false;
             }
             return true;
+        }
+
+        private bool IsCellUnderAtack(List<Vector2Int> atackedCells, Vector2Int cell)
+        {
+            return atackedCells.Contains(_kingPosition);
         }
 
         private float GetPriorityForFigure(FigureType figureType)

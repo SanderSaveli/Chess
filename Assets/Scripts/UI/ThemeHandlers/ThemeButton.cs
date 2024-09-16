@@ -47,7 +47,7 @@ namespace OFG.ChessPeak
         }
     }
 
-    enum ButtonType
+    public enum ButtonType
     {
         positive,
         negative,

@@ -19,7 +19,7 @@ namespace OFG.ChessPeak.UI
             {
                 yield return null;
                 time += Time.deltaTime;
-                float maskAmount =  time / duration;
+                float maskAmount = time / duration;
                 _image.material.SetFloat(_maskAmountParamName, maskAmount);
             }
         }
