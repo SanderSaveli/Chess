@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1610dfeb8e3cfcc4e94017d7826a9b70, type: 3}
+  m_Name: BlueCardSet
+  m_EditorClassIdentifier: 
+  _imagePairs:
+  - CardType: 6
+    image: {fileID: 21300000, guid: 118d3764d660dad449401048ba6ced9d, type: 3}
+  - CardType: 5
+    image: {fileID: 21300000, guid: 63f60729f2e1f554db690d1f455d69d4, type: 3}
+  - CardType: 4
+    image: {fileID: 21300000, guid: e1edcf06094657349aba0246db38cffe, type: 3}
+  - CardType: 3
+    image: {fileID: 21300000, guid: 7d1d4d92228086549817652dfb9ba140, type: 3}
+  - CardType: 2
+    image: {fileID: 21300000, guid: aff07bcab7a855648a045a44ec9b0a30, type: 3}
+  - CardType: 1
+    image: {fileID: 21300000, guid: b13191e3dfce5ab43b401446b94a3ff5, type: 3}
+  - CardType: 0
+    image: {fileID: 21300000, guid: 887dc053621209f438128a0e276b4b8f, type: 3}
+  _deckCiew: {fileID: 21300000, guid: 887dc053621209f438128a0e276b4b8f, type: 3}

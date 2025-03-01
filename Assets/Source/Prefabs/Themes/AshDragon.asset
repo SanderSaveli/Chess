@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c204e3418b2b0142b0f9f9f06f1da33, type: 3}
+  m_Name: AshDragon
+  m_EditorClassIdentifier: 
+  _name: Ash Dragon
+  _backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  _vignetteColor: {r: 0.16078432, g: 0.18823531, b: 0.227451, a: 1}
+  _positiveButtonColor: {r: 0.6431373, g: 0.7137255, b: 0.7686275, a: 1}
+  _neutralButtonColor: {r: 0.9176471, g: 0.882353, b: 0.86274517, a: 1}
+  _negativeButtonColor: {r: 0.454902, g: 0.07058824, b: 0.06666667, a: 1}
+  _scrollElementUnselected: {r: 0.6, g: 0.4784314, b: 0.5019608, a: 1}
+  _scrollElementSelected: {r: 0.7490196, g: 0.43529415, b: 0.43921572, a: 1}
+  _levelViewCurrentLevel: {r: 0.7490196, g: 0.43529415, b: 0.43921572, a: 1}
+  _levelViewCompletedLevel: {r: 0.6, g: 0.4784314, b: 0.5019608, a: 1}
+  _levelViewLockedLevel: {r: 0.454902, g: 0.07058824, b: 0.06666667, a: 1}
+  _mainMenuImage: {fileID: 21300000, guid: 82538fce9f296ca4582ef67a7f643a8c, type: 3}
+  _deckEditImage: {fileID: 21300000, guid: 3224163162a454c4d9f02c234b12cb50, type: 3}
+  _mascMaterial: {fileID: 2100000, guid: 37100482657212541a114bf99219f62d, type: 2}
+  _deckMaterial: {fileID: 2100000, guid: 2568c151b2acac04b9d6a7e113419b24, type: 2}
+  _mountainsMaterial: {fileID: 2100000, guid: bd043f6cb5c415c48acba093a2071fa7, type: 2}
+  _whiteCellMaterial: {fileID: 2100000, guid: 1d1ac4604fada2849ac3dc2f0b79b861, type: 2}
+  _blackCellMaterial: {fileID: 2100000, guid: 158ae9ca0e9e6e147a3ffa8060d63989, type: 2}
+  _figureSet: {fileID: 11400000, guid: 3acdfbe9fc18ef6439f78e1aef87c50b, type: 2}
+  _cardSet: {fileID: 11400000, guid: 7e7d2b8cb66fdf840bd813f79c940f8b, type: 2}

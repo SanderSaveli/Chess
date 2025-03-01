@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1610dfeb8e3cfcc4e94017d7826a9b70, type: 3}
+  m_Name: BlackCardSet
+  m_EditorClassIdentifier: 
+  _imagePairs:
+  - CardType: 6
+    image: {fileID: 21300000, guid: 8fa214736288ebc458539e5fef53b949, type: 3}
+  - CardType: 5
+    image: {fileID: 21300000, guid: b01a0648ac904704586e1ede93a463a7, type: 3}
+  - CardType: 4
+    image: {fileID: 21300000, guid: a002055d00257a34bb495549f37b88b5, type: 3}
+  - CardType: 3
+    image: {fileID: 21300000, guid: e9b39dd3010bcc34eb8612baaccddcf3, type: 3}
+  - CardType: 2
+    image: {fileID: 21300000, guid: 9f23e1ce72a6bca4bad21778b9992be6, type: 3}
+  - CardType: 1
+    image: {fileID: 21300000, guid: 0c7991819735e4e49a975d01008209a8, type: 3}
+  - CardType: 0
+    image: {fileID: 21300000, guid: 664ff437f52c5d641952f904ba6cc656, type: 3}
+  _deckCiew: {fileID: 21300000, guid: 664ff437f52c5d641952f904ba6cc656, type: 3}

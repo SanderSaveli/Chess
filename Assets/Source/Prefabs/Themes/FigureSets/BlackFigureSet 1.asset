@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 765e5588c1d60874d8a9bc242525ab31, type: 3}
+  m_Name: BlackFigureSet 1
+  m_EditorClassIdentifier: 
+  figures:
+  - type: 5
+    color: 0
+    figure: {fileID: 6929421033660767846, guid: c27b7590339c2c44abfdbaf819f927e9,
+      type: 3}
+  - type: 5
+    color: 1
+    figure: {fileID: 7558439474217880867, guid: 80ab36bbce12a9d4db93964ced919537,
+      type: 3}
+  - type: 4
+    color: 1
+    figure: {fileID: 7021086104567009497, guid: 0d17d3546788bec4f8928d75f3c64399,
+      type: 3}
+  - type: 3
+    color: 1
+    figure: {fileID: 8271606186926195965, guid: 3d49b2851a0012540bd0eaeb5940e43e,
+      type: 3}
+  - type: 2
+    color: 1
+    figure: {fileID: 6339740674856427212, guid: 00837381dedbbbf4ea11fd45d5ab02f3,
+      type: 3}
+  - type: 1
+    color: 1
+    figure: {fileID: 5119318641356810490, guid: 24d10d564a33dc640a1c713bc918cb29,
+      type: 3}
+  - type: 0
+    color: 1
+    figure: {fileID: 9038512716130508124, guid: 471983ec763fb7046a1bedc19a1ec614,
+      type: 3}

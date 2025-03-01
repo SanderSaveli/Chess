@@ -4,7 +4,7 @@ namespace OFG.ChessPeak
 {
     public sealed class UI_ScaleOnEnablingAnimation : MonoBehaviour
     {
-        [Header(H.ComponentReferences)]
+        [Header(H.Components)]
         [SerializeField] private Transform _scaledTransform;
 
         [Header(H.Styles)]

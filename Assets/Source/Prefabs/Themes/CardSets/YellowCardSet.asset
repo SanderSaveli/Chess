@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1610dfeb8e3cfcc4e94017d7826a9b70, type: 3}
+  m_Name: YellowCardSet
+  m_EditorClassIdentifier: 
+  _imagePairs:
+  - CardType: 6
+    image: {fileID: 21300000, guid: 71b3dbc1a96f212428edfe4ef6d82c3b, type: 3}
+  - CardType: 5
+    image: {fileID: 21300000, guid: 5a29b7e540569514886e03421c2d5c2a, type: 3}
+  - CardType: 4
+    image: {fileID: 21300000, guid: ca1977e699c91134b826f0a83db82173, type: 3}
+  - CardType: 3
+    image: {fileID: 21300000, guid: 55f4cc5b4dbef0849b96dd0f31e7724f, type: 3}
+  - CardType: 2
+    image: {fileID: 21300000, guid: fefa5aedf747bbb4898a23af30df4917, type: 3}
+  - CardType: 1
+    image: {fileID: 21300000, guid: 116a495f14c22c547b24375fec8ba356, type: 3}
+  - CardType: 0
+    image: {fileID: 21300000, guid: 8fbbce823ca03ef4982027290e9c0841, type: 3}
+  _deckCiew: {fileID: 21300000, guid: 8fbbce823ca03ef4982027290e9c0841, type: 3}
