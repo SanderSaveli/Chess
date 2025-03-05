@@ -11,6 +11,7 @@ namespace OFG.ChessPeak
         [SerializeField] private FigureController _figureController;
         [SerializeField] private CardController _cardController;
         [SerializeField] private SelectionViewController _selectionController;
+        [SerializeField] private CellColorController _cellColorController;
         [SerializeField] private LevelBuilder _levelBuilder;
         [SerializeField] private OpponentAI _opponentAI;
 
@@ -42,6 +43,7 @@ namespace OFG.ChessPeak
             _pointerController.Init(_gameField);
             _figureController.Init(_gameField);
             _selectionController.Init(_gameField);
+            _cellColorController.Init(_gameField);
             _opponentAI.Init(_gameField);
             _fsm.SetSelectCardState();
         }

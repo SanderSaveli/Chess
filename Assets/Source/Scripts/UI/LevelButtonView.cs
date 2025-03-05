@@ -30,10 +30,6 @@ namespace OFG.ChessPeak.UI
         {
             _themeData = themeManager.actualTheme;
         }
-        private void Awake()
-        {
-            SetTheme(_themeData);
-        }
         private void OnEnable()
         {
             SubscribeOnEvents();
@@ -52,6 +48,7 @@ namespace OFG.ChessPeak.UI
 
         public virtual void UpdateView(int levelNumber, LevelProgress levelProgress)
         {
+            SetTheme(_themeData);
             SetLevelNumber(levelNumber);
             switch (levelProgress)
             {

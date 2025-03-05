@@ -14,6 +14,7 @@ namespace OFG.ChessPeak
         [SerializeField] private Color _colorMovement;
         [SerializeField] private Color _colorAttack;
         [SerializeField] private Color _colorCanMove;
+        [SerializeField] private Color _colorCanMoveDeactivated;
 
         public SelectionType SelectionType { get; private set; }
 
@@ -34,6 +35,7 @@ namespace OFG.ChessPeak
                 SelectionType.Movement => _colorMovement,
                 SelectionType.Attack => _colorAttack,
                 SelectionType.CanMove => _colorCanMove,
+                SelectionType.CanMoveDeactivated => _colorCanMoveDeactivated,
                 _ => throw new NotImplementedException()
             };
         }

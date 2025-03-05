@@ -6,6 +6,9 @@
 
         public override void OnUpdate()
         {
+            CardController.UnselectCardUpdate();
+            FigureController.SelectFigureUpdate();
+            CardController.SelectCardUpdate();
             FigureController.MoveFigureUpdate();
         }
     }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Tilemaps;
 using IUP.Toolkit;
+using Zenject;
 
 namespace OFG.ChessPeak
 {
@@ -27,6 +28,13 @@ namespace OFG.ChessPeak
 
         private Matrix<Figure> _figures;
         private Matrix<CellBase> _cells;
+        private DiContainer _diContainer;
+
+        [Inject]
+        public void Construct(DiContainer diContainer)
+        {
+            _diContainer = diContainer;
+        }
 
         public bool HasWhiteFigure()
         {
@@ -128,7 +136,7 @@ namespace OFG.ChessPeak
             Vector2Int coordinate = _cells.ToCoordinate(i);
             Vector3Int cellPosition = new(coordinate.x, coordinate.y, 0);
             Vector3 worldPosition = _cellTilemap.CellToWorld(cellPosition);
-            GameObject cellObject = Instantiate(
+            CellBase cellObject = _diContainer.InstantiatePrefabForComponent<CellBase>(
                 cellPrefab,
                 worldPosition,
                 Quaternion.identity,

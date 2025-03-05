@@ -9,7 +9,7 @@ using Zenject;
 
 namespace OFG.ChessPeak
 {
-    public sealed class LevelManager : Singletone<LevelManager>
+    public sealed class LevelManager : MonoBehaviour
     {
         [Header(H.Components)]
         [Header(H.Prefabs)]
@@ -27,11 +27,13 @@ namespace OFG.ChessPeak
 
 
         private SignalBus _signalBus;
+        private DiContainer _diContainer;
 
         [Inject]
-        public void Construct(SignalBus signalBus)
+        public void Construct(SignalBus signalBus, DiContainer diContainer)
         {
             _signalBus = signalBus;
+            _diContainer = diContainer;
         }
 
         private void Start()
@@ -54,7 +56,7 @@ namespace OFG.ChessPeak
             {
                 if (_transitionScreen == null)
                 {
-                    GameObject transitionScreenObject = Instantiate(_transitionScreenPrefab, transform);
+                    GameObject transitionScreenObject = _diContainer.InstantiatePrefab(_transitionScreenPrefab, transform);
                     if (!transitionScreenObject.TryGetComponent(out _transitionScreen))
                     {
                         throw new NullReferenceException(

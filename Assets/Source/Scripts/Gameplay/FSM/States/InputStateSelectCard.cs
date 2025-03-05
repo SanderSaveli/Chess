@@ -4,6 +4,9 @@
     {
         public InputStateSelectCard(InputFSM_Context context) : base(context) { }
 
-        public override void OnUpdate() => CardController.SelectCardUpdate();
+        public override void OnUpdate()
+        {
+            CardController.SelectCardUpdate();
+        }
     }
 }

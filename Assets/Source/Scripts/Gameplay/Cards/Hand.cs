@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace OFG.ChessPeak
 {
@@ -16,6 +17,14 @@ namespace OFG.ChessPeak
 
         private readonly List<CardType> _cards = new();
         private readonly List<CardView> _cardViews = new();
+        private DiContainer _diContainer;
+
+
+        [Inject]
+        public void Construct(DiContainer diContainer)
+        {
+            _diContainer = diContainer;
+        }
 
         public bool IsEmpty() => _cards.IsEmpty();
         public bool IsNonEmpty() => _cards.IsNonEmpty();
@@ -68,7 +77,7 @@ namespace OFG.ChessPeak
 
         private void InstantiateCard(CardType cardType, bool isInGame)
         {
-            GameObject cardViewObject = Instantiate(
+            GameObject cardViewObject = _diContainer.InstantiatePrefab(
                 _cardPrefab,
                 _cardViewRoot);
             _cards.Add(cardType);

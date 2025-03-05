@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace OFG.ChessPeak
 {
@@ -10,11 +11,13 @@ namespace OFG.ChessPeak
         [SerializeField] private SelectionViewController _selectionController;
 
         public HashSet<Vector2Int> AvailableFigurePositions => _availableFigurePositions;
+        public Figure SelectedFigure => _selectedFigure;
 
         private GameField _gameField;
         private Vector2Int _previousCursorPosition;
         private Figure _selectedFigure;
         private Vector2Int _selectedFigurePosition;
+        private Vector3 _startDragFrom;
 
         private readonly HashSet<Vector2Int> _availableFigurePositions = new();
         private readonly List<Vector2Int> _moves = new();
@@ -24,23 +27,36 @@ namespace OFG.ChessPeak
 
         public void SelectFigureUpdate()
         {
-            ResetPreviousHoveredPosition();
-            if (_pointerController.TryGetHoveredFigure(out Figure hoveredFigure, out Vector2Int position2) &&
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (_selectedFigure != null)
+                {
+                    if (HandleMove())
+                    {
+                        return;
+                    }
+                }
+
+                if (_pointerController.TryGetHoveredFigure(out Figure hoveredFigure, out Vector2Int position2) &&
                 hoveredFigure.IsWhite &&
                 AvailableFigurePositions.Contains(position2))
-            {
-                SetCursorSelection(position2);
-                if (Input.GetMouseButtonDown(0))
                 {
-                    SelectFigure(hoveredFigure, position2);
-                    UnsetSelectedCard();
+                    HandleSelect(position2, hoveredFigure);
                 }
             }
         }
 
+        private void HandleSelect(Vector2Int pos, Figure figure)
+        {
+            SetCursorSelection(pos);
+            _startDragFrom = Input.mousePosition;
+            SelectFigure(figure, pos);
+            UnsetSelectedCard();
+        }
+
         public void MoveFigureUpdate()
         {
-            if (Input.GetMouseButton(0))
+            if (_selectedFigure!=null)
             {
                 ResetPreviousHoveredPosition();
                 if (_pointerController.TryGetHoveredCell(out _, out Vector2Int position2) &&
@@ -48,21 +64,33 @@ namespace OFG.ChessPeak
                 {
                     SetCursorSelection(position2);
                 }
+                SelectOptions();
             }
             else if (Input.GetMouseButtonUp(0))
             {
-                if (_pointerController.TryGetHoveredCell(out _, out Vector2Int position2) &&
-                    _moves.Contains(position2))
+                if((_startDragFrom - Input.mousePosition).magnitude > 0.2f)
                 {
-                    MoveSelectedFigure();
-                }
-                else
-                {
-                    UnselectFigure();
+                    HandleMove();
                 }
             }
         }
 
+        private bool HandleMove()
+        {
+            if (_pointerController.TryGetHoveredCell(out _, out Vector2Int position2) &&
+_moves.Contains(position2))
+            {
+                Debug.Log("Move");
+                MoveSelectedFigure();
+                return true;
+            }
+            else
+            {
+                Debug.Log("Unselect");
+                UnselectFigure();
+                return false;
+            }
+        }
         public void UnsetSelectedCard()
         {
             foreach (Vector2Int position2 in AvailableFigurePositions)
@@ -139,6 +167,7 @@ namespace OFG.ChessPeak
 
         private void SelectFigure(Figure figure, Vector2Int position2)
         {
+            UnselectFigure();
             _selectedFigurePosition = position2;
             _selectedFigure = figure;
             FigureMoves.GetMoves(_moves, position2, _gameField, figure.FigureType, figure.FigureColor);
@@ -151,6 +180,10 @@ namespace OFG.ChessPeak
 
         private void UnselectFigure()
         {
+            if(_selectedFigure == null )
+            {
+                return;
+            }
             _selectedFigure.View.Down();
             _selectedFigure = null;
             _selectedFigurePosition = -Vector2Int.one;
@@ -170,6 +203,7 @@ namespace OFG.ChessPeak
 
         private void MoveSelectedFigure()
         {
+            Debug.Log(_selectedFigure.FigureType);
             _gameField.Figures[_selectedFigurePosition] = null;
             Vector3 worldPosition = _gameField.Position2ToWorld(_previousCursorPosition);
             _selectedFigure.View.Down();
@@ -190,6 +224,7 @@ namespace OFG.ChessPeak
                 _gameField.Figures[_previousCursorPosition] = _selectedFigure;
                 EventBusProvider.EventBus.InvokeEvent<EventFigureMoved>();
             }
+            _selectedFigure = null;
         }
     }
 }

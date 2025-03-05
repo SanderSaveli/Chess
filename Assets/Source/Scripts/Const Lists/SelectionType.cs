@@ -6,6 +6,7 @@
         Cursor,
         Movement,
         Attack,
-        CanMove
+        CanMove,
+        CanMoveDeactivated
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 namespace OFG.ChessPeak.LevelBuild
 {
@@ -12,6 +13,13 @@ namespace OFG.ChessPeak.LevelBuild
         private GameObject _levelObject;
         private LevelDecore _levelDecore;
         private GameField _field;
+        private DiContainer _diContainer;
+
+        [Inject]
+        public void Construct(DiContainer diContainer)
+        {
+            _diContainer = diContainer;
+        }
 
         public void ChangeFieldSize(Vector2Int newFieldSize)
         {
@@ -30,7 +38,7 @@ namespace OFG.ChessPeak.LevelBuild
             {
                 DestroyLevel();
             }
-            _levelObject = Instantiate(defaultLevel, _levelParent);
+            _levelObject = _diContainer.InstantiatePrefab(defaultLevel, _levelParent);
             _field = _levelObject.GetComponent<GameField>();
             _levelDecore = _field.gameObject.GetComponentInChildren<LevelDecore>();
             return _field;

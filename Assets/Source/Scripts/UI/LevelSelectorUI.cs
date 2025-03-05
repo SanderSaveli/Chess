@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using Zenject;
 
 namespace OFG.ChessPeak.UI
 {
@@ -12,6 +14,13 @@ namespace OFG.ChessPeak.UI
         [SerializeField] private GameObject _levelIconPrefab;
 
         private readonly List<LevelButtonView> _levelButtonViews = new(PlayerProgress.LevelsCount);
+        private DiContainer _diContainer;
+
+        [Inject]
+        public void Construct(DiContainer container)
+        {
+            _diContainer = container;
+        }
 
         private void Start() => InitLevelIcons();
 
@@ -22,13 +31,12 @@ namespace OFG.ChessPeak.UI
             EventInputLoadLevel context = new(levelNumber);
             EventBusProvider.EventBus.InvokeEvent(context);
         }
-
         private void InitLevelIcons()
         {
+            Debug.Log(gameObject.name);
             for (int i = 1; i <= PlayerProgress.LevelsCount; i += 1)
             {
-                GameObject levelButtonViewObject = Instantiate(_levelIconPrefab, _levelIconsRoot);
-                LevelButtonView levelButtonView = levelButtonViewObject.GetComponent<LevelButtonView>();
+                LevelButtonView levelButtonView = _diContainer.InstantiatePrefabForComponent<LevelButtonView>(_levelIconPrefab, _levelIconsRoot);
                 levelButtonView.Clicked += InvokeOnLevelSelectedEvent;
                 _levelButtonViews.Add(levelButtonView);
                 if (i < PlayerProgress.CurrentLevel)

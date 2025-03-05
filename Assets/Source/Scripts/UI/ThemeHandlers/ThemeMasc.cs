@@ -16,6 +16,7 @@ namespace OFG.ChessPeak
         }
         private void Start()
         {
+            Debug.Log(gameObject.name);
             _image = GetComponent<Image>();
             SetTheme(_themeData);
         }

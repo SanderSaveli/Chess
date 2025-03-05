@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using Zenject;
 
 namespace OFG.ChessPeak
 {
@@ -14,6 +15,14 @@ namespace OFG.ChessPeak
 
         private List<CustomLevelButtonView> _levelButtonViews = new();
         private List<string> _customLevelsNames = new();
+
+        private DiContainer _diContainer;
+
+        [Inject]
+        public void Construct(DiContainer diContainer)
+        {
+            _diContainer = diContainer;
+        }
 
         private void Start() => InitLevelIcons();
 
@@ -31,8 +40,7 @@ namespace OFG.ChessPeak
             Debug.Log(_customLevelsNames.Count);
             for (int i = 0; i < _customLevelsNames.Count; i ++)
             {
-                GameObject levelButtonViewObject = Instantiate(_levelIconPrefab, _levelIconsRoot);
-                CustomLevelButtonView levelButtonView = levelButtonViewObject.GetComponent<CustomLevelButtonView>();
+                CustomLevelButtonView levelButtonView = _diContainer.InstantiatePrefabForComponent<CustomLevelButtonView>(_levelIconPrefab, _levelIconsRoot);
                 levelButtonView.Clicked += InvokeOnLevelSelectedEvent;
                 _levelButtonViews.Add(levelButtonView);
                 levelButtonView.UpdateView(_customLevelsNames[i]);
