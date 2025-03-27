@@ -12,13 +12,15 @@ namespace OFG.ChessPeak
         private GameField _gameField;
         private DeckBuilder _deckBuilder;
         private IStorageService _storageService;
+        private INetworkManager _networkManager;
 
         private const string editorPositionKey = "Editor/LastPosition"; 
-        public LevelSaver(GameField field, DeckBuilder deck)
+        public LevelSaver(GameField field, DeckBuilder deck, IStorageService storageService, INetworkManager networkManager)
         {
             _gameField = field;
             _deckBuilder = deck;
-            _storageService = new JsonToStreamingAssetsStorageService();
+            _storageService = storageService;
+            _networkManager = networkManager;
         }
 
         public void SaveEditorState()
@@ -49,8 +51,10 @@ namespace OFG.ChessPeak
         public void SaveCustomLevel(string name, Action<bool> isSucsess = null)
         {
             LevelData data = FillLevelData();
-            string key = "CustomLevels/" + name;
-            _storageService.Save(key, data, isSucsess);
+            _networkManager.PostCreateNewLevel(
+                new CreateLevelNetworkData(name, "1", data), 
+                (_)=> isSucsess?.Invoke(true), 
+                ()=> isSucsess?.Invoke(false));
         }
 
         private LevelData FillLevelData()

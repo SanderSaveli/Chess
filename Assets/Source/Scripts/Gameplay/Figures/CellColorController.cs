@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace OFG.ChessPeak
 {
@@ -26,14 +24,14 @@ namespace OFG.ChessPeak
 
         public void Update()
         {
-            if(!_isActive)
+            if (!_isActive)
             {
                 return;
             }
 
             if (_pointerController.TryGetHoveredFigure(out Figure hoveredFigure, out Vector2Int position2))
             {
-                if(_hoveredFigure != hoveredFigure && hoveredFigure != _figureController.SelectedFigure)
+                if (_hoveredFigure != hoveredFigure && hoveredFigure != _figureController.SelectedFigure)
                 {
                     UpdateAvailableFigurePositions(hoveredFigure, position2);
                     _hoveredFigure = hoveredFigure;
@@ -53,7 +51,8 @@ namespace OFG.ChessPeak
         private void UpdateAvailableFigurePositions(Figure figure, Vector2Int figurePos)
         {
             List<Vector2Int> moves = new List<Vector2Int>();
-
+            _selections.Clear();
+            _selectionController.ResetAllSelections();
             FigureMoves.GetMoves(moves, figurePos, _gameField, figure.FigureType, figure.FigureColor);
             FigureSelections.GetSelections(moves, _selections, _gameField, figure.FigureColor);
 

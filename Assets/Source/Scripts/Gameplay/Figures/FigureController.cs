@@ -80,13 +80,11 @@ namespace OFG.ChessPeak
             if (_pointerController.TryGetHoveredCell(out _, out Vector2Int position2) &&
 _moves.Contains(position2))
             {
-                Debug.Log("Move");
                 MoveSelectedFigure();
                 return true;
             }
             else
             {
-                Debug.Log("Unselect");
                 UnselectFigure();
                 return false;
             }

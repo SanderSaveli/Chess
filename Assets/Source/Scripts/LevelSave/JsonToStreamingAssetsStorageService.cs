@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace OFG.ChessPeak
 {
-    public class JsonToStreamingAssetsStorageService : IStorageService
+    public class JsonToStreamingAssetsStorageService : MonoBehaviour, IStorageService
     {
         public void Save(string key, object data, Action<bool> callback = null)
         {

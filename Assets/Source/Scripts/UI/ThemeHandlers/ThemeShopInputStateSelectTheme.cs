@@ -6,13 +6,10 @@ namespace OFG.ChessPeak
     {
         private ThemeManager _themeManager;
 
-        [Inject]
-        public void Construct(ThemeManager themeManager)
+        public ThemeShopInputStateSelectTheme(ThemeShopInputFSM_Context context, ThemeManager themeManager) : base(context)
         {
             _themeManager = themeManager;
         }
-        public ThemeShopInputStateSelectTheme(ThemeShopInputFSM_Context context) : base(context)
-        { }
 
         public override void OnEnter()
         {

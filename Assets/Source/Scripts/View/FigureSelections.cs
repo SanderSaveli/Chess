@@ -29,7 +29,10 @@ namespace OFG.ChessPeak
             }
             else
             {
-                selections.Add(movePosition, SelectionType.Movement);
+                if(!selections.ContainsKey(movePosition))
+                {
+                    selections.Add(movePosition, SelectionType.Movement);
+                }
             }
         }
 

@@ -14,37 +14,47 @@ namespace OFG.ChessPeak
         [SerializeField] private GameObject _levelIconPrefab;
 
         private List<CustomLevelButtonView> _levelButtonViews = new();
-        private List<string> _customLevelsNames = new();
 
         private DiContainer _diContainer;
+        private INetworkManager _networkManager;
+        private SignalBus _signalBus;
 
         [Inject]
-        public void Construct(DiContainer diContainer)
+        public void Construct(SignalBus signalBus, DiContainer diContainer, INetworkManager networkManager)
         {
+            _signalBus = signalBus;
             _diContainer = diContainer;
+            _networkManager = networkManager;
         }
 
-        private void Start() => InitLevelIcons();
+        private void Start() => ShowCustomLevles();
 
         private void OnDestroy() => UnsubscribeFromEvents();
 
         private void InvokeOnLevelSelectedEvent(string levelName)
         {
-            EventInputLoadCustomLevel context = new(levelName);
-            EventBusProvider.EventBus.InvokeEvent(context);
+            _signalBus.Fire(new SignalInputLoadCustomLevel(levelName));
         }
 
-        private void InitLevelIcons()
+        private void ShowCustomLevles()
         {
-            GetAllCustomLevels();
-            Debug.Log(_customLevelsNames.Count);
-            for (int i = 0; i < _customLevelsNames.Count; i ++)
+            _networkManager.GetCustomLevelList(InitLevelIcons, ErrorGetingLevels);
+        }
+
+        private void InitLevelIcons(LevelListNetworkData data)
+        {
+            for (int i = 0; i < data.level_list.Count; i ++)
             {
                 CustomLevelButtonView levelButtonView = _diContainer.InstantiatePrefabForComponent<CustomLevelButtonView>(_levelIconPrefab, _levelIconsRoot);
                 levelButtonView.Clicked += InvokeOnLevelSelectedEvent;
                 _levelButtonViews.Add(levelButtonView);
-                levelButtonView.UpdateView(_customLevelsNames[i]);
+                levelButtonView.UpdateView(data.level_list[i].id);
             }
+        }
+
+        private void ErrorGetingLevels()
+        {
+
         }
 
         private void UnsubscribeFromEvents()
@@ -53,34 +63,6 @@ namespace OFG.ChessPeak
             {
                 levelButtonView.Clicked -= InvokeOnLevelSelectedEvent;
             }
-        }
-
-        private void GetAllCustomLevels()
-        {
-            string path = BuildStreamingAssetsPath("CustomLevels/");
-            if (Directory.Exists(path))
-            {
-                string[] files = Directory.GetFiles(path);
-                foreach (string file in files)
-                {
-                    string fileExtension = Path.GetExtension(file);
-                    if (fileExtension != ".meta" && (File.GetAttributes(file) & FileAttributes.Hidden) == 0)
-                    {
-                        string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(file);
-                        _customLevelsNames.Add(fileNameWithoutExtension);
-                    }
-                }
-            }
-            else
-            {
-                Debug.LogError($"Директория {path} не найдена.");
-            }
-        }
-
-
-        private string BuildStreamingAssetsPath(string key)
-        {
-            return Path.Combine(Application.streamingAssetsPath, key);
         }
     }
 }

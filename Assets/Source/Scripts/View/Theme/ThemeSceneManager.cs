@@ -1,5 +1,6 @@
 using OFG.ChessPeak.LevelBuild;
 using UnityEngine;
+using Zenject;
 
 namespace OFG.ChessPeak
 {
@@ -11,7 +12,12 @@ namespace OFG.ChessPeak
         private IStorageService _storageService;
 
         [SerializeField] private  ThemeShopFSM _themeShopFSM;
-        private string themeLevelKey = "theme_scene";
+
+        [Inject]
+        public void Construct(IStorageService storageService)
+        {
+            _storageService = storageService;
+        }
 
         private void OnEnable()
         {
@@ -27,8 +33,7 @@ namespace OFG.ChessPeak
 
         private void Start()
         {
-            _storageService = new JsonToStreamingAssetsStorageService();
-            _storageService.Load<LevelData>("Levels/" +themeLevelKey, BuildLevel);
+            _storageService.Load<LevelData>(Const.LEVLES_KEY + Const.THEME_LEVLE_NAME, BuildLevel);
         }
 
         public void BuildLevel(LevelData data) => _levelBuilder.BuildLevel(data);

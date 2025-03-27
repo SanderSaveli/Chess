@@ -39,6 +39,7 @@ namespace OFG.ChessPeak
         protected virtual void SetTheme(ThemeData data)
         {
             _backgroundColor = data.levelViewCurrentLevel;
+            _background.color = _backgroundColor;
         }
 
         public virtual void UpdateView(string levelName)

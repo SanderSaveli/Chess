@@ -1,5 +1,6 @@
 ﻿using IUP.Toolkit;
 using UnityEngine;
+using Zenject;
 
 namespace OFG.ChessPeak
 {
@@ -13,6 +14,15 @@ namespace OFG.ChessPeak
         private UI_TweenPositionAnimation[] _tweensMainMenu;
         private UI_TweenPositionAnimation[] _tweensLevelSelection;
         private UI_TweenPositionAnimation[] _tweensCustomLevelSelection;
+
+
+        private SignalBus _signalBus;
+
+        [Inject]
+        public void Construct(SignalBus signalBus)
+        {
+            _signalBus = signalBus;
+        }
 
         private void Awake()
         {
@@ -68,15 +78,15 @@ namespace OFG.ChessPeak
         }
 
         public void OpenLevelBuild()
-        {
+        {;
             EventInputLoadLevelBuilder context = new EventInputLoadLevelBuilder();
             EventBusProvider.EventBus.InvokeEvent(context);
         }
 
         public void OpenThemes()
         {
-            EventInputLoadThemeShop context = new EventInputLoadThemeShop();
-            EventBusProvider.EventBus.InvokeEvent(context);
+            Debug.Log("Open Themes ");
+            _signalBus.Fire(new SignalInputLoadThemeShop());
         }
     }
 }

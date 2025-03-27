@@ -1,6 +1,7 @@
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using Zenject;
 
 namespace OFG.ChessPeak.LevelBuild
 {
@@ -26,10 +27,21 @@ namespace OFG.ChessPeak.LevelBuild
         private OpponentAI _opponentAI;
         private GameField _gameField;
         private LevelSaver _levelSaver;
+
+        private IStorageService _storageService;
+        private INetworkManager _networkManager;
+
+        [Inject]
+        public void Construct(IStorageService storageService, INetworkManager networkManager)
+        {
+            _storageService = storageService;
+            _networkManager = networkManager;
+        }
+
         private void Start()
         {
             _gameField = _fieldCreator.CreateField();
-            _levelSaver = new(_gameField, _deckBuilder);
+            _levelSaver = new(_gameField, _deckBuilder, _storageService, _networkManager);
             _levelSaver.TryGetLastSave(OnPositionLoad);
         }
 
@@ -109,7 +121,7 @@ namespace OFG.ChessPeak.LevelBuild
             }
             _opponentAI = new OpponentAI(); 
             _opponentAI.Init(_gameField);
-            _levelSaver = new(_gameField, _deckBuilder);
+            _levelSaver = new(_gameField, _deckBuilder, _storageService, _networkManager);
             _tollHandler.Init(_gameField);
             _toolController.Init(_tollHandler, _gameField);
             _builderInputFSM.SetApplyToolState();

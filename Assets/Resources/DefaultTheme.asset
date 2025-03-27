@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c204e3418b2b0142b0f9f9f06f1da33, type: 3}
   m_Name: DefaultTheme
   m_EditorClassIdentifier: 
+  _name: Default
   _backgroundColor: {r: 0.6627451, g: 0.81960785, b: 0.8235294, a: 1}
   _vignetteColor: {r: 0.007843138, g: 0.21176471, b: 0.25882354, a: 1}
   _positiveButtonColor: {r: 0.4156863, g: 0.69803923, b: 0.86274517, a: 1}
