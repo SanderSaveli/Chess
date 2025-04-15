@@ -2,30 +2,30 @@
 {
     public enum CardType
     {
-        None,
+        None = 0,
         /// <summary>
         /// Пешка.
         /// </summary>
-        Pawn,
+        Pawn = 1,
         /// <summary>
         /// Конь.
         /// </summary>
-        Knight,
+        Knight = 2,
         /// <summary>
         /// Слон.
         /// </summary>
-        Bishop,
+        Bishop = 3,
         /// <summary>
         /// Ладья.
         /// </summary>
-        Rook,
+        Rook = 4,
         /// <summary>
         /// Ферзь.
         /// </summary>
-        Queen,
+        Queen = 5,
         /// <summary>
         /// Король.
         /// </summary>
-        King
+        King = 6
     }
 }

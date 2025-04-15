@@ -11,7 +11,7 @@ namespace OFG.ChessPeak
     {
         private IStorageService _storageService;
 
-        [Inject]
+        [Inject] 
         public void Construct(IStorageService storageService)
         {
             _storageService = storageService;
@@ -94,6 +94,21 @@ namespace OFG.ChessPeak
             {
                 error?.Invoke();
             }
+        }
+
+        public void PostCreateNewPlayer(LoginNetworkData ctx, Action<PlayerNetworkData> callback, Action error)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GetPlayerData(string id, Action<PlayerNetworkData> callback, Action error)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void PostLoginPlayer(LoginNetworkData ctx, Action<PlayerNetworkData> callback, Action error)
+        {
+            throw new NotImplementedException();
         }
     }
 }

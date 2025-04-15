@@ -5,26 +5,26 @@
         /// <summary>
         /// Пешка.
         /// </summary>
-        Pawn,
+        Pawn = 0,
         /// <summary>
         /// Конь.
         /// </summary>
-        Knight,
+        Knight = 1,
         /// <summary>
         /// Слон.
         /// </summary>
-        Bishop,
+        Bishop = 2,
         /// <summary>
         /// Ладья.
         /// </summary>
-        Rook,
+        Rook = 3,
         /// <summary>
         /// Ферзь.
         /// </summary>
-        Queen,
+        Queen = 4,
         /// <summary>
         /// Король.
         /// </summary>
-        King
+        King = 5
     }
 }
