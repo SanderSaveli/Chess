@@ -1,5 +1,7 @@
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections;
+using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -12,9 +14,16 @@ namespace OFG.ChessPeak
 
         private const bool debug = true;
 
+        public static IEnumerator GET_BY_URL(string url, Action<string> callback, Action<string> error)
+        {
+            var request = CreateRequest(UnityWebRequest.kHttpVerbGET, url);
+            request.redirectLimit = 5;
+            yield return SendRequest(request, callback, error);
+        }
         public static IEnumerator GET(string url, Action<string> callback, Action<string> error)
         {
             var request = CreateRequest(UnityWebRequest.kHttpVerbGET, GenerateFullURL(url));
+            request.redirectLimit = 5;
             yield return SendRequest(request, callback, error);
         }
 
@@ -53,15 +62,17 @@ namespace OFG.ChessPeak
                 request = new UnityWebRequest(url, method);
                 if (!string.IsNullOrEmpty(data))
                 {
-                    byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(data);
+                    byte[] bodyRaw = Encoding.UTF8.GetBytes(data);
                     request.uploadHandler = new UploadHandlerRaw(bodyRaw);
-                    request.SetRequestHeader("Content-Type", ContentTypeHeader);
                 }
             }
 
             request.downloadHandler = new DownloadHandlerBuffer();
-            SetDefaultHeaders(request);
+            //SetDefaultHeaders(request);
+            request.SetRequestHeader("Content-Type", "application/json");
+            request.SetRequestHeader("Accept", "application/json");
 
+            Debug.Log("Request created, url: " + request.url + "\nData: " + data);
             return request;
         }
 
@@ -72,12 +83,13 @@ namespace OFG.ChessPeak
         private static void SetDefaultHeaders(UnityWebRequest request)
         {
             request.SetRequestHeader("Accept", AcceptHeader);
+            request.SetRequestHeader("Content-Type", ContentTypeHeader);
         }
 
         private static IEnumerator SendRequest(UnityWebRequest request, Action<string> callback, Action<string> error)
         {
             if (debug)
-                Debug.Log("SEND REQUESR\n" + request.uri);
+                Debug.Log("SEND REQUEST\n" + request.uri);
 
             yield return request.SendWebRequest();
 
@@ -91,7 +103,9 @@ namespace OFG.ChessPeak
             else
             {
                 if (debug)
-                    Debug.Log("REQUESR ERROR\n" + request.error);
+                {
+                    Debug.Log("REQUESR ERROR\n" +request.url + "\n" + request.error);
+                }
 
                 error?.Invoke(request.error);
             }

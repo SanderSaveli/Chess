@@ -33,7 +33,7 @@ namespace OFG.ChessPeak
             callback?.Invoke(levelList);
         }
 
-        public void PostCreateNewLevel(CreateLevelNetworkData ctx, Action<StatusNetworkData> callback, Action error)
+        public void PostCreateNewLevel(CreateLevelNetworkData ctx, Action<StatusNetworkData> callback, Action<string> error)
         {
             string key = Const.CUSTOM_LEVLES_KEY + ctx.level_name;
             _storageService.Save(key, ctx.level, 
@@ -84,7 +84,7 @@ namespace OFG.ChessPeak
             return Path.Combine(Application.streamingAssetsPath, key);
         }
 
-        private void CallStatus(bool isSucsess, Action<StatusNetworkData> callback, Action error)
+        private void CallStatus(bool isSucsess, Action<StatusNetworkData> callback, Action<string> error)
         {
             if (isSucsess)
             {
@@ -92,11 +92,11 @@ namespace OFG.ChessPeak
             }
             else
             {
-                error?.Invoke();
+                error?.Invoke("");
             }
         }
 
-        public void PostCreateNewPlayer(LoginNetworkData ctx, Action<PlayerNetworkData> callback, Action error)
+        public void PostCreateNewPlayer(LoginNetworkData ctx, Action<PlayerNetworkData> callback, Action<string> error)
         {
             throw new NotImplementedException();
         }
@@ -107,6 +107,11 @@ namespace OFG.ChessPeak
         }
 
         public void PostLoginPlayer(LoginNetworkData ctx, Action<PlayerNetworkData> callback, Action error)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void PostLoginPlayer(LoginNetworkData ctx, Action<PlayerNetworkData> callback, Action<string> error)
         {
             throw new NotImplementedException();
         }

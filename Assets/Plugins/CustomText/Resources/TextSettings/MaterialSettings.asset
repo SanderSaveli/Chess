@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa902da56ef34ae4a6c28df33bddc0f8, type: 3}
+  m_Name: MaterialSettings
+  m_EditorClassIdentifier: 
+  Materials:
+  - Name: Default
+    MaterialType: 0
+    Material: {fileID: 8025161643232552342, guid: fd63b515e3e187b43abadcd85433a69f,
+      type: 2}
+  - Name: ColorShadow
+    MaterialType: 1
+    Material: {fileID: 8025161643232552342, guid: fd63b515e3e187b43abadcd85433a69f,
+      type: 2}
+  - Name: GrayShadow
+    MaterialType: 2
+    Material: {fileID: 8025161643232552342, guid: fd63b515e3e187b43abadcd85433a69f,
+      type: 2}

@@ -19,6 +19,7 @@ namespace OFG.ChessPeak
         [Inject]
         public void Construct(INetworkManager networkManager, SignalBus signalBus)
         {
+            _playerNetworkData = new();
             _networkManager = networkManager;
             _signalBus = signalBus;
         }
@@ -28,15 +29,22 @@ namespace OFG.ChessPeak
             _playerNetworkData = new();
             if (PlayerPrefs.HasKey(Const.PLAYER_ID_KEY))
             {
-                string id = PlayerPrefs.GetString(Const.PLAYER_ID_KEY);
-                _networkManager.GetPlayerData(id, SetAccount, null);
+                int id = PlayerPrefs.GetInt(Const.PLAYER_ID_KEY);
+                _networkManager.GetPlayerData(id.ToString(), SetAccount, null);
             }
         }
 
-        public void Login(string username, string password, Action succsess, Action error)
+        public void Register(string username, string password, Action succsess, Action<string> error)
+        {
+            Debug.Log("GetRegistered");
+            LoginNetworkData loginNetworkData = new LoginNetworkData(username, password);
+            _networkManager.PostCreateNewPlayer(loginNetworkData,(a) => { SetAccount(a); succsess?.Invoke();}, error);
+        }
+
+        public void Login(string username, string password, Action succsess, Action<string> error)
         {
             LoginNetworkData loginNetworkData = new LoginNetworkData(username, password);
-            _networkManager.PostLoginPlayer(loginNetworkData, SetAccount, null);
+            _networkManager.PostLoginPlayer(loginNetworkData, (a) => { SetAccount(a); succsess?.Invoke();}, error);
         }
 
         public void Logout()
@@ -51,12 +59,8 @@ namespace OFG.ChessPeak
             _isInAccount = true;
             _playerNetworkData = playerNetworkData;
             _signalBus.Fire(new SignalPlayerAccountUpdated(playerNetworkData));
-        }
 
-        public void Register(string username, string password, Action succsess, Action error)
-        {
-            LoginNetworkData loginNetworkData = new LoginNetworkData(username, password);
-            _networkManager.PostCreateNewPlayer(loginNetworkData, SetAccount, null);
+            PlayerPrefs.SetInt(Const.PLAYER_ID_KEY, playerNetworkData.id);
         }
     }
 }

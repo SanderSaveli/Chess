@@ -1,3 +1,4 @@
+using CustomText;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
@@ -12,6 +13,7 @@ namespace OFG.ChessPeak
         [SerializeField] private JsonToStreamingAssetsStorageService _storageService;
         [SerializeField] private Settings _projectSettings;
         [SerializeField] private AccountManager _accountManager;
+        [SerializeField] private TextsManager _textsManager;
         public override void InstallBindings()
         {
             SignalBusInstaller.Install(Container);
@@ -20,6 +22,7 @@ namespace OFG.ChessPeak
             Container.Bind<INetworkManager>().FromInstance(_networkManager).AsSingle().NonLazy();
             Container.Bind<IProjectSettings>().FromInstance(_projectSettings).AsSingle().NonLazy();
             Container.Bind<IAccountManager>().FromInstance(_accountManager).AsSingle().NonLazy();
+            Container.Bind<TextsManager>().FromInstance(_textsManager).AsSingle().NonLazy();
 
             #region Signals
             Container.DeclareSignal<SignalInputLoadScene>();

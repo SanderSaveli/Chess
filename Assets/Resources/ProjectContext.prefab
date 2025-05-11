@@ -1,5 +1,51 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1079577206552846054
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5909753764767680356}
+  - component: {fileID: 4842522665037614092}
+  m_Layer: 0
+  m_Name: Textsmanager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5909753764767680356
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079577206552846054}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1113882548010702190}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4842522665037614092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079577206552846054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f961a1e6157c074881aef1a586f86d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isLocalTexts: 0
+  _locale: 1
 --- !u!1 &2024586066641467532
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,6 +160,7 @@ Transform:
   - {fileID: 3489922123599593615}
   - {fileID: 540786382450962363}
   - {fileID: 6049564102966121928}
+  - {fileID: 5909753764767680356}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &892466506638562381
@@ -162,6 +209,7 @@ MonoBehaviour:
   _storageService: {fileID: 3487807040726036211}
   _projectSettings: {fileID: 1509354325220750436}
   _accountManager: {fileID: 8819063534709232680}
+  _textsManager: {fileID: 4842522665037614092}
 --- !u!1 &5059808504126749237
 GameObject:
   m_ObjectHideFlags: 0

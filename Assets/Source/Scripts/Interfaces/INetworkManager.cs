@@ -11,9 +11,9 @@ namespace OFG.ChessPeak
         #endregion
 
         #region POST
-        public void PostCreateNewPlayer(LoginNetworkData ctx, Action<PlayerNetworkData> callback, Action error);
-        public void PostLoginPlayer(LoginNetworkData ctx, Action<PlayerNetworkData> callback, Action error);
-        public void PostCreateNewLevel(CreateLevelNetworkData ctx, Action<StatusNetworkData> callback, Action error);
+        public void PostCreateNewPlayer(LoginNetworkData ctx, Action<PlayerNetworkData> callback, Action<string> error);
+        public void PostLoginPlayer(LoginNetworkData ctx, Action<PlayerNetworkData> callback, Action<string> error);
+        public void PostCreateNewLevel(CreateLevelNetworkData ctx, Action<StatusNetworkData> callback, Action<string> error);
         #endregion
     }
 }

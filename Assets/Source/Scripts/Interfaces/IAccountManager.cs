@@ -7,8 +7,8 @@ namespace OFG.ChessPeak
         public string Name { get; }
         public bool IsInAccount { get; }
 
-        public void Register(string username, string password, Action succsess, Action error);
-        public void Login(string username, string password, Action succsess, Action error);
+        public void Register(string username, string password, Action succsess, Action<string> error);
+        public void Login(string username, string password, Action succsess, Action<string> error);
         public void Logout();
     }
 }

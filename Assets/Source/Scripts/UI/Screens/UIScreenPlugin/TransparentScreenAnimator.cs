@@ -11,11 +11,18 @@ namespace OFG.ChessPeak
 
         private void Start()
         {
+            transform.localScale = Vector3.one;
+            _canvasGroup = GetComponent<CanvasGroup>();
+        }
+
+        private void OnValidate()
+        {
             _canvasGroup = GetComponent<CanvasGroup>();
         }
 
         public override void AnimateHide(float duration, Action callback)
         {
+            Debug.Log("Animate Hide");
             if (duration > 0)
             {
                 _canvasGroup.DOFade(0, duration).OnComplete(() => { callback?.Invoke(); });
@@ -29,6 +36,7 @@ namespace OFG.ChessPeak
 
         public override void AnimateShow(float duration, Action callback)
         {
+            Debug.Log("Animate Show");
             if (duration > 0)
             {
                 _canvasGroup.DOFade(1, duration).OnComplete(() => { callback?.Invoke(); });

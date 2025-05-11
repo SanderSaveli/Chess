@@ -54,7 +54,7 @@ namespace OFG.ChessPeak
             _networkManager.PostCreateNewLevel(
                 new CreateLevelNetworkData(name, "1", data), 
                 (_)=> isSucsess?.Invoke(true), 
-                ()=> isSucsess?.Invoke(false));
+                (_)=> isSucsess?.Invoke(false));
         }
 
         private LevelData FillLevelData()

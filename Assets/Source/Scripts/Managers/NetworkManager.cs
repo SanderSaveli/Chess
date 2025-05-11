@@ -8,45 +8,45 @@ namespace OFG.ChessPeak
     {
         #region GET
         public void GetCustomLevelList(Action<LevelListNetworkData> callback, Action error) =>
-            APIServer.GET(RequestAddresses.GET_CUSTOM_LEVEL_LIST, 
+            StartCoroutine(APIServer.GET(RequestAddresses.GET_CUSTOM_LEVEL_LIST, 
                 (s) => { ParseData(s, callback); }, 
                 (s) => { error?.Invoke();}
-             );
+             ));
 
         public void GetFullCustomLevelData(string id, Action<LevlelNetworkData> callback, Action error) =>
-            APIServer.GET(RequestAddresses.GET_FULL_CUSTOM_LEVEL_DATA,
+            StartCoroutine(APIServer.GET(RequestAddresses.GET_FULL_CUSTOM_LEVEL_DATA,
                 (s) => { ParseData(s, callback); },
                 (s) => { error?.Invoke(); }
-             );
+             ));
 
         public void GetPlayerData(string id, Action<PlayerNetworkData> callback, Action error)=>
-             APIServer.GET(string.Format(RequestAddresses.GET_PLAYER_DATA, id),
+             StartCoroutine(APIServer.GET(string.Format(RequestAddresses.GET_PLAYER_DATA, id),
                 (s) => { ParseData(s, callback); },
                 (s) => { error?.Invoke(); }
-             );
+             ));
         #endregion
 
         #region POST
-        public void PostCreateNewLevel(CreateLevelNetworkData ctx, Action<StatusNetworkData> callback, Action error)=>
-            APIServer.POST(SerializeData(ctx),
+        public void PostCreateNewLevel(CreateLevelNetworkData ctx, Action<StatusNetworkData> callback, Action<string> error)=>
+            StartCoroutine(APIServer.POST(SerializeData(ctx),
                 RequestAddresses.GET_FULL_CUSTOM_LEVEL_DATA,
                 (s) => { ParseData(s, callback); },
-                (s) => { error?.Invoke(); }
-             );
+                (s) => { ParseData(s, callback); }
+             ));
 
-        public void PostCreateNewPlayer(LoginNetworkData ctx, Action<PlayerNetworkData> callback, Action error) =>
-            APIServer.POST(SerializeData(ctx),
+        public void PostCreateNewPlayer(LoginNetworkData ctx, Action<PlayerNetworkData> callback, Action<string> error)=>
+            StartCoroutine(APIServer.POST(SerializeData(ctx),
                 RequestAddresses.POST_PLAYERS_CREATE,
                 (s) => { ParseData(s, callback); },
-                (s) => { error?.Invoke(); }
-             );
+                (s) => { TryParseError(s, error); }
+             ));
 
-        public void PostLoginPlayer(LoginNetworkData ctx, Action<PlayerNetworkData> callback, Action error)=>
-            APIServer.POST(SerializeData(ctx),
+        public void PostLoginPlayer(LoginNetworkData ctx, Action<PlayerNetworkData> callback, Action<string> error)=>
+            StartCoroutine(APIServer.POST(SerializeData(ctx),
                 RequestAddresses.POST_PLAYERS_LOGIN,
                 (s) => { ParseData(s, callback); },
-                (s) => { error?.Invoke(); }
-             );
+                (s) => { TryParseError(s, error); }
+             ));
 
         #endregion
 
@@ -61,6 +61,24 @@ namespace OFG.ChessPeak
             T result = JsonConvert.DeserializeObject<T>(data);
 
             callback?.Invoke(result);
+        }
+
+        private void TryParseError(string data, Action<string> callback)
+        {
+            try
+            {
+                StatusNetworkData status = JsonConvert.DeserializeObject<StatusNetworkData>(data);
+                if (status != default(StatusNetworkData))
+                {
+                    callback?.Invoke(status.message);
+                    return;
+                }
+            }
+            catch(Exception e)
+            {
+                Debug.Log("Cant parse Status, data = " + data);
+            }
+            callback?.Invoke(data);
         }
 
         private string SerializeData<T>(T data)
