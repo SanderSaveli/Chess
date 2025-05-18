@@ -1,15 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace OFG.ChessPeak
 {
     public class ThemeShopGUI : MonoBehaviour
     {
-        public void LoadMenu()
+        private ISceneLoader _sceneLoader;
+
+        [Inject]
+        public void Construct(ISceneLoader sceneLoader)
         {
-            EventInputLoadMenu ctx = new EventInputLoadMenu();
-            EventBusProvider.EventBus.InvokeEvent(ctx);
+            _sceneLoader = sceneLoader;
+        }
+
+        public void LoadMenuScene()
+        {
+            _sceneLoader.LoadScene(SceneNames.MainMenu);
         }
     }
 }

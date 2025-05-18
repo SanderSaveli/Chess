@@ -1,3 +1,4 @@
+using TreeEditor;
 using UnityEngine;
 using Zenject;
 
@@ -29,8 +30,8 @@ namespace OFG.ChessPeak
         private void SetTheme(EventNewThemeSet data) => SetTheme(data.ThemeData);
         private void SetTheme(ThemeData data)
         {
-            _selectedColor = data.scrollElementSelected;
-            _unselectedColor = data.scrollElementUnselected;
+            _selectedColor = data.GetColor(CustomText.Custom_ColorStyle.ChooseShapes_Background);
+            _unselectedColor = data.GetColor(CustomText.Custom_ColorStyle.ChooseShapes_Background);
             if (_isSelected)
             {
                 _backgroundImage.color = SetColorAlfa(_selectedColor, _backgroundImage.color.a);

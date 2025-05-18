@@ -13,13 +13,17 @@ namespace OFG.ChessPeak
 
         private float _animationDurention;
         public bool IsShowen {  get; private set; }
+        public bool IsShowAtStart => _isShowAtStart;
 
         [Inject]
         public void Construct(IProjectSettings projectSettings)
         {
             _animationDurention = projectSettings.ScreenAnimationDuration;
         }
-
+        private void Awake()
+        {
+            transform.localScale = Vector3.one;
+        }
         public void Start()
         {
             _animator = GetComponent<ScreenAnimator>();

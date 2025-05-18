@@ -1,3 +1,4 @@
+using Enums;
 using UnityEngine;
 
 namespace OFG.ChessPeak
@@ -7,11 +8,13 @@ namespace OFG.ChessPeak
         public float SoundVolume { get => _soundVolume.Value; set => _soundVolume.Value = value; }
         public float MusicVolume { get => _musicVolume.Value; set => _musicVolume.Value = value; }
         public float ScreenAnimationDuration { get => _screensAnimationDuration.Value; set => _screensAnimationDuration.Value = value; }
+        public string LanguageKey { get => _languageKey.Value; set => _languageKey.Value = value; }
 
         private FloatPrefsValue _soundVolume;
         private FloatPrefsValue _musicVolume;
 
         private FloatPrefsValue _screensAnimationDuration;
+        private StringPrefsValue _languageKey;
 
         private void Awake()
         {
@@ -19,6 +22,7 @@ namespace OFG.ChessPeak
             _musicVolume = new FloatPrefsValue(Const.MUSIC_VOLUME_KEY, 1);
 
             _screensAnimationDuration = new FloatPrefsValue(Const.SCREENS_ANIMATION_KEY, 0.5f);
+            _languageKey = new StringPrefsValue(Const.LANGUAGE_KEY, TypeLocale.EN.ToString());
         }
     }
 }

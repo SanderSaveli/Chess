@@ -38,19 +38,7 @@ namespace OFG.ChessPeak
             {
                 _image = GetComponent<Image>();
             }
-            switch (_type)
-            {
-                case ButtonType.positive:
-                    _image.color = data.positiveButtonColor;
-                    break;
-                case ButtonType.negative:
-                    _image.color = data.negativeButtonColor;
-                    break;
-                case ButtonType.neutral:
-                    _image.color = data.neutralButtonColor;
-                    break;
-
-            }
+            Debug.Log("Delete ME" + gameObject.name);
         }
     }
 

@@ -5,6 +5,7 @@ namespace OFG.ChessPeak
         public float SoundVolume { get; set; }
         public float MusicVolume { get; set; }
         public float ScreenAnimationDuration { get; set; }
+        public string LanguageKey { get; set; }
 
     }
 }

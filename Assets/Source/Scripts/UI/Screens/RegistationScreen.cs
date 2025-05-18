@@ -16,7 +16,7 @@ namespace OFG.ChessPeak
 
         [Space]
         [SerializeField] private LoadButton _loadButton;
-        [SerializeField] private TMP_Text _error;
+        [SerializeField] private MessageUiScreen _error;
 
         private IAccountManager _accountManager;
 
@@ -54,22 +54,15 @@ namespace OFG.ChessPeak
 
         private void PrepareError()
         {
-            _error.gameObject.SetActive(false);
-            Color color = _error.color;
-            color.a = 1;
-            _error.color = color;
+            _error.Hide();
         }
 
         private void HandleFail(string error)
         {
             _loadButton.SetLoad(false);
             _error.gameObject.SetActive(true);
-            _error.text = error;
-
-            _error.DOFade(0, 5f).SetEase(Ease.InSine).OnComplete(() =>
-            {
-                _error.gameObject.SetActive(false);
-            });
+            _error.Show();
+            _error.UpdateMessage("default_registration_error");
         }
     }
 }

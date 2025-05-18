@@ -15,72 +15,64 @@ MonoBehaviour:
   TextStyles:
   - Name: Default
     TextType: 0
-    TextSize: 48
-    Font: {fileID: 11400000, guid: fd63b515e3e187b43abadcd85433a69f, type: 2}
+    TextSize: 24
+    Font: {fileID: 11400000, guid: f6f4405a125c81449a8eb9de4af38f93, type: 2}
     FontStyle: 0
     FontWeight: 400
     CharacterSpacing: -3
     LineSpacing: -15
   - Name: H1
     TextType: 1
-    TextSize: 24
-    Font: {fileID: 11400000, guid: fd63b515e3e187b43abadcd85433a69f, type: 2}
+    TextSize: 128
+    Font: {fileID: 11400000, guid: c7409b676309f3c4d8eee81e12a60fe6, type: 2}
     FontStyle: 0
     FontWeight: 400
     CharacterSpacing: -3
     LineSpacing: -15
   - Name: H2
     TextType: 2
-    TextSize: 20
-    Font: {fileID: 11400000, guid: fd63b515e3e187b43abadcd85433a69f, type: 2}
+    TextSize: 56
+    Font: {fileID: 11400000, guid: f6f4405a125c81449a8eb9de4af38f93, type: 2}
     FontStyle: 0
     FontWeight: 400
     CharacterSpacing: -3
     LineSpacing: -15
-  - Name: Buttons
+  - Name: H3
     TextType: 3
-    TextSize: 18
-    Font: {fileID: 11400000, guid: 6daf860658aaafd4b92c40f67e9789f0, type: 2}
+    TextSize: 36
+    Font: {fileID: 11400000, guid: f6f4405a125c81449a8eb9de4af38f93, type: 2}
     FontStyle: 0
     FontWeight: 400
     CharacterSpacing: -3
     LineSpacing: -15
-  - Name: Buttons
-    TextType: 3
-    TextSize: 18
-    Font: {fileID: 11400000, guid: 6daf860658aaafd4b92c40f67e9789f0, type: 2}
-    FontStyle: 0
-    FontWeight: 400
-    CharacterSpacing: -3
-    LineSpacing: -15
-  - Name: Body
+  - Name: Button_on
     TextType: 4
-    TextSize: 16
-    Font: {fileID: 11400000, guid: 6daf860658aaafd4b92c40f67e9789f0, type: 2}
+    TextSize: 24
+    Font: {fileID: 11400000, guid: f6f4405a125c81449a8eb9de4af38f93, type: 2}
     FontStyle: 0
     FontWeight: 400
     CharacterSpacing: -3
     LineSpacing: -15
-  - Name: SmallBody
+  - Name: Button_off
     TextType: 5
-    TextSize: 14
-    Font: {fileID: 11400000, guid: 6daf860658aaafd4b92c40f67e9789f0, type: 2}
+    TextSize: 24
+    Font: {fileID: 11400000, guid: 1269cf98995b44645b4e65bf9d5968f7, type: 2}
     FontStyle: 0
     FontWeight: 400
     CharacterSpacing: -3
     LineSpacing: -15
-  - Name: SubTitle
+  - Name: text
     TextType: 6
-    TextSize: 12
-    Font: {fileID: 11400000, guid: 6daf860658aaafd4b92c40f67e9789f0, type: 2}
+    TextSize: 14
+    Font: {fileID: 11400000, guid: f6f4405a125c81449a8eb9de4af38f93, type: 2}
     FontStyle: 0
     FontWeight: 400
     CharacterSpacing: -3
     LineSpacing: -15
-  - Name: Mark
+  - Name: big_text
     TextType: 7
-    TextSize: 10
-    Font: {fileID: 11400000, guid: 6daf860658aaafd4b92c40f67e9789f0, type: 2}
+    TextSize: 24
+    Font: {fileID: 11400000, guid: 1269cf98995b44645b4e65bf9d5968f7, type: 2}
     FontStyle: 0
     FontWeight: 400
     CharacterSpacing: -3

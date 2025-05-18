@@ -9,6 +9,9 @@ namespace OFG.ChessPeak
     {
         [Header(H.Components)]
         [SerializeField] private Image _image;
+        [SerializeField] private Button _button;
+        [SerializeField] private DeckCardFiller _deckCardFiller;
+        [SerializeField] private UIScreen _deckViewScreen;
 
         public IReadOnlyList<CardType> Cards => _cards;
 
@@ -49,6 +52,7 @@ namespace OFG.ChessPeak
             _cards.Clear();
             _cards.AddRange(cards);
             UpdateView();
+            _deckCardFiller.FillItems(_cards);
         }
 
         public bool TryGetCard(out CardType cardType)
@@ -58,12 +62,21 @@ namespace OFG.ChessPeak
                 cardType = _cards[0];
                 _cards.RemoveAt(0);
                 UpdateView();
+                _deckCardFiller.RemoveFirst();
                 return true;
             }
             cardType = CardType.None;
             return false;
         }
 
-        private void UpdateView() => _image.enabled = _cards.IsNonEmpty();
+        private void UpdateView()
+        {
+            _image.enabled = _cards.IsNonEmpty();
+            _button.interactable = _cards.IsNonEmpty();
+            if (!_cards.IsNonEmpty())
+            {
+                _deckViewScreen.Hide();
+            }
+        }
     }
 }

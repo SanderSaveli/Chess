@@ -12,19 +12,151 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c204e3418b2b0142b0f9f9f06f1da33, type: 3}
   m_Name: SimpleBlack
   m_EditorClassIdentifier: 
-  _name: Simple Black
-  _backgroundColor: {r: 1, g: 1, b: 1, a: 1}
-  _vignetteColor: {r: 0.2528302, g: 0.2528302, b: 0.2528302, a: 1}
-  _positiveButtonColor: {r: 0.03396219, g: 0.03396219, b: 0.03396219, a: 1}
-  _neutralButtonColor: {r: 0.4943396, g: 0.4943396, b: 0.4943396, a: 1}
-  _negativeButtonColor: {r: 0.3056603, g: 0.3056603, b: 0.3056603, a: 1}
-  _scrollElementUnselected: {r: 0.49411768, g: 0.49411768, b: 0.49411768, a: 1}
-  _scrollElementSelected: {r: 0.03529412, g: 0.03529412, b: 0.03529412, a: 1}
-  _levelViewCurrentLevel: {r: 0.49411768, g: 0.49411768, b: 0.49411768, a: 1}
-  _levelViewCompletedLevel: {r: 0.03529412, g: 0.03529412, b: 0.03529412, a: 1}
-  _levelViewLockedLevel: {r: 0.30588236, g: 0.30588236, b: 0.30588236, a: 1}
-  _mainMenuImage: {fileID: 21300000, guid: 0907f45a5d9e53b4d8f7885f046c8f62, type: 3}
+  _name: theme_name_black
+  _desctiption: 
+  _cost: 0
+  _receiptConditions: 
+  _vineteColor: {r: 1, g: 1, b: 1, a: 1}
+  _colors:
+  - Name: Default
+    TextColorType: 0
+    Color: {r: 1, g: 1, b: 1, a: 1}
+  - Name: White
+    TextColorType: 1
+    Color: {r: 1, g: 1, b: 1, a: 1}
+  - Name: Black
+    TextColorType: 2
+    Color: {r: 0, g: 0, b: 0, a: 1}
+  - Name: PopUp_Background
+    TextColorType: 3
+    Color: {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 1}
+  - Name: PopUp_Text
+    TextColorType: 4
+    Color: {r: 0.121568635, g: 0.121568635, b: 0.121568635, a: 1}
+  - Name: PopUp_Button
+    TextColorType: 5
+    Color: {r: 0.83921576, g: 0.25882354, b: 0.023529414, a: 1}
+  - Name: PopUp_VotingBackground
+    TextColorType: 6
+    Color: {r: 0.2392157, g: 0.2392157, b: 0.2392157, a: 1}
+  - Name: PopUp_VotingSelected
+    TextColorType: 7
+    Color: {r: 1, g: 0.96470594, b: 0.9843138, a: 1}
+  - Name: MainMenu_ButtonShape
+    TextColorType: 8
+    Color: {r: 0.83921576, g: 0.25882354, b: 0.023529414, a: 1}
+  - Name: MainMenu_Text
+    TextColorType: 9
+    Color: {r: 1, g: 0.96470594, b: 0.9843138, a: 1}
+  - Name: MainMenu_InputExample
+    TextColorType: 10
+    Color: {r: 0.50980395, g: 0.50980395, b: 0.50980395, a: 1}
+  - Name: MainMenu_Field
+    TextColorType: 11
+    Color: {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 1}
+  - Name: ScaleSettings_Base
+    TextColorType: 12
+    Color: {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 1}
+  - Name: ScaleSettings_Filled
+    TextColorType: 13
+    Color: {r: 0.50980395, g: 0.50980395, b: 0.50980395, a: 1}
+  - Name: ScaleSettings_Button
+    TextColorType: 14
+    Color: {r: 0.83921576, g: 0.25882354, b: 0.023529414, a: 1}
+  - Name: NoBackground_StandardButton
+    TextColorType: 15
+    Color: {r: 0.83921576, g: 0.25882354, b: 0.023529414, a: 1}
+  - Name: NoBackground_SpecialButton
+    TextColorType: 16
+    Color: {r: 0.121568635, g: 0.121568635, b: 0.121568635, a: 1}
+  - Name: NoBackground_Text
+    TextColorType: 17
+    Color: {r: 0.121568635, g: 0.121568635, b: 0.121568635, a: 1}
+  - Name: NoBackground_Currency
+    TextColorType: 18
+    Color: {r: 0.83921576, g: 0.25882354, b: 0.023529414, a: 1}
+  - Name: LevelMenu_PassedBackground
+    TextColorType: 19
+    Color: {r: 1, g: 0.96470594, b: 0.9843138, a: 1}
+  - Name: LevelMenu_PassedText
+    TextColorType: 20
+    Color: {r: 0.83921576, g: 0.25882354, b: 0.023529414, a: 1}
+  - Name: LevelMenu_NotPassed
+    TextColorType: 21
+    Color: {r: 0.121568635, g: 0.121568635, b: 0.121568635, a: 1}
+  - Name: DifficultyMenu_ActiveDifficulty
+    TextColorType: 22
+    Color: {r: 0.83921576, g: 0.25882354, b: 0.023529414, a: 1}
+  - Name: DifficultyMenu_Base
+    TextColorType: 23
+    Color: {r: 0.2392157, g: 0.2392157, b: 0.2392157, a: 1}
+  - Name: ChooseCards_MainBackground
+    TextColorType: 24
+    Color: {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 1}
+  - Name: ChooseCards_Background
+    TextColorType: 25
+    Color: {r: 1, g: 0.96470594, b: 0.9843138, a: 1}
+  - Name: ChooseCards_Buttons
+    TextColorType: 26
+    Color: {r: 0.121568635, g: 0.121568635, b: 0.121568635, a: 1}
+  - Name: ChooseCards_ButtonsShapes
+    TextColorType: 27
+    Color: {r: 0.50980395, g: 0.50980395, b: 0.50980395, a: 1}
+  - Name: ChooseShapes_Background
+    TextColorType: 28
+    Color: {r: 0.50980395, g: 0.50980395, b: 0.50980395, a: 1}
+  - Name: ChooseShapes_Text
+    TextColorType: 29
+    Color: {r: 1, g: 0.96470594, b: 0.9843138, a: 1}
+  - Name: PagesLvl_ovney_Base
+    TextColorType: 30
+    Color: {r: 1, g: 0.96470594, b: 0.9843138, a: 1}
+  - Name: PagesLevels_Active
+    TextColorType: 31
+    Color: {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 1}
+  - Name: PagesLevels_Number
+    TextColorType: 32
+    Color: {r: 0.121568635, g: 0.121568635, b: 0.121568635, a: 1}
+  - Name: PanelInGame_Contents
+    TextColorType: 33
+    Color: {r: 1, g: 0.96470594, b: 0.9843138, a: 1}
+  - Name: PanelInGame_Background
+    TextColorType: 34
+    Color: {r: 0.50980395, g: 0.50980395, b: 0.50980395, a: 1}
+  - Name: CustomLevels_Background
+    TextColorType: 35
+    Color: {r: 0.50980395, g: 0.50980395, b: 0.50980395, a: 1}
+  - Name: CustomLevels_Text
+    TextColorType: 36
+    Color: {r: 1, g: 0.96470594, b: 0.9843138, a: 1}
+  - Name: CustomLevels_ButtonText
+    TextColorType: 37
+    Color: {r: 1, g: 0.96470594, b: 0.9843138, a: 1}
+  - Name: CustomLevels_ButtonFigure
+    TextColorType: 38
+    Color: {r: 0.83921576, g: 0.25882354, b: 0.023529414, a: 1}
+  - Name: CustomLevels_AnglePassed
+    TextColorType: 39
+    Color: {r: 1, g: 0.96470594, b: 0.9843138, a: 1}
+  - Name: CustomLevels_AngleNotPassed
+    TextColorType: 40
+    Color: {r: 0.2392157, g: 0.2392157, b: 0.2392157, a: 1}
+  - Name: CustomLevels_H3
+    TextColorType: 41
+    Color: {r: 0.50980395, g: 0.50980395, b: 0.50980395, a: 1}
+  - Name: LevelName_InputExample
+    TextColorType: 42
+    Color: {r: 0.50980395, g: 0.50980395, b: 0.50980395, a: 1}
+  - Name: LevelName_Entered
+    TextColorType: 43
+    Color: {r: 0.121568635, g: 0.121568635, b: 0.121568635, a: 1}
+  - Name: LevelName_Field
+    TextColorType: 44
+    Color: {r: 0.121568635, g: 0.121568635, b: 0.121568635, a: 1}
+  _mainMenuImage: {fileID: 21300000, guid: a92e976e057e2e045a4849018df3d44c, type: 3}
+  _mainMenuPanel: {fileID: 21300000, guid: 4a05e91ac0cd02c43b091a19aa5051c2, type: 3}
   _deckEditImage: {fileID: 21300000, guid: f477f02c09125fa4ab2c5c6a3821c3ef, type: 3}
+  _themeShopBG: {fileID: 21300000, guid: 0478ca3dc89c0fb4cb7ca50259494699, type: 3}
   _mascMaterial: {fileID: 2100000, guid: 013551a96115a454291644e2287ed693, type: 2}
   _deckMaterial: {fileID: 2100000, guid: c72b3932f37b3c14c8c2a78b7cd81d9d, type: 2}
   _mountainsMaterial: {fileID: 0}
@@ -32,3 +164,4 @@ MonoBehaviour:
   _blackCellMaterial: {fileID: 2100000, guid: bd043f6cb5c415c48acba093a2071fa7, type: 2}
   _figureSet: {fileID: 11400000, guid: fb72b43e071449a459006b6a6bb783fd, type: 2}
   _cardSet: {fileID: 11400000, guid: 2d1f4b8bf003bcc48856e931930dd77e, type: 2}
+  VineteColor: {r: 1, g: 1, b: 1, a: 1}

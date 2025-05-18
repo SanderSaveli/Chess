@@ -3,7 +3,8 @@
     public enum Custom_MaterialStyle
     {
         Default = 0,
-        ColorShadow = 1,
-        GrayShadow = 2
+        Regular = 1,
+        Bold = 2,
+        Title = 3,
     }
 }

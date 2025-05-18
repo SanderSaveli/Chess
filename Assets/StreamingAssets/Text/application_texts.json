@@ -1,14 +1,218 @@
 [
   {
     "ID": "1",
-    "KEY": "hello",
-    "RU": "Привет!",
-    "EN": "Hello!"
+    "KEY": "title",
+    "RU": "chess\npeak",
+    "EN": "chess\npeak"
   },
   {
     "ID": "2",
-    "KEY": "world",
-    "RU": "Мир",
-    "EN": "WORLD!"
+    "KEY": "start_game",
+    "RU": "Начать игру",
+    "EN": "Start game"
+  },
+  {
+    "ID": "",
+    "KEY": "change_theme",
+    "RU": "Сменить тему",
+    "EN": "Change Theme"
+  },
+  {
+    "ID": "",
+    "KEY": "custom_levels",
+    "RU": "Пользовательсике уровни",
+    "EN": "custom levels"
+  },
+  {
+    "ID": "",
+    "KEY": "editor",
+    "RU": "Редактор уровней",
+    "EN": "editor"
+  },
+  {
+    "ID": "",
+    "KEY": "profile",
+    "RU": "Профиль",
+    "EN": "profile"
+  },
+  {
+    "ID": "",
+    "KEY": "settings",
+    "RU": "настройки",
+    "EN": "settings"
+  },
+  {
+    "ID": "",
+    "KEY": "quit",
+    "RU": "выход",
+    "EN": "quit"
+  },
+  {
+    "ID": "",
+    "KEY": "back",
+    "RU": "назад",
+    "EN": "back"
+  },
+  {
+    "ID": "",
+    "KEY": "go_to_menu",
+    "RU": "в меню",
+    "EN": "go to menu"
+  },
+  {
+    "ID": "",
+    "KEY": "music",
+    "RU": "музыка",
+    "EN": "music\r"
+  },
+  {
+    "ID": "",
+    "KEY": "sounds",
+    "RU": "звуки",
+    "EN": "sounds"
+  },
+  {
+    "ID": "",
+    "KEY": "animation_speed\n",
+    "RU": "скорость анимации",
+    "EN": "animation speed\r"
+  },
+  {
+    "ID": "",
+    "KEY": "language",
+    "RU": "Язык",
+    "EN": "language"
+  },
+  {
+    "ID": "",
+    "KEY": "english",
+    "RU": "English",
+    "EN": "English"
+  },
+  {
+    "ID": "",
+    "KEY": "russian",
+    "RU": "Русский",
+    "EN": "Русский"
+  },
+  {
+    "ID": "",
+    "KEY": "creator_name",
+    "RU": "Создатель:",
+    "EN": "creator name:"
+  },
+  {
+    "ID": "",
+    "KEY": "level_rating",
+    "RU": "Рейтинг:",
+    "EN": "level rating:"
+  },
+  {
+    "ID": "",
+    "KEY": "theme_name_default",
+    "RU": "Снежный пик",
+    "EN": "Snow Peak"
+  },
+  {
+    "ID": "",
+    "KEY": "theme_name_violet",
+    "RU": "Фиалка ",
+    "EN": "violet flower"
+  },
+  {
+    "ID": "",
+    "KEY": "theme_name_desert",
+    "RU": "Пустыня",
+    "EN": "desert"
+  },
+  {
+    "ID": "",
+    "KEY": "theme_name_black",
+    "RU": "Черынй и белый",
+    "EN": "Black and white"
+  },
+  {
+    "ID": "",
+    "KEY": "theme_name_spring",
+    "RU": "Весна",
+    "EN": "Spring"
+  },
+  {
+    "ID": "",
+    "KEY": "theme_name_sakura",
+    "RU": "Сакура",
+    "EN": "Сакура"
+  },
+  {
+    "ID": "",
+    "KEY": "theme_name_dragon",
+    "RU": "Пепельный дракон",
+    "EN": "Ash Dragon"
+  },
+  {
+    "ID": "",
+    "KEY": "registration",
+    "RU": "регистрация",
+    "EN": "registration"
+  },
+  {
+    "ID": "",
+    "KEY": "authorization",
+    "RU": "авторизация",
+    "EN": "authorization"
+  },
+  {
+    "ID": "",
+    "KEY": "enter_login",
+    "RU": "Введите логин",
+    "EN": "enter login"
+  },
+  {
+    "ID": "",
+    "KEY": "enter_password",
+    "RU": "Введите пароль",
+    "EN": "enter password"
+  },
+  {
+    "ID": "",
+    "KEY": "repeat_password",
+    "RU": "Повторите пароль",
+    "EN": "Repeat password"
+  },
+  {
+    "ID": "",
+    "KEY": "create_account",
+    "RU": "Создать аккаунт",
+    "EN": "create an account"
+  },
+  {
+    "ID": "",
+    "KEY": "login_account",
+    "RU": "Войти в аккаунт",
+    "EN": "Login to account"
+  },
+  {
+    "ID": "",
+    "KEY": "default_registration_error",
+    "RU": "Произошла ошибка, попробуйте позже",
+    "EN": "An error occurred, I will change it later"
+  },
+  {
+    "ID": "",
+    "KEY": "ok",
+    "RU": "хорошо",
+    "EN": "ok"
+  },
+  {
+    "ID": "",
+    "KEY": "restart",
+    "RU": "перезапустить",
+    "EN": "restart"
+  },
+  {
+    "ID": "",
+    "KEY": "next_level",
+    "RU": "следующий уровень ",
+    "EN": "next level"
   }
 ]

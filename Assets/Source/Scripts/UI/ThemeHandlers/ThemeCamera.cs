@@ -36,10 +36,9 @@ namespace OFG.ChessPeak
         private void SetTheme(EventNewThemeSet data) => SetTheme(data.ThemeData);
         private void SetTheme(ThemeData data)
         {
-            _camera.backgroundColor = data.backgroundColor;
             if (_volume.profile.TryGet<Vignette>(out vignette))
             {
-                vignette.color = new ColorParameter(data.vignetteColor);
+                vignette.color = new ColorParameter(data.VineteColor);
             }
         }
     }

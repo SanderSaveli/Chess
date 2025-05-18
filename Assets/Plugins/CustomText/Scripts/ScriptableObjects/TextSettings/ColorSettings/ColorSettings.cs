@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 namespace CustomText
@@ -15,7 +17,8 @@ namespace CustomText
     [CreateAssetMenu(fileName = "ColorSettings", menuName = "CustomText/Settings/ColorSettings", order = 0)]
     public class ColorSettings : ColorSettingsScriptableObject
     {
-        public List<ColorParams> Colors;
+        public List<ColorParams> Colors => _defaultColors;
+        public List<ColorParams> _defaultColors;
         public event Action OnColorStyleChanged;
 
         private static ColorSettings _instance;
@@ -37,14 +40,44 @@ namespace CustomText
             }
         }
 
-#if UNITY_EDITOR
-        protected void OnValidate()
+        public void ChangeColors(List<ColorParams> colors)
         {
-            foreach (var color in Colors)
-            {
-                color.Name = color.TextColorType.ToString();
-            }
+            _defaultColors = colors;
             OnColorStyleChanged?.Invoke();
+        }
+
+        public Color GetColor(Custom_ColorStyle type)
+        {
+            return Colors.Find(t => t.TextColorType.Equals(type)).Color;
+        }
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            if (_defaultColors == null)
+                _defaultColors = new List<ColorParams>();
+
+            var enumValues = System.Enum.GetValues(typeof(Custom_ColorStyle)).Cast<Custom_ColorStyle>();
+
+            foreach (var value in enumValues)
+            {
+                if (!_defaultColors.Any(c => c.TextColorType == value))
+                {
+                    _defaultColors.Add(new ColorParams
+                    {
+                        Name = value.ToString(),
+                        TextColorType = value,
+                        Color = Color.white
+                    });
+                }
+            }
+
+            foreach (var colorParam in _defaultColors)
+            {
+                colorParam.Name = colorParam.TextColorType.ToString();
+            }
+
+            EditorUtility.SetDirty(this);
         }
 #endif
     }

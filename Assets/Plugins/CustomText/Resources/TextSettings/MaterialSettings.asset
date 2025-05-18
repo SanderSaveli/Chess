@@ -15,13 +15,17 @@ MonoBehaviour:
   Materials:
   - Name: Default
     MaterialType: 0
-    Material: {fileID: 8025161643232552342, guid: fd63b515e3e187b43abadcd85433a69f,
+    Material: {fileID: -3279528376205104064, guid: 1269cf98995b44645b4e65bf9d5968f7,
       type: 2}
-  - Name: ColorShadow
+  - Name: Regular
     MaterialType: 1
-    Material: {fileID: 8025161643232552342, guid: fd63b515e3e187b43abadcd85433a69f,
+    Material: {fileID: -3279528376205104064, guid: 1269cf98995b44645b4e65bf9d5968f7,
       type: 2}
-  - Name: GrayShadow
+  - Name: Bold
     MaterialType: 2
-    Material: {fileID: 8025161643232552342, guid: fd63b515e3e187b43abadcd85433a69f,
+    Material: {fileID: -5253822630593438569, guid: f6f4405a125c81449a8eb9de4af38f93,
+      type: 2}
+  - Name: Title
+    MaterialType: 3
+    Material: {fileID: -4390400131853191153, guid: c7409b676309f3c4d8eee81e12a60fe6,
       type: 2}

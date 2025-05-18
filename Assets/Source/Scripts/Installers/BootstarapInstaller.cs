@@ -14,6 +14,8 @@ namespace OFG.ChessPeak
         [SerializeField] private Settings _projectSettings;
         [SerializeField] private AccountManager _accountManager;
         [SerializeField] private TextsManager _textsManager;
+        [SerializeField] private GameContextHolder _gameEnd;
+        [SerializeField] private SceneLoader _scemeLoader;
         public override void InstallBindings()
         {
             SignalBusInstaller.Install(Container);
@@ -23,12 +25,15 @@ namespace OFG.ChessPeak
             Container.Bind<IProjectSettings>().FromInstance(_projectSettings).AsSingle().NonLazy();
             Container.Bind<IAccountManager>().FromInstance(_accountManager).AsSingle().NonLazy();
             Container.Bind<TextsManager>().FromInstance(_textsManager).AsSingle().NonLazy();
+            Container.Bind<GameContextHolder>().FromInstance(_gameEnd).AsSingle().NonLazy();
+            Container.Bind<ISceneLoader>().FromInstance(_scemeLoader).AsSingle().NonLazy();
 
             #region Signals
             Container.DeclareSignal<SignalInputLoadScene>();
             Container.DeclareSignal<SignalInputLoadCustomLevel>();
             Container.DeclareSignal<SignalInputLoadThemeShop>();
             Container.DeclareSignal<SignalPlayerAccountUpdated>();
+            Container.DeclareSignal<SignalInputOpenWindow>();
             #endregion
         }
 

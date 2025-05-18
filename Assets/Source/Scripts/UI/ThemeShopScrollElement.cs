@@ -1,9 +1,14 @@
 using Zenject;
+using UnityEngine;
+using CustomText;
+using TreeEditor;
 
 namespace OFG.ChessPeak
 {
-    public class ThemeShopScrollElement : AnimatedScrollElement
+    public class ThemeShopScrollElement : AnimatedScrollElement, ISlot<PlayerThemeContext>
     {
+        [SerializeField] private TextByTableKey _textKey;
+
         private ThemeManager _themeManager;
 
         [Inject]
@@ -12,18 +17,17 @@ namespace OFG.ChessPeak
             _themeManager = themeManager;
         }
 
+        public void Fill(PlayerThemeContext value)
+        {
+            _textKey.SetText(value.Theme.Name);
+            _image.sprite = value.Theme.ThemeShopBG;
+            _selectedColor = Color.white;
+            _unselectedColor = Color.white;
+        }
+
         public override void Ini(int index, float delay)
         {
             base.Ini(index, delay);
-            ThemeData themeData = _themeManager.themes[index];
-            if (themeData != null)
-            {
-                _text.text = themeData.themeName;
-                _selectedColor = themeData.levelViewCurrentLevel;
-                _unselectedColor = themeData.levelViewCompletedLevel;
-
-                _backgroundImage.color = SetColorAlfa(_unselectedColor, _backgroundImage.color.a);
-            }
         }
         public override void Ini(int index)
         {

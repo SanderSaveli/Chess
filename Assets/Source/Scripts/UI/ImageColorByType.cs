@@ -64,6 +64,5 @@ public class ImageColorByType : MonoBehaviour
             Change();
             _image.color = textColor.Color;
         }
-
     }
 }

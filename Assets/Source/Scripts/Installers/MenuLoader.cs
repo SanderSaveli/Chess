@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -8,17 +7,23 @@ namespace OFG.ChessPeak
     public class MenuLoader : MonoBehaviour
     {
 
-        private SignalBus _signalBus;
+        private ISceneLoader _loader;
 
         [Inject]
-        public void Construct(SignalBus signalBus)
+        public void Construct(ISceneLoader loader)
         {
-            _signalBus = signalBus;
+            _loader = loader;
         }
 
         private void Start()
         {
-            _signalBus.Fire(new SignalInputLoadScene(SceneNames.MainMenu));
+            StartCoroutine(StartMenu());
+        }
+
+        private IEnumerator StartMenu()
+        {
+            yield return new WaitForSeconds(0.3f);
+            _loader.LoadScene(SceneNames.MainMenu);
         }
     }
 }

@@ -10,14 +10,10 @@ namespace OFG.ChessPeak.UI
     public class LevelButtonView : MonoBehaviour
     {
         [Header(H.Components)]
-        [SerializeField] private Image _background;
-        [SerializeField] private Image _lockIcon;
+        [SerializeField] private ImageColorByType _background;
+        [SerializeField] private ImageColorByType _lockIcon;
         [SerializeField] protected TextMeshProUGUI _levelNumberLabel;
         [SerializeField] private Button _button;
-
-        private Color _backgroundColorLocked;
-        private Color _backgroundColorAvailable;
-        private Color _backgroundColorComplete;
 
         public int LevelNumber { get; private set; }
 
@@ -38,37 +34,31 @@ namespace OFG.ChessPeak.UI
         {
             UnsubscribeFromEvents();
         }
-        private void SetTheme(EventNewThemeSet data) => SetTheme(data.ThemeData);
-        protected virtual void SetTheme(ThemeData data)
-        {
-            _backgroundColorAvailable = data.levelViewCompletedLevel;
-            _backgroundColorLocked = data.levelViewLockedLevel;
-            _backgroundColorComplete = data.levelViewCurrentLevel;
-        }
 
         public virtual void UpdateView(int levelNumber, LevelProgress levelProgress)
         {
-            SetTheme(_themeData);
             SetLevelNumber(levelNumber);
             switch (levelProgress)
             {
                 case LevelProgress.Locked:
                     _lockIcon.enabled = true;
                     _levelNumberLabel.enabled = false;
-                    _background.color = _backgroundColorLocked;
-                    _button.onClick.RemoveListener(OnClicked);
+                    _background.ChangeColor(CustomText.Custom_ColorStyle.LevelMenu_NotPassed);
+                    _button.interactable = false;
                     break;
 
                 case LevelProgress.Available:
                     _lockIcon.enabled = false;
                     _levelNumberLabel.enabled = true;
-                    _background.color = _backgroundColorAvailable;
+                    _background.ChangeColor(CustomText.Custom_ColorStyle.LevelMenu_PassedBackground);
+                    _button.interactable = true;
                     break;
 
                 case LevelProgress.Complete:
                     _lockIcon.enabled = false;
                     _levelNumberLabel.enabled = true;
-                    _background.color = _backgroundColorComplete;
+                    _background.ChangeColor(CustomText.Custom_ColorStyle.LevelMenu_PassedBackground);
+                    _button.interactable = true;
                     break;
 
                 default:
@@ -79,13 +69,11 @@ namespace OFG.ChessPeak.UI
         private void SubscribeOnEvents()
         {
             _button.onClick.AddListener(OnClicked);
-            EventBusProvider.EventBus.RegisterCallback<EventNewThemeSet>(SetTheme);
         }
 
         private void UnsubscribeFromEvents()
         {
             _button.onClick.RemoveListener(OnClicked);
-            EventBusProvider.EventBus.UnregisterCallback<EventNewThemeSet>(SetTheme);
         }
 
         private void OnClicked() => Clicked?.Invoke(LevelNumber);

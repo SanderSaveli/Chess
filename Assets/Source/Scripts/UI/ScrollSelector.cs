@@ -35,7 +35,7 @@ public class ScrollSelector : MonoBehaviour
         _scrollRect.onValueChanged.RemoveListener(OnScroll);
         EventBusProvider.EventBus.UnregisterCallback<EventTransitionComplete>(TransitionEnd);
     }
-    void Start()
+    public void Start()
     {
         _targetPosition = _content.position;
     }

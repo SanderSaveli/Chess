@@ -31,7 +31,7 @@ namespace OFG.ChessPeak
         private void SetTheme(EventNewThemeSet data) => SetTheme(data.ThemeData);
         private void SetTheme(ThemeData data)
         {
-            _text.color = data.levelViewLockedLevel;
+            Debug.Log("Delete me " + gameObject.name);
         }
     }
 }

@@ -5,10 +5,10 @@
         Default = 0,
         H1 = 1,
         H2 = 2,
-        Buttons = 3,
-        Body = 4,
-        SmallBody = 5,
-        SubTitle = 6,
-        Mark = 7
+        H3 = 3,
+        Button_on = 4,
+        Button_off = 5,
+        text = 6,
+        big_text = 7,
     }
 }

@@ -25,11 +25,18 @@ namespace CustomText
         private IStorageService _storageService;
 
         private void Awake() => GetTexts();
+        private IProjectSettings _settings;
 
         [Inject]
-        public void Construct(IStorageService storageService)
+        public void Construct(IStorageService storageService, IProjectSettings settings)
         {
             _storageService = storageService;
+            _settings = settings;
+        }
+
+        private void Start()
+        {
+            SetLocaleOrDefault(_settings.LanguageKey);
         }
 
         private void GetTexts()
@@ -76,8 +83,28 @@ namespace CustomText
 #endif
         }
 
-        public void SetLocale(TypeLocale type) =>
+        public void SetLocale(TypeLocale type)
+        {
             _locale = type;
+            _settings.LanguageKey = type.ToString();
+            OnLoadedTexts?.Invoke();
+        }
+
+        public void SetLocaleOrDefault(string value)
+        {
+            if(value == TypeLocale.RU.ToString())
+            {
+                _locale = TypeLocale.RU;
+            }
+            else if (value == TypeLocale.EN.ToString())
+            {
+                _locale = TypeLocale.EN;
+            }
+            else
+            {
+                _locale = TypeLocale.EN;
+            }
+        }
 
         public string GetTableTextByKey(string key)
         {
