@@ -8,19 +8,19 @@ namespace OFG.ChessPeak.LevelBuild
         [SerializeField] DeckBuilder _deckBuilder;
 
         [Header(H.Params)]
-        [SerializeField] GameObject _deckBuildWindow;
+        [SerializeField] UIScreen _deckBuildWindow;
 
         private bool _isAcktive;
 
         public void Activate()
         {
             _isAcktive = true;
-            _deckBuildWindow.SetActive(_isAcktive);
+            _deckBuildWindow.Show();
         }
         public void Deactivate()
         {
             _isAcktive = false;
-            _deckBuildWindow.SetActive(_isAcktive);
+            _deckBuildWindow.Hide();
         }
 
 

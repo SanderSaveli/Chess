@@ -18,11 +18,11 @@ namespace OFG.ChessPeak
         }
 
 
-        public void GetFullCustomLevelData(string id, Action<LevlelNetworkData> callback, Action error)
+        public void GetFullCustomLevelData(int id, Action<LevlelNetworkData> callback, Action error)
         {
             _storageService.Load<LevelData>(Const.CUSTOM_LEVLES_KEY + id, data =>
             {
-                callback?.Invoke(new LevlelNetworkData(id, data));
+                callback?.Invoke(new LevlelNetworkData(id.ToString(), data));
             });
         }
 
@@ -35,8 +35,8 @@ namespace OFG.ChessPeak
 
         public void PostCreateNewLevel(CreateLevelNetworkData ctx, Action<StatusNetworkData> callback, Action<string> error)
         {
-            string key = Const.CUSTOM_LEVLES_KEY + ctx.level_name;
-            _storageService.Save(key, ctx.level, 
+            string key = Const.CUSTOM_LEVLES_KEY + ctx.name;
+            _storageService.Save(key, ctx.data, 
                 (bool b)=>CallStatus(b, callback, error));
         }
 
@@ -47,7 +47,7 @@ namespace OFG.ChessPeak
             int i = 1;
             foreach (string levelName in levelNames)
             {
-                BriefLevelNetworkData briefData = new BriefLevelNetworkData(levelName, "Lockal", "lockal_level_" + i);
+                BriefLevelNetworkData briefData = new BriefLevelNetworkData(1, "Lockal", "lockal_level_" + i);
 
                 briefLevelDatas.Add(briefData);
                 i++;

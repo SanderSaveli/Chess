@@ -1,5 +1,7 @@
+using CustomText;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,15 +13,17 @@ namespace OFG.ChessPeak
     {
         [SerializeField] private FigureType _figure;
         [SerializeField] private Sprite _sprite;
+        [SerializeField] private string _titleKey;
 
-        public FigureType Tool { get => _figure; }
+        public FigureType CardType { get => _figure; }
         public Sprite Sprite { get => _sprite; }
+        public string StringKey { get => _titleKey; }
     }
     public class UIFigureView : MonoBehaviour
     {
         [Header(H.Components)]
         [SerializeField] private Image _figureImage;
-        [SerializeField] private TMP_Text _figureTitle;
+        [SerializeField] private TextByTableKey _figureTitle;
 
         [Header(H.Params)]
         [SerializeField] private Color _blackFigureColor = Color.black;
@@ -40,7 +44,7 @@ namespace OFG.ChessPeak
         {
             _figureImage.sprite = _figurePair[cardType];
             CurentFigure = cardType;
-            _figureTitle.text = cardType.ToString();
+            _figureTitle.SetText(_figurePairsList.FirstOrDefault(t=> t.CardType == cardType).StringKey);
         }
 
         public void ChangeViewImage(FigureType cardType, FigureColor color)
@@ -57,7 +61,7 @@ namespace OFG.ChessPeak
             _figurePair = new();
             foreach (var pair in _figurePairsList)
             {
-                _figurePair.Add(pair.Tool, pair.Sprite);
+                _figurePair.Add(pair.CardType, pair.Sprite);
             }
         }
 

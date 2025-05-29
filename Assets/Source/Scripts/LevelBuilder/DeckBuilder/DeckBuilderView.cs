@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace OFG.ChessPeak.LevelBuild
 {
@@ -10,7 +11,7 @@ namespace OFG.ChessPeak.LevelBuild
         [SerializeField] private DeckBuilder _deckBuilder;
 
         [Header(H.Prefabs)]
-        [SerializeField] private GameObject _uiFigureView;
+        [SerializeField] private UIFigureView _uiFigureView;
         [SerializeField] private Transform _handViewsParent;
         [SerializeField] private Transform _deckViewsParent;
 
@@ -18,6 +19,14 @@ namespace OFG.ChessPeak.LevelBuild
         private List<UIFigureView> _handViews = new();
 
         private bool _isSenchonized = false;
+        private DiContainer _container;
+
+
+        [Inject]
+        public void Construct(DiContainer container)
+        {
+            _container = container;
+        }
 
         private void OnEnable()
         {
@@ -59,7 +68,7 @@ namespace OFG.ChessPeak.LevelBuild
         }
         private void AddHandView(CardType card)
         {
-            UIFigureView view = Instantiate(_uiFigureView, _handViewsParent).GetComponent<UIFigureView>();
+            UIFigureView view = _container.InstantiatePrefabForComponent<UIFigureView>(_uiFigureView, _handViewsParent);
             view.ChangeViewImage(ConvertToFigure(card));
             view.transform.SetAsLastSibling();
             _handViews.Add(view);
@@ -72,7 +81,7 @@ namespace OFG.ChessPeak.LevelBuild
         }
         private void AddDeckView(CardType card)
         {
-            UIFigureView view = Instantiate(_uiFigureView, _deckViewsParent).GetComponent<UIFigureView>();
+            UIFigureView view = _container.InstantiatePrefabForComponent<UIFigureView>(_uiFigureView, _deckViewsParent);
             view.ChangeViewImage(ConvertToFigure(card));
             view.transform.SetAsLastSibling();
             _deckViews.Add(view);

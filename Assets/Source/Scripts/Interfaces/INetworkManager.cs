@@ -6,7 +6,7 @@ namespace OFG.ChessPeak
     {
         #region GET
         public void GetCustomLevelList(Action<LevelListNetworkData> callback, Action error);
-        public void GetFullCustomLevelData(string id, Action<LevlelNetworkData> callback, Action error);
+        public void GetFullCustomLevelData(int id, Action<LevlelNetworkData> callback, Action error);
         public void GetPlayerData(string id, Action<PlayerNetworkData> callback, Action error);
         #endregion
 

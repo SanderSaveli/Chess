@@ -13,8 +13,8 @@ namespace OFG.ChessPeak
                 (s) => { error?.Invoke();}
              ));
 
-        public void GetFullCustomLevelData(string id, Action<LevlelNetworkData> callback, Action error) =>
-            StartCoroutine(APIServer.GET(RequestAddresses.GET_FULL_CUSTOM_LEVEL_DATA,
+        public void GetFullCustomLevelData(int id, Action<LevlelNetworkData> callback, Action error) =>
+            StartCoroutine(APIServer.GET(string.Format(RequestAddresses.GET_FULL_CUSTOM_LEVEL_DATA, id),
                 (s) => { ParseData(s, callback); },
                 (s) => { error?.Invoke(); }
              ));
@@ -29,7 +29,7 @@ namespace OFG.ChessPeak
         #region POST
         public void PostCreateNewLevel(CreateLevelNetworkData ctx, Action<StatusNetworkData> callback, Action<string> error)=>
             StartCoroutine(APIServer.POST(SerializeData(ctx),
-                RequestAddresses.GET_FULL_CUSTOM_LEVEL_DATA,
+                RequestAddresses.POST_CREATE_NEW_LEVEL,
                 (s) => { ParseData(s, callback); },
                 (s) => { ParseData(s, callback); }
              ));

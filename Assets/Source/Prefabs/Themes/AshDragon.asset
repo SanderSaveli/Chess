@@ -154,6 +154,7 @@ MonoBehaviour:
     TextColorType: 44
     Color: {r: 1, g: 1, b: 1, a: 1}
   _mainMenuImage: {fileID: 21300000, guid: e849cd6b1e5a0a0489e278f7a3eeecc6, type: 3}
+  _gameBG: {fileID: 21300000, guid: 80616662e9a893f44871f88b3ba50857, type: 3}
   _mainMenuPanel: {fileID: 21300000, guid: 78ebf14468967e44a89201f6096ac6ff, type: 3}
   _deckEditImage: {fileID: 21300000, guid: 3224163162a454c4d9f02c234b12cb50, type: 3}
   _themeShopBG: {fileID: 21300000, guid: 4cc55a724464d2844ab0c5e687e03ba2, type: 3}

@@ -24,7 +24,6 @@ namespace CustomText
         private List<TextTableStruct> _tableTexts;
         private IStorageService _storageService;
 
-        private void Awake() => GetTexts();
         private IProjectSettings _settings;
 
         [Inject]
@@ -37,6 +36,7 @@ namespace CustomText
         private void Start()
         {
             SetLocaleOrDefault(_settings.LanguageKey);
+            GetTexts();
         }
 
         private void GetTexts()

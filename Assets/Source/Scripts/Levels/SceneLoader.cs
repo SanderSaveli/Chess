@@ -102,7 +102,12 @@ namespace OFG.ChessPeak
 
         public void LoadCustomLevel(LevlelNetworkData data)
         {
-            StartCoroutine(RoutineLoadingLevel(data.level));
+            Debug.Log(data);
+            Debug.Log(data.data);
+            Debug.Log(data.data.FieldWidth);
+            Debug.Log(data.data.Cells);
+            Debug.Log(data.data.CardsInHand);
+            StartCoroutine(RoutineLoadingLevel(data.data));
         }
 
         public void LoadScene(SceneNames scene)
@@ -116,7 +121,7 @@ namespace OFG.ChessPeak
             LoadGameLevel(context.LevelNumber);
 
         private void OnInputLoadCustomLevel(SignalInputLoadCustomLevel context) =>
-            _networkManager.GetFullCustomLevelData(context.levelName, LoadCustomLevel, ErrorLoadCustomLevel);
+            _networkManager.GetFullCustomLevelData(context.ID, LoadCustomLevel, ErrorLoadCustomLevel);
 
         private void LoadMainMenu(EventInputLoadMenu context) =>
             StartCoroutine(LoadSceneWithTransition(SceneNames.MainMenu));
@@ -137,6 +142,11 @@ namespace OFG.ChessPeak
                 yield return TransitionScreen.Show(_transitionDuration);
                 EventBusProvider.EventBus.InvokeEvent(context);
                 yield return TransitionScreen.Hide(_transitionDuration);
+                Debug.Log("Load level" + levelNumber);
+                if (levelNumber > 0)
+                {
+                    _signalBus.Fire(new SignalLoadSystemLevel(levelNumber));
+                }
                 InvoceTransitionComplete(true);
             }
             else
@@ -144,6 +154,11 @@ namespace OFG.ChessPeak
                 yield return LoadSceneWithTransition(SceneNames.Game, data =>
                 {
                     EventBusProvider.EventBus.InvokeEvent(context);
+                    Debug.Log("Load level" + levelNumber);
+                    if (levelNumber > 0)
+                    {
+                        _signalBus.Fire(new SignalLoadSystemLevel(levelNumber));
+                    }
                 });
             }
         }

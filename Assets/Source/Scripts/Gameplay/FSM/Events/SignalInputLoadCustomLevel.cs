@@ -2,7 +2,7 @@ namespace OFG.ChessPeak
 {
     public readonly struct SignalInputLoadCustomLevel
     {
-        public SignalInputLoadCustomLevel(string fileName) => levelName = fileName;
-        public readonly string levelName;
+        public SignalInputLoadCustomLevel(int id) => ID = id;
+        public readonly int ID;
     }
 }

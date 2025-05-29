@@ -128,6 +128,7 @@ Transform:
   - {fileID: 540786382450962363}
   - {fileID: 6049564102966121928}
   - {fileID: 5909753764767680356}
+  - {fileID: 5325063208579075738}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &892466506638562381
@@ -179,6 +180,7 @@ MonoBehaviour:
   _textsManager: {fileID: 4842522665037614092}
   _gameEnd: {fileID: 0}
   _scemeLoader: {fileID: 7919612068532726445}
+  _tutorialManager: {fileID: 8949715871379124074}
 --- !u!1 &5059808504126749237
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,9 +228,6 @@ MonoBehaviour:
   _transitionScreenPrefab: {fileID: 4060832746145047460, guid: de2176a31e0b95044a1ded3a56c78c33,
     type: 3}
   _transitionDuration: 1.5
-  _sceneBuildIndexMainMenu: 1
-  _sceneBuildIndexGame: 2
-  _sceneBuildIndexLevelBuilder: 3
   _levels:
   - {fileID: 11400000, guid: bbfda36bd9f5dc748b90edf7b8f9fd09, type: 2}
   - {fileID: 11400000, guid: 30db3a823d723814dbf07cfd1f785333, type: 2}
@@ -282,6 +281,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94cbff043bd36f5469e85ee60a60c1fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &6800194369531724970
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5325063208579075738}
+  - component: {fileID: 8949715871379124074}
+  m_Layer: 0
+  m_Name: TutorialManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5325063208579075738
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6800194369531724970}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1113882548010702190}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8949715871379124074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6800194369531724970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b7b1560eca5db54e8b50fea72ed0550, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _levelsTutorials: []
 --- !u!1 &7187972523256855647
 GameObject:
   m_ObjectHideFlags: 0

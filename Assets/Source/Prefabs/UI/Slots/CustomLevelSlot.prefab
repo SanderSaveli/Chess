@@ -77,8 +77,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281545016
-  m_fontColor: {r: 0.21960786, g: 0.19215688, b: 0.20000002, a: 1}
+    rgba: 4281545015
+  m_fontColor: {r: 0.21568629, g: 0.19215688, b: 0.20000002, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -273,8 +273,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 115, y: 0}
+  m_SizeDelta: {x: 800, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3382572678440073542
 CanvasRenderer:
@@ -297,7 +297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.72156864, g: 0.8117648, b: 0.86666673, a: 1}
+  m_Color: {r: 0.74509805, g: 0.7254902, b: 0.8117648, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -327,7 +327,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _background: {fileID: 8843888081976895205}
-  _label: {fileID: 0}
+  _label: {fileID: 4478202911930203164}
+  _playerName: {fileID: 3828512598509129028}
   _button: {fileID: 821484227756263467}
 --- !u!114 &821484227756263467
 MonoBehaviour:
@@ -515,7 +516,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 146.76999, y: 0}
-  m_SizeDelta: {x: 75.09, y: 18}
+  m_SizeDelta: {x: 103.09, y: 18}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &7740878742545069444
 CanvasRenderer:
@@ -545,7 +546,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: John dow
+  m_text: Test player
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f6f4405a125c81449a8eb9de4af38f93, type: 2}
   m_sharedMaterial: {fileID: -5253822630593438569, guid: f6f4405a125c81449a8eb9de4af38f93,
@@ -555,8 +556,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281545016
-  m_fontColor: {r: 0.21960786, g: 0.19215688, b: 0.20000002, a: 1}
+    rgba: 4281545015
+  m_fontColor: {r: 0.21568629, g: 0.19215688, b: 0.20000002, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -707,8 +708,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281545016
-  m_fontColor: {r: 0.21960786, g: 0.19215688, b: 0.20000002, a: 1}
+    rgba: 4281545015
+  m_fontColor: {r: 0.21568629, g: 0.19215688, b: 0.20000002, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -806,7 +807,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 146.73999, y: 0}
-  m_SizeDelta: {x: 75.09, y: 18}
+  m_SizeDelta: {x: 0, y: 18}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &3005354453619230321
 CanvasRenderer:
@@ -836,7 +837,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: John dow
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f6f4405a125c81449a8eb9de4af38f93, type: 2}
   m_sharedMaterial: {fileID: -5253822630593438569, guid: f6f4405a125c81449a8eb9de4af38f93,
@@ -846,8 +847,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281545016
-  m_fontColor: {r: 0.21960786, g: 0.19215688, b: 0.20000002, a: 1}
+    rgba: 4281545015
+  m_fontColor: {r: 0.21568629, g: 0.19215688, b: 0.20000002, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1074,8 +1075,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4292726712
-  m_fontColor: {r: 0.72156864, g: 0.8117648, b: 0.86666673, a: 1}
+    rgba: 4291803582
+  m_fontColor: {r: 0.74509805, g: 0.7254902, b: 0.8117648, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1228,8 +1229,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281545016
-  m_fontColor: {r: 0.21960786, g: 0.19215688, b: 0.20000002, a: 1}
+    rgba: 4281545015
+  m_fontColor: {r: 0.21568629, g: 0.19215688, b: 0.20000002, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

@@ -31,6 +31,7 @@ namespace OFG.ChessPeak
         {
             _rectTransform = GetComponent<RectTransform>();
             _initialAnchoredPosition = _rectTransform.anchoredPosition;
+            transform.localScale = Vector2.one;
         }
 
         public override void AnimateShow(float duration, Action callback)

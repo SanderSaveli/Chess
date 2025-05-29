@@ -31,7 +31,7 @@ namespace OFG.ChessPeak
 
         private void OnDestroy() => UnsubscribeFromEvents();
 
-        private void InvokeOnLevelSelectedEvent(string levelName)
+        private void InvokeOnLevelSelectedEvent(int levelName)
         {
             _signalBus.Fire(new SignalInputLoadCustomLevel(levelName));
         }
@@ -48,7 +48,7 @@ namespace OFG.ChessPeak
                 CustomLevelButtonView levelButtonView = _diContainer.InstantiatePrefabForComponent<CustomLevelButtonView>(_levelIconPrefab, _levelIconsRoot);
                 levelButtonView.Clicked += InvokeOnLevelSelectedEvent;
                 _levelButtonViews.Add(levelButtonView);
-                levelButtonView.UpdateView(data.level_list[i].id);
+                levelButtonView.Fill(data.level_list[i]);
             }
         }
 

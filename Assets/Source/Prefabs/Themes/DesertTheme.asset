@@ -154,6 +154,7 @@ MonoBehaviour:
     TextColorType: 44
     Color: {r: 0.9176471, g: 0.8470589, b: 0.79215693, a: 1}
   _mainMenuImage: {fileID: 21300000, guid: 62ebf33df4e4ba94d93583268eba98af, type: 3}
+  _gameBG: {fileID: 21300000, guid: b0c4c93e6fc6cec40884ac7f15a010f5, type: 3}
   _mainMenuPanel: {fileID: 21300000, guid: 7be29a3a45cce854daefd83e591a501e, type: 3}
   _deckEditImage: {fileID: 21300000, guid: c392b45846d5d394198b7a43e1fcbf36, type: 3}
   _themeShopBG: {fileID: 21300000, guid: 007b4b1137e136348a2e32063b712436, type: 3}
@@ -161,7 +162,7 @@ MonoBehaviour:
   _deckMaterial: {fileID: 2100000, guid: bfd01cb87a69ba748ae6059479a779a2, type: 2}
   _mountainsMaterial: {fileID: 0}
   _whiteCellMaterial: {fileID: 2100000, guid: bfea4b65eee1cd746ad2235b1274de73, type: 2}
-  _blackCellMaterial: {fileID: 2100000, guid: f1605a1ca9148e549b8a488753361430, type: 2}
+  _blackCellMaterial: {fileID: 2100000, guid: bd043f6cb5c415c48acba093a2071fa7, type: 2}
   _figureSet: {fileID: 11400000, guid: 2ee1e1ab8941d9f4cb31be1d280b7de4, type: 2}
   _cardSet: {fileID: 11400000, guid: 4e5a5b27f87ccd44982ff602ed5e683c, type: 2}
   VineteColor: {r: 1, g: 1, b: 1, a: 1}

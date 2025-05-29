@@ -1,3 +1,4 @@
+using CustomText;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -12,12 +13,15 @@ namespace OFG.ChessPeak
         [SerializeField] private Vector3 _selectOffset = new Vector3(50, 0,0);
         [SerializeField] private Vector3 _startOffset = new Vector3(50, 0,0);
         [SerializeField] protected TMP_Text _text;
+        [SerializeField] protected TextByTableKey _tableKey;
         [SerializeField] protected Image _image;
 
         protected Image _backgroundImage;
         protected Vector3 _defaultScale;
         protected Color _selectedColor;
         protected Color _unselectedColor;
+        private Vector3 _startPos;
+        private Vector3 _offsetPos;
 
         protected bool _isSelected;
 
@@ -48,15 +52,16 @@ namespace OFG.ChessPeak
         {
             SetAlfaToAllElement(0);
             yield return new WaitForSeconds(delay);
-            transform.position -= _startOffset;
+            transform.position -=_startOffset;
             float timer = _showTime;
 
             while (timer > 0)
             {
                 timer -= Time.deltaTime;
-                float factor = 1 - timer / _showTime;
+                float factor = 1 - (timer / _showTime);
                 SetAlfaToAllElement(factor);
-                transform.position += _startOffset * (Time.deltaTime / _showTime);
+                //transform.position = Vector3.Lerp(_offsetPos, _startPos, factor);
+                transform.position += _startOffset * (Time.deltaTime / _showTime) - _selectOffset * (Time.deltaTime / _showTime);
                 yield return null;
             }
         }

@@ -1,5 +1,4 @@
 using OFG.ChessPeak.LevelBuild;
-using TMPro;
 using UnityEngine;
 
 namespace OFG.ChessPeak
@@ -7,17 +6,18 @@ namespace OFG.ChessPeak
     public class FigureScrollElement : ThemeAnimatedScrollElement
     {
         [SerializeField] private ToolTypes toolType;
+        [SerializeField] private string _toolKey;
 
         public override void Ini(int index)
         {
             base.Ini(index);
-            _text.text = toolType.ToString();
+            _tableKey.SetText(_toolKey);
         }
 
         public override void Ini(int index, float delay)
         {
             base.Ini(index, delay);
-            _text.text = toolType.ToString();
+            _tableKey.SetText(_toolKey);
         }
 
         public override void Select()

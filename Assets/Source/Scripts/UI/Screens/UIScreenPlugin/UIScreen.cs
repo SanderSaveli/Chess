@@ -7,6 +7,7 @@ namespace OFG.ChessPeak
     {
         [Header(H.Components)]
         [SerializeField] private ScreenAnimator _animator;
+        [SerializeField] private UIScreen _bg;
 
         [Header(H.Params)]
         [SerializeField] private bool _isShowAtStart;
@@ -44,12 +45,16 @@ namespace OFG.ChessPeak
             IsShowen = true;
             gameObject.SetActive(true);
             _animator.AnimateShow(_animationDurention, null);
+            if(_bg != null)
+                _bg.Show();
         }
 
         public virtual void Hide()
         {
             IsShowen = false;
             _animator.AnimateHide(_animationDurention, DisableGameobject);
+            if (_bg != null)
+                _bg.Hide();
         }
 
         private void DisableGameobject()

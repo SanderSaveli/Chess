@@ -23,6 +23,7 @@ namespace OFG.ChessPeak
 
         [Header("UI Elements")]
         [SerializeField] private Sprite _mainMenuImage;
+        [SerializeField] private Sprite _gameBG;
         [SerializeField] private Sprite _mainMenuPanel;
         [SerializeField] private Sprite _deckEditImage;
         [SerializeField] private Sprite _themeShopBG;
@@ -47,6 +48,7 @@ namespace OFG.ChessPeak
         public Color VineteColor = Color.white;
         public List<ColorParams> Colors => _colors;
         public Sprite mainMenuImage => _mainMenuImage;
+        public Sprite GameBG => _gameBG;
         public Sprite MainMenuPanel => _mainMenuPanel;
         public Sprite deckEditImage => _deckEditImage;
         public Sprite ThemeShopBG => _themeShopBG;

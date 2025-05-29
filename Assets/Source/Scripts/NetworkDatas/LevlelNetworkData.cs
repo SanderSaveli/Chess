@@ -5,13 +5,13 @@ namespace OFG.ChessPeak
     [Serializable]
     public class LevlelNetworkData
     {
-        public string level_name;
-        public LevelData level;
+        public string name;
+        public LevelData data;
 
         public LevlelNetworkData(string level_name, LevelData level)
         {
-            this.level_name = level_name;
-            this.level = level;
+            this.name = level_name;
+            this.data = level;
         }
     }
 }

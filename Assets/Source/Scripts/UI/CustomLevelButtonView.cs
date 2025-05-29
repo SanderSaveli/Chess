@@ -6,18 +6,20 @@ using Zenject;
 
 namespace OFG.ChessPeak
 {
-    public class CustomLevelButtonView : MonoBehaviour
+    public class CustomLevelButtonView : MonoBehaviour, ISlot<BriefLevelNetworkData>
     {
         [Header(H.Components)]
         [SerializeField] private ImageColorByType _background;
-        [SerializeField] protected TextMeshProUGUI _label;
+        [SerializeField] protected TMP_Text _label;
+        [SerializeField] protected TMP_Text _playerName;
         [SerializeField] private Button _button;
 
         private Color _backgroundColor;
 
         public string _levelName { get; private set; }
+        public int ID { get; private set; }
 
-        public event Action<string> Clicked;
+        public event Action<int> Clicked;
 
         private ThemeData _themeData;
 
@@ -50,12 +52,19 @@ namespace OFG.ChessPeak
             _button.onClick.RemoveListener(OnClicked);
         }
 
-        private void OnClicked() => Clicked?.Invoke(_levelName);
+        private void OnClicked() => Clicked?.Invoke(ID);
 
         private void SetLevelName(string levelNumber)
         {
             _levelName = levelNumber;
             _label.SetText(_levelName);
+        }
+
+        public void Fill(BriefLevelNetworkData value)
+        {
+            ID = value.id;
+            _label.SetText(value.level_name);
+            _playerName.text = value.player_name;
         }
     }
 }

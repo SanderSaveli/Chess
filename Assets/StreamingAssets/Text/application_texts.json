@@ -206,7 +206,7 @@
   {
     "ID": "",
     "KEY": "restart",
-    "RU": "перезапустить",
+    "RU": "Заново",
     "EN": "restart"
   },
   {
@@ -214,5 +214,89 @@
     "KEY": "next_level",
     "RU": "следующий уровень ",
     "EN": "next level"
+  },
+  {
+    "ID": "",
+    "KEY": "create",
+    "RU": "Создать",
+    "EN": "create"
+  },
+  {
+    "ID": "",
+    "KEY": "to_menu",
+    "RU": "в меню",
+    "EN": "go to menu"
+  },
+  {
+    "ID": "",
+    "KEY": "king",
+    "RU": "Король",
+    "EN": "king"
+  },
+  {
+    "ID": "",
+    "KEY": "queen",
+    "RU": "Ферзь ",
+    "EN": "queen"
+  },
+  {
+    "ID": "",
+    "KEY": "rook",
+    "RU": "Ладья",
+    "EN": "rook"
+  },
+  {
+    "ID": "",
+    "KEY": "knight",
+    "RU": "Конь",
+    "EN": "knight"
+  },
+  {
+    "ID": "",
+    "KEY": "bishop",
+    "RU": "Слон",
+    "EN": "bishop"
+  },
+  {
+    "ID": "",
+    "KEY": "pawn",
+    "RU": "Пешка",
+    "EN": "pawn"
+  },
+  {
+    "ID": "",
+    "KEY": "black_king",
+    "RU": "Черный король",
+    "EN": "Black king"
+  },
+  {
+    "ID": "",
+    "KEY": "delete",
+    "RU": "Удалить",
+    "EN": "Delete"
+  },
+  {
+    "ID": "",
+    "KEY": "clear",
+    "RU": "Отчистить",
+    "EN": "clear"
+  },
+  {
+    "ID": "",
+    "KEY": "deck",
+    "RU": "Колода",
+    "EN": "Deck"
+  },
+  {
+    "ID": "",
+    "KEY": "hand",
+    "RU": "Рука",
+    "EN": "Hand"
+  },
+  {
+    "ID": "",
+    "KEY": "close",
+    "RU": "Закрыть",
+    "EN": "Close"
   }
 ]
