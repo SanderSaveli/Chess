@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -15,6 +16,9 @@ namespace OFG.ChessPeak
         private float _animationDurention;
         public bool IsShowen {  get; private set; }
         public bool IsShowAtStart => _isShowAtStart;
+
+        public Action OnShowScreen;
+        public Action OnHideScreen;
 
         [Inject]
         public void Construct(IProjectSettings projectSettings)
@@ -45,6 +49,7 @@ namespace OFG.ChessPeak
             IsShowen = true;
             gameObject.SetActive(true);
             _animator.AnimateShow(_animationDurention, null);
+            OnShowScreen?.Invoke();
             if(_bg != null)
                 _bg.Show();
         }
@@ -53,6 +58,7 @@ namespace OFG.ChessPeak
         {
             IsShowen = false;
             _animator.AnimateHide(_animationDurention, DisableGameobject);
+            OnHideScreen?.Invoke();
             if (_bg != null)
                 _bg.Hide();
         }

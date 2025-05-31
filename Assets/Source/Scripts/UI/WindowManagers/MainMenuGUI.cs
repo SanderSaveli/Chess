@@ -56,6 +56,11 @@ namespace OFG.ChessPeak
             _mainWindow.OnInputOpenWindow(new SignalInputOpenWindow(MenuScreens.register));
         }
 
+        public void OpenLevelsErrorScreen()
+        {
+            _mainWindow.OnInputOpenWindow(new SignalInputOpenWindow(MenuScreens.levels_error));
+        }
+
         public void ExitGame()
         {
             Application.Quit();

@@ -7,8 +7,8 @@ namespace OFG.ChessPeak
     public class NetworkManager : MonoBehaviour, INetworkManager
     {
         #region GET
-        public void GetCustomLevelList(Action<LevelListNetworkData> callback, Action error) =>
-            StartCoroutine(APIServer.GET(RequestAddresses.GET_CUSTOM_LEVEL_LIST, 
+        public void GetCustomLevelList(LevelListContext ctx, Action<LevelListNetworkData> callback, Action error) =>
+            StartCoroutine(APIServer.GET(string.Format(RequestAddresses.GET_CUSTOM_LEVEL_LIST, ctx.PerPage, ctx.Page), 
                 (s) => { ParseData(s, callback); }, 
                 (s) => { error?.Invoke();}
              ));

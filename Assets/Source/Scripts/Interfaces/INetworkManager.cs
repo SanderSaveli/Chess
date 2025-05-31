@@ -5,7 +5,7 @@ namespace OFG.ChessPeak
     public interface INetworkManager
     {
         #region GET
-        public void GetCustomLevelList(Action<LevelListNetworkData> callback, Action error);
+        public void GetCustomLevelList(LevelListContext ctx, Action<LevelListNetworkData> callback, Action error);
         public void GetFullCustomLevelData(int id, Action<LevlelNetworkData> callback, Action error);
         public void GetPlayerData(string id, Action<PlayerNetworkData> callback, Action error);
         #endregion

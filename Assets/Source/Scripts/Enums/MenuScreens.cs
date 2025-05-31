@@ -9,6 +9,7 @@ namespace OFG.ChessPeak
         settings,
         login,
         register,
-        profile
+        profile,
+        levels_error
     }
 }

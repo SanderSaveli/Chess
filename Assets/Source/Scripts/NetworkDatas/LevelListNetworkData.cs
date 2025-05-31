@@ -12,5 +12,8 @@ namespace OFG.ChessPeak
 
         public string next_page_url;
         public string previous_page_url;
+        public int current_page;
+        public int total_pages;
+        public int total_items;
     }
 }

@@ -298,5 +298,23 @@
     "KEY": "close",
     "RU": "Закрыть",
     "EN": "Close"
+  },
+  {
+    "ID": "",
+    "KEY": "try_again",
+    "RU": "Попробовать снова",
+    "EN": "Try again"
+  },
+  {
+    "ID": "",
+    "KEY": "connection_error",
+    "RU": "Это могла быть ошибка сети, проверьте свое интернет соединение",
+    "EN": "There may be a connection error, check your internet connection"
+  },
+  {
+    "ID": "",
+    "KEY": "went_wrong",
+    "RU": "Что-то пошло не так...",
+    "EN": "something went wrong..."
   }
 ]

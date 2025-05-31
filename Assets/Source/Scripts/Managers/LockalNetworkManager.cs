@@ -26,7 +26,7 @@ namespace OFG.ChessPeak
             });
         }
 
-        public void GetCustomLevelList(Action<LevelListNetworkData> callback, Action error)
+        public void GetCustomLevelList(LevelListContext ctx, Action<LevelListNetworkData> callback, Action error)
         {
             LevelListNetworkData levelList = new LevelListNetworkData();
             levelList.level_list = GetLevelsBriefDatas();

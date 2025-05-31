@@ -6,7 +6,7 @@ using Zenject;
 
 namespace OFG.ChessPeak
 {
-    public class CustomLevelButtonView : MonoBehaviour, ISlot<BriefLevelNetworkData>
+    public class CustomLevelSlot : MonoBehaviour, ISlot<BriefLevelNetworkData>
     {
         [Header(H.Components)]
         [SerializeField] private ImageColorByType _background;
