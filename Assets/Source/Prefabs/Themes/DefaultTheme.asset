@@ -1,0 +1,168 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c204e3418b2b0142b0f9f9f06f1da33, type: 3}
+  m_Name: DefaultTheme
+  m_EditorClassIdentifier: 
+  _name: theme_name_default
+  _desctiption: 
+  _cost: 0
+  _receiptConditions: 
+  _vineteColor: {r: 1, g: 1, b: 1, a: 1}
+  _colors:
+  - Name: Default
+    TextColorType: 0
+    Color: {r: 1, g: 1, b: 1, a: 1}
+  - Name: White
+    TextColorType: 1
+    Color: {r: 1, g: 1, b: 1, a: 1}
+  - Name: Black
+    TextColorType: 2
+    Color: {r: 0, g: 0, b: 0, a: 1}
+  - Name: PopUp_Background
+    TextColorType: 3
+    Color: {r: 0.87843144, g: 0.9607844, b: 0.9607844, a: 1}
+  - Name: PopUp_Text
+    TextColorType: 4
+    Color: {r: 0.011764707, g: 0.21176472, b: 0.2509804, a: 1}
+  - Name: PopUp_Button
+    TextColorType: 5
+    Color: {r: 0.011764707, g: 0.21176472, b: 0.2509804, a: 1}
+  - Name: PopUp_VotingBackground
+    TextColorType: 6
+    Color: {r: 0.011764707, g: 0.21176472, b: 0.2509804, a: 1}
+  - Name: PopUp_VotingSelected
+    TextColorType: 7
+    Color: {r: 0.65882355, g: 0.8196079, b: 0.82745105, a: 1}
+  - Name: MainMenu_ButtonShape
+    TextColorType: 8
+    Color: {r: 0.003921569, g: 0.3254902, b: 0.39607847, a: 1}
+  - Name: MainMenu_Text
+    TextColorType: 9
+    Color: {r: 0.87843144, g: 0.9607844, b: 0.9607844, a: 1}
+  - Name: MainMenu_InputExample
+    TextColorType: 10
+    Color: {r: 0.38823533, g: 0.5372549, b: 0.54901963, a: 1}
+  - Name: MainMenu_Field
+    TextColorType: 11
+    Color: {r: 0.87843144, g: 0.9607844, b: 0.9607844, a: 1}
+  - Name: ScaleSettings_Base
+    TextColorType: 12
+    Color: {r: 0.87843144, g: 0.9607844, b: 0.9607844, a: 1}
+  - Name: ScaleSettings_Filled
+    TextColorType: 13
+    Color: {r: 0.38823533, g: 0.5372549, b: 0.54901963, a: 1}
+  - Name: ScaleSettings_Button
+    TextColorType: 14
+    Color: {r: 0.003921569, g: 0.3254902, b: 0.39607847, a: 1}
+  - Name: NoBackground_StandardButton
+    TextColorType: 15
+    Color: {r: 0.003921569, g: 0.3254902, b: 0.39607847, a: 1}
+  - Name: NoBackground_SpecialButton
+    TextColorType: 16
+    Color: {r: 0.003921569, g: 0.3254902, b: 0.39607847, a: 1}
+  - Name: NoBackground_Text
+    TextColorType: 17
+    Color: {r: 0.011764707, g: 0.21176472, b: 0.2509804, a: 1}
+  - Name: NoBackground_Currency
+    TextColorType: 18
+    Color: {r: 0.011764707, g: 0.21176472, b: 0.2509804, a: 1}
+  - Name: LevelMenu_PassedBackground
+    TextColorType: 19
+    Color: {r: 1, g: 1, b: 1, a: 1}
+  - Name: LevelMenu_PassedText
+    TextColorType: 20
+    Color: {r: 0.011764707, g: 0.21176472, b: 0.2509804, a: 1}
+  - Name: LevelMenu_NotPassed
+    TextColorType: 21
+    Color: {r: 0.011764707, g: 0.21176472, b: 0.2509804, a: 1}
+  - Name: DifficultyMenu_ActiveDifficulty
+    TextColorType: 22
+    Color: {r: 0.011764707, g: 0.21176472, b: 0.2509804, a: 1}
+  - Name: DifficultyMenu_Base
+    TextColorType: 23
+    Color: {r: 0.38823533, g: 0.5372549, b: 0.54901963, a: 1}
+  - Name: ChooseCards_MainBackground
+    TextColorType: 24
+    Color: {r: 0.65882355, g: 0.8196079, b: 0.82745105, a: 1}
+  - Name: ChooseCards_Background
+    TextColorType: 25
+    Color: {r: 0.87843144, g: 0.9607844, b: 0.9607844, a: 1}
+  - Name: ChooseCards_Buttons
+    TextColorType: 26
+    Color: {r: 0.003921569, g: 0.3254902, b: 0.39607847, a: 1}
+  - Name: ChooseCards_ButtonsShapes
+    TextColorType: 27
+    Color: {r: 0.003921569, g: 0.3254902, b: 0.39607847, a: 1}
+  - Name: ChooseShapes_Background
+    TextColorType: 28
+    Color: {r: 0.003921569, g: 0.3254902, b: 0.39607847, a: 1}
+  - Name: ChooseShapes_Text
+    TextColorType: 29
+    Color: {r: 1, g: 1, b: 1, a: 1}
+  - Name: PagesLvl_ovney_Base
+    TextColorType: 30
+    Color: {r: 0.87843144, g: 0.9607844, b: 0.9607844, a: 1}
+  - Name: PagesLevels_Active
+    TextColorType: 31
+    Color: {r: 0.65882355, g: 0.8196079, b: 0.82745105, a: 1}
+  - Name: PagesLevels_Number
+    TextColorType: 32
+    Color: {r: 0.011764707, g: 0.21176472, b: 0.2509804, a: 1}
+  - Name: PanelInGame_Contents
+    TextColorType: 33
+    Color: {r: 0.011764707, g: 0.21176472, b: 0.2509804, a: 1}
+  - Name: PanelInGame_Background
+    TextColorType: 34
+    Color: {r: 0.38823533, g: 0.5372549, b: 0.54901963, a: 1}
+  - Name: CustomLevels_Background
+    TextColorType: 35
+    Color: {r: 0.38823533, g: 0.5372549, b: 0.54901963, a: 1}
+  - Name: CustomLevels_Text
+    TextColorType: 36
+    Color: {r: 1, g: 1, b: 1, a: 1}
+  - Name: CustomLevels_ButtonText
+    TextColorType: 37
+    Color: {r: 0.87843144, g: 0.9607844, b: 0.9607844, a: 1}
+  - Name: CustomLevels_ButtonFigure
+    TextColorType: 38
+    Color: {r: 0.003921569, g: 0.3254902, b: 0.39607847, a: 1}
+  - Name: CustomLevels_AnglePassed
+    TextColorType: 39
+    Color: {r: 0.87843144, g: 0.9607844, b: 0.9607844, a: 1}
+  - Name: CustomLevels_AngleNotPassed
+    TextColorType: 40
+    Color: {r: 0.003921569, g: 0.3254902, b: 0.39607847, a: 1}
+  - Name: CustomLevels_H3
+    TextColorType: 41
+    Color: {r: 0.38823533, g: 0.5372549, b: 0.54901963, a: 1}
+  - Name: LevelName_InputExample
+    TextColorType: 42
+    Color: {r: 0.38823533, g: 0.5372549, b: 0.54901963, a: 1}
+  - Name: LevelName_Entered
+    TextColorType: 43
+    Color: {r: 0.011764707, g: 0.21176472, b: 0.2509804, a: 1}
+  - Name: LevelName_Field
+    TextColorType: 44
+    Color: {r: 0.011764707, g: 0.21176472, b: 0.2509804, a: 1}
+  _mainMenuImage: {fileID: 21300000, guid: 5a4886971a4de5e43b8faf0f64fb58bb, type: 3}
+  _gameBG: {fileID: 21300000, guid: c92031873249f2a4988a76c80d681fed, type: 3}
+  _mainMenuPanel: {fileID: 21300000, guid: 21e480ba7e9f79d4185a85c5e18dbddd, type: 3}
+  _deckEditImage: {fileID: 21300000, guid: 887dc053621209f438128a0e276b4b8f, type: 3}
+  _themeShopBG: {fileID: 21300000, guid: 924d32b0681c7e944b8ed3514f827cbc, type: 3}
+  _mascMaterial: {fileID: 2100000, guid: 66ede1dae3f3dd24d96edb50f6890923, type: 2}
+  _deckMaterial: {fileID: 2100000, guid: d54a270bcdcc515448616cc00a28fb4e, type: 2}
+  _mountainsMaterial: {fileID: 2100000, guid: 90e237919ccabf64daeb25ce6aa06cd5, type: 2}
+  _whiteCellMaterial: {fileID: 2100000, guid: bfea4b65eee1cd746ad2235b1274de73, type: 2}
+  _blackCellMaterial: {fileID: 2100000, guid: f1605a1ca9148e549b8a488753361430, type: 2}
+  _figureSet: {fileID: 11400000, guid: 2ee1e1ab8941d9f4cb31be1d280b7de4, type: 2}
+  _cardSet: {fileID: 11400000, guid: 5bad93a6932a7414890191126d46cf47, type: 2}
+  VineteColor: {r: 1, g: 1, b: 1, a: 1}

@@ -1,13 +1,13 @@
 {
-  "FieldWidth": 6,
-  "FieldHeight": 6,
+  "FieldWidth": 4,
+  "FieldHeight": 4,
   "Figures": [
     {
       "pos": {
-        "x": 0,
-        "y": 5,
-        "magnitude": 5.0,
-        "sqrMagnitude": 25
+        "x": 1,
+        "y": 2,
+        "magnitude": 2.236068,
+        "sqrMagnitude": 5
       },
       "type": 5,
       "color": 0
@@ -15,19 +15,19 @@
     {
       "pos": {
         "x": 1,
-        "y": 1,
-        "magnitude": 1.41421354,
-        "sqrMagnitude": 2
+        "y": 3,
+        "magnitude": 3.1622777,
+        "sqrMagnitude": 10
       },
-      "type": 1,
+      "type": 2,
       "color": 1
     },
     {
       "pos": {
-        "x": 1,
-        "y": 3,
-        "magnitude": 3.1622777,
-        "sqrMagnitude": 10
+        "x": 2,
+        "y": 1,
+        "magnitude": 2.236068,
+        "sqrMagnitude": 5
       },
       "type": 3,
       "color": 1
@@ -41,71 +41,19 @@
       },
       "type": 4,
       "color": 1
-    },
-    {
-      "pos": {
-        "x": 3,
-        "y": 3,
-        "magnitude": 4.2426405,
-        "sqrMagnitude": 18
-      },
-      "type": 1,
-      "color": 1
-    },
-    {
-      "pos": {
-        "x": 4,
-        "y": 0,
-        "magnitude": 4.0,
-        "sqrMagnitude": 16
-      },
-      "type": 3,
-      "color": 1
-    },
-    {
-      "pos": {
-        "x": 4,
-        "y": 1,
-        "magnitude": 4.12310553,
-        "sqrMagnitude": 17
-      },
-      "type": 5,
-      "color": 1
-    },
-    {
-      "pos": {
-        "x": 5,
-        "y": 3,
-        "magnitude": 5.83095169,
-        "sqrMagnitude": 34
-      },
-      "type": 5,
-      "color": 1
-    },
-    {
-      "pos": {
-        "x": 5,
-        "y": 4,
-        "magnitude": 6.40312433,
-        "sqrMagnitude": 41
-      },
-      "type": 5,
-      "color": 1
     }
   ],
   "Cells": [],
   "CardsInHand": [
-    3,
-    3
+    4
   ],
   "CardsInDeck": [
-    4,
     4
   ],
   "fieldSize": {
-    "x": 6,
-    "y": 6,
-    "magnitude": 8.485281,
-    "sqrMagnitude": 72
+    "x": 4,
+    "y": 4,
+    "magnitude": 5.656854,
+    "sqrMagnitude": 32
   }
 }

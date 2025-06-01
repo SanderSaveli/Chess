@@ -1,0 +1,50 @@
+using UnityEngine;
+
+namespace OFG.ChessPeak.LevelBuild
+{
+    public class DeckBuilderController : MonoBehaviour
+    {
+        [Header(H.Components)]
+        [SerializeField] DeckBuilder _deckBuilder;
+
+        [Header(H.Params)]
+        [SerializeField] UIScreen _deckBuildWindow;
+
+        private bool _isAcktive;
+
+        public void Activate()
+        {
+            _isAcktive = true;
+            _deckBuildWindow.Show();
+        }
+        public void Deactivate()
+        {
+            _isAcktive = false;
+            _deckBuildWindow.Hide();
+        }
+
+
+        public void AddToHand(CardTypeEnumWrapper cardType)
+        {
+            AddToHand(cardType.CardType);
+        }
+        public void AddToHand(CardType cardType)
+        {
+            if (!_isAcktive)
+                return;
+            _deckBuilder.AddCardToHand(cardType);
+        }
+
+        public void AddToDeck(CardTypeEnumWrapper cardType)
+        {
+            AddToDeck(cardType.CardType);
+        }
+
+        public void AddToDeck(CardType cardType)
+        {
+            if (!_isAcktive)
+                return;
+            _deckBuilder.AddCardToDeck(cardType);
+        }
+    }
+}
