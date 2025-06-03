@@ -17,6 +17,8 @@ namespace OFG.ChessPeak
         [SerializeField] private GameContextHolder _gameEnd;
         [SerializeField] private SceneLoader _scemeLoader;
         [SerializeField] private TutorialManager _tutorialManager;
+        [SerializeField] private LevelManager _levelManager;
+
         public override void InstallBindings()
         {
             SignalBusInstaller.Install(Container);
@@ -29,6 +31,7 @@ namespace OFG.ChessPeak
             Container.Bind<GameContextHolder>().FromInstance(_gameEnd).AsSingle().NonLazy();
             Container.Bind<ISceneLoader>().FromInstance(_scemeLoader).AsSingle().NonLazy();
             Container.Bind<ITutorialManager>().FromInstance(_tutorialManager).AsSingle().NonLazy();
+            Container.Bind<ILevelManager>().FromInstance(_levelManager).AsSingle().NonLazy();
 
             #region Signals
             Container.DeclareSignal<SignalInputLoadScene>();

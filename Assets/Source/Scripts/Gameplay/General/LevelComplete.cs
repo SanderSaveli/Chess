@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 namespace OFG.ChessPeak
 {
@@ -8,6 +9,13 @@ namespace OFG.ChessPeak
         [SerializeField] private GameObject losePanel;
 
         private int _thisLevelNumber;
+        private ILevelManager _levelManager;
+
+        [Inject]
+        public void Construct(ILevelManager levelManager)
+        {
+            _levelManager = levelManager;
+        }
 
         private void Awake()
         {
@@ -46,7 +54,7 @@ namespace OFG.ChessPeak
         private void LevelCompl(EventWinning ctx)
         {
             winPanel.SetActive(true);
-            if(_thisLevelNumber == PlayerProgress.CurrentLevel)
+            if(_thisLevelNumber == PlayerProgress.GetWorldCurrentLevel(_levelManager.CurrentLevel.ID))
             {
                 UnlockNextLevel();
             }
@@ -75,8 +83,8 @@ namespace OFG.ChessPeak
 
         private void UnlockNextLevel()
         {
-            int nextLevel = PlayerProgress.CurrentLevel += 1;
-            PlayerPrefs.SetInt(PrefsKey.CurrentLevel, nextLevel);
+            int thisLevel = PlayerProgress.GetWorldCurrentLevel(_levelManager.CurrentLevel.ID);
+            PlayerProgress.SetWorldCurrentLevel(_levelManager.CurrentLevel.ID, thisLevel + 1);
         }
     }
 }

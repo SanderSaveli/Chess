@@ -1,4 +1,5 @@
-﻿using OFG.ChessPeak.UI;
+﻿using Newtonsoft.Json;
+using OFG.ChessPeak.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -30,6 +31,7 @@ namespace OFG.ChessPeak
 
         private IStorageService _storageService;
         private INetworkManager _networkManager;
+        private ILevelManager _levelManager;
 
         private SignalBus _signalBus;
         private DiContainer _diContainer;
@@ -39,12 +41,14 @@ namespace OFG.ChessPeak
             SignalBus signalBus,
             DiContainer diContainer,
             IStorageService storageService,
-            INetworkManager networkManager)
+            INetworkManager networkManager,
+            ILevelManager levelManager)
         {
             _signalBus = signalBus;
             _diContainer = diContainer;
             _storageService = storageService;
             _networkManager = networkManager;
+            _levelManager = levelManager;
         }
         private void OnEnable()
         {
@@ -90,10 +94,10 @@ namespace OFG.ChessPeak
 
         public void LoadGameLevel(int levelNumber)
         {
-            _storageService.Load<LevelData>("Levels/level" + levelNumber, data =>
-            {
-                LoadGameLevelDirectly(data, levelNumber);
-            });
+            string s = _levelManager.GetLevel(levelNumber).LevelJSON.text;
+            LevelData levelData = JsonConvert.DeserializeObject<LevelData>(s);
+
+            LoadGameLevelDirectly(levelData, levelNumber);
         }
         public void LoadGameLevelDirectly(LevelData levelData, int levelNumber)
         {

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace OFG.ChessPeak
 {
-    public class FigureScrollElement : ThemeAnimatedScrollElement
+    public class ToolScrollElement : ThemeAnimatedScrollElement
     {
         [SerializeField] private ToolTypes toolType;
         [SerializeField] private string _toolKey;

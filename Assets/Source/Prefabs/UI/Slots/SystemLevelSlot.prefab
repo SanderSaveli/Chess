@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6767502869000722353}
   - component: {fileID: 8156101791843909424}
   - component: {fileID: 7144548396475682595}
-  - component: {fileID: 4007322191049262705}
   - component: {fileID: 5025635761684108954}
   - component: {fileID: 8687878349788819897}
+  - component: {fileID: 8607311399244133220}
   m_Layer: 5
   m_Name: SystemLevelSlot
   m_TagString: Untagged
@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.121568635, g: 0.121568635, b: 0.121568635, a: 1}
+  m_Color: {r: 0.011764707, g: 0.21176472, b: 0.2509804, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -80,22 +80,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4007322191049262705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1351390332914480526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0b9bb102e902854e9cab05289464f13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _background: {fileID: 5025635761684108954}
-  _lockIcon: {fileID: 2803485320848716352}
-  _levelNumberLabel: {fileID: 6627302297415783965}
-  _button: {fileID: 8687878349788819897}
 --- !u!114 &5025635761684108954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,6 +138,26 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8607311399244133220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351390332914480526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb93f531e294116409b4922d0ed1f67c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _background: {fileID: 5025635761684108954}
+  _lockIcon: {fileID: 2803485320848716352}
+  _levelNumberText: {fileID: 6627302297415783965}
+  _button: {fileID: 8687878349788819897}
+  _availableText: 20
+  _lockedText: 20
+  _availableBackground: 19
+  _lockedBackground: 21
 --- !u!1 &1900184319861674181
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,8 +323,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278600406
-  m_fontColor: {r: 0.83921576, g: 0.25882354, b: 0.023529414, a: 1}
+    rgba: 4282398211
+  m_fontColor: {r: 0.011764707, g: 0.21176472, b: 0.2509804, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

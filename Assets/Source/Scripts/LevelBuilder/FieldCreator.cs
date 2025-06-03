@@ -26,7 +26,7 @@ namespace OFG.ChessPeak.LevelBuild
             _field.ChangeFieldSize(newFieldSize);
             _levelDecore.ScaleDecoreForFieldSize(newFieldSize);
         }
-
+        
         public void ChangeFieldSize(Vector2IntParamWrapper fieldSize)
         {
             ChangeFieldSize(fieldSize.Vec);
