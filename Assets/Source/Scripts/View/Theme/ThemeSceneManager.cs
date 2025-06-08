@@ -9,26 +9,28 @@ namespace OFG.ChessPeak
         [Header(H.Components)]
         [SerializeField] private FieldCreator _fieldCreator;
         [SerializeField] private LevelBuilder _levelBuilder;
-        private IStorageService _storageService;
-
         [SerializeField] private  ThemeShopFSM _themeShopFSM;
 
+        private IStorageService _storageService;
+        private SignalBus _signalBus;
+
         [Inject]
-        public void Construct(IStorageService storageService)
+        public void Construct(IStorageService storageService, SignalBus signalBus)
         {
             _storageService = storageService;
+            _signalBus = signalBus;
         }
 
         private void OnEnable()
         {
             EventBusProvider.EventBus.RegisterCallback<EventTransitionComplete>(SetSelectThemeState);
-            EventBusProvider.EventBus.RegisterCallback<EventInputLoadMenu>(SetIdleState);
+            _signalBus.Subscribe<SignalStartLoadScene>(SetIdleState);
         }
 
         private void OnDisable()
         {
             EventBusProvider.EventBus.UnregisterCallback<EventTransitionComplete>(SetSelectThemeState);
-            EventBusProvider.EventBus.UnregisterCallback<EventInputLoadMenu>(SetIdleState);
+            _signalBus.Unsubscribe<SignalStartLoadScene>(SetIdleState);
         }
 
         private void Start()
@@ -43,7 +45,7 @@ namespace OFG.ChessPeak
             _themeShopFSM.SetSelectThemeState();
         }
 
-        private void SetIdleState(EventInputLoadMenu ctx)
+        private void SetIdleState(SignalStartLoadScene ctx)
         {
             _themeShopFSM.SetIdleState();
         }

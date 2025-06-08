@@ -23,19 +23,19 @@ namespace OFG.ChessPeak
 
         private void OnEnable()
         {
-            _signalBus.Subscribe<SignalLoadSystemLevel>(HandleLoadSystemLevel);
+            _signalBus.Subscribe<SignalOpenSystemLevel>(HandleLoadSystemLevel);
             _tutorialView.OnButtonClecked += ShowNextPopup;
         }
 
         private void OnDisable()
         {
-            _signalBus.Unsubscribe<SignalLoadSystemLevel>(HandleLoadSystemLevel);
+            _signalBus.Unsubscribe<SignalOpenSystemLevel>(HandleLoadSystemLevel);
             _tutorialView.OnButtonClecked -= ShowNextPopup;
         }
 
-        private void HandleLoadSystemLevel(SignalLoadSystemLevel ctx)
+        private void HandleLoadSystemLevel(SignalOpenSystemLevel ctx)
         {
-            _levelNumber = ctx.LevelNumber;
+            _levelNumber = ctx.Ctx.LevelNumber;
             if(_tutorialManager.IsNeedToShowTutorial(_levelNumber))
             {
                 _currTutorial = _tutorialManager.GetTutorial(_levelNumber).TutorialPopups;

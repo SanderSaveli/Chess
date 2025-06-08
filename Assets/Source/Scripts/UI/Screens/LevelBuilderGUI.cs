@@ -2,6 +2,7 @@ using OFG.ChessPeak.LevelBuild;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace OFG.ChessPeak
 {
@@ -9,6 +10,14 @@ namespace OFG.ChessPeak
     {
         [SerializeField] private FieldCreator _filedCreator;
         [SerializeField] private Slider _filedSizeSlider;
+
+        private ISceneLoader _sceneLoader;
+
+        [Inject]
+        public void Construct(ISceneLoader sceneLoader)
+        {
+            _sceneLoader = sceneLoader;
+        }
 
         private void OnEnable()
         {
@@ -29,8 +38,7 @@ namespace OFG.ChessPeak
 
         public void LoadMainMenu()
         {
-            EventInputLoadMenu context = new EventInputLoadMenu();
-            EventBusProvider.EventBus.InvokeEvent(context);
+            _sceneLoader.LoadScene(SceneNames.MainMenu);
         }
     }
 }

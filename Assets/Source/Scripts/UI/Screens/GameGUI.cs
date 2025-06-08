@@ -1,40 +1,26 @@
 using UnityEngine;
+using Zenject;
 
 namespace OFG.ChessPeak
 {
     public class GameGUI : MonoBehaviour
     {
-        private int _levelIndex;
-        private LevelData _levelData;
-        private void OnEnable()
+        private ISceneLoader _sceneLoader;
+
+        [Inject]
+        public void Construct(ISceneLoader sceneLoader)
         {
-            EventBusProvider.EventBus.RegisterCallback<EventLoadLevelComplete>(SetLevelData);
-        }
-        private void SetLevelData(EventLoadLevelComplete ctx)
-        {
-            _levelData = ctx.LoadedLevelTemplate;
-            _levelIndex = ctx.LevelNumber;
-        }
-        public void ExitToMenu()
-        {
-            EventInputLoadMenu context = new EventInputLoadMenu();
-            EventBusProvider.EventBus.InvokeEvent(context);
+            _sceneLoader = sceneLoader;
         }
 
-        public void NextLevel()
+        public void ExitToMenu()
         {
-            if(_levelIndex < 0)
-            {
-                return;
-            }
-            EventInputLoadLevel context = new(_levelIndex + 1);
-            EventBusProvider.EventBus.InvokeEvent(context);
+            _sceneLoader.LoadScene(SceneNames.MainMenu);
         }
 
         public void ReplayThisLevel()
         {
-            EventInputLoadLevelDirectly context = new(_levelData, _levelIndex);
-            EventBusProvider.EventBus.InvokeEvent(context);
+            _sceneLoader.RepeatLevel();
         }
     }
 }

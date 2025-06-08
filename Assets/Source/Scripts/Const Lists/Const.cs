@@ -12,6 +12,7 @@ namespace OFG.ChessPeak
         public static string THEME_KEY = "Themes/";
         public static string TUTORIAL_KEY = "TUTORIALS/";
         public static string PLAYER_ID_KEY = "Player/id";
+        public static string VALUTE_KEY = "Player/Valute";
         #endregion
 
         #region Settings

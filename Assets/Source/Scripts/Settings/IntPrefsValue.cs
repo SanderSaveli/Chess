@@ -19,6 +19,7 @@ namespace OFG.ChessPeak
         protected override int SetValue(int value)
         {
             PlayerPrefs.SetInt(_key, value);
+            _value = value;
             return value;
         }
     }

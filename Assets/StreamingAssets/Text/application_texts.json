@@ -316,5 +316,29 @@
     "KEY": "went_wrong",
     "RU": "Что-то пошло не так...",
     "EN": "something went wrong..."
+  },
+  {
+    "ID": "",
+    "KEY": "custom_level_win",
+    "RU": "Поздравляем! \nТы побудил!",
+    "EN": "Congratulations!\nyou win!"
+  },
+  {
+    "ID": "",
+    "KEY": "rate_level",
+    "RU": "Оцени уровень",
+    "EN": "Rate the level"
+  },
+  {
+    "ID": "",
+    "KEY": "repeat",
+    "RU": "Пройти заново",
+    "EN": "repeat"
+  },
+  {
+    "ID": "",
+    "KEY": "rate",
+    "RU": "Оценить",
+    "EN": "rate"
   }
 ]

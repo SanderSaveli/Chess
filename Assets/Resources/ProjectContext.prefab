@@ -176,6 +176,8 @@ Transform:
   - {fileID: 5909753764767680356}
   - {fileID: 5325063208579075738}
   - {fileID: 1773441113560812134}
+  - {fileID: 618765247629490928}
+  - {fileID: 1880734457578600203}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &892466506638562381
@@ -225,10 +227,66 @@ MonoBehaviour:
   _projectSettings: {fileID: 1509354325220750436}
   _accountManager: {fileID: 8819063534709232680}
   _textsManager: {fileID: 4842522665037614092}
-  _gameEnd: {fileID: 0}
+  _gameEndManager: {fileID: 5612880637412968088}
   _scemeLoader: {fileID: 7919612068532726445}
   _tutorialManager: {fileID: 8949715871379124074}
   _levelManager: {fileID: 8214819101391938493}
+  _valuteManager: {fileID: 8048654481501260131}
+--- !u!1 &4051471684707988239
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 618765247629490928}
+  - component: {fileID: 5612880637412968088}
+  m_Layer: 0
+  m_Name: GameEndManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &618765247629490928
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4051471684707988239}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1113882548010702190}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5612880637412968088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4051471684707988239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f69e0459b350f94e837d9a4d7dcdc39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _screenContext:
+  - gameEndType: 0
+    winScreen: {fileID: 168068146917745626, guid: c123db21aa2bd2244aac4b27debadfd8,
+      type: 3}
+    loseScreen: {fileID: 2481945605533139961, guid: e30187693c3e9f94a8c0a27031e56c88,
+      type: 3}
+  - gameEndType: 1
+    winScreen: {fileID: 6853353496641127397, guid: 3d7baa7d87edac445a9a16369e3c1776,
+      type: 3}
+    loseScreen: {fileID: 2481945605533139961, guid: e30187693c3e9f94a8c0a27031e56c88,
+      type: 3}
 --- !u!1 &5059808504126749237
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,6 +432,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelsTutorials: []
+--- !u!1 &7024175725620723223
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1880734457578600203}
+  - component: {fileID: 8048654481501260131}
+  m_Layer: 0
+  m_Name: ValuteManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1880734457578600203
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7024175725620723223}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1113882548010702190}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8048654481501260131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7024175725620723223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20d1a0d761bd0724b97f160cb56a7165, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7187972523256855647
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System;
 using UnityEngine;
 
@@ -11,5 +12,10 @@ namespace OFG.ChessPeak
 
         public TextAsset LevelJSON => _levelJSON;
         public int Award => _award;
+
+        public LevelData GetData()
+        {
+            return JsonConvert.DeserializeObject<LevelData>(_levelJSON.text);
+        }
     }
 }

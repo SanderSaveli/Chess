@@ -10,11 +10,13 @@ namespace OFG.ChessPeak.UI
         [SerializeField] private SystemLevelFiller _levelFiller;
         [SerializeField] private UIScreen _screen;
         private ILevelManager _levelManager;
+        private ISceneLoader _sceneLoader;
 
         [Inject]
-        public void Construct(ILevelManager levelManager)
+        public void Construct(ISceneLoader sceneLoader, ILevelManager levelManager)
         {
             _levelManager = levelManager;
+            _sceneLoader = sceneLoader;
         }
         private void Awake()
         {
@@ -29,8 +31,11 @@ namespace OFG.ChessPeak.UI
 
         private void InvokeOnLevelSelectedEvent(int levelNumber)
         {
-            EventInputLoadLevel context = new(levelNumber);
-            EventBusProvider.EventBus.InvokeEvent(context);
+            SystemLevelGameEndHandler handler = _levelManager.GenerateLevelEndHandler(levelNumber);
+            LevelData levelData = _levelManager.GetLevel(levelNumber).GetData();
+
+            _sceneLoader.LoadLevel(levelData, handler);
+
         }
         private void InitLevelIcons()
         {
@@ -44,9 +49,9 @@ namespace OFG.ChessPeak.UI
         private List<SystemLevelData> GetCurrentWorldLevelsData()
         {
             List<SystemLevelData> levelDatas = new List<SystemLevelData>();
-            int currentLvel = PlayerProgress.GetWorldCurrentLevel(_levelManager.CurrentLevel.ID);
+            int currentLvel = PlayerProgress.GetWorldCurrentLevel(_levelManager.CurrentWorld.ID);
 
-            for (int i = 1; i <= _levelManager.CurrentLevel.LevelsList.Count; i++)
+            for (int i = 1; i <= _levelManager.CurrentWorld.LevelsList.Count; i++)
             {
                 SystemLevelData levelData = new SystemLevelData(i, LevelProgress.Locked);
                 if (i < currentLvel)

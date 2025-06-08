@@ -19,6 +19,16 @@ namespace OFG.ChessPeak
         [SerializeField][Min(0.0f)] private float _transitionDuration;
 
         [SerializeField] private List<LevelTemplate> _levels;
+        private IGameEndManager _gameEndManager;
+        private IGameEndHandler _lastEndHandler;
+        private LevelData _lastLevelData;
+
+
+        [Inject]
+        public void Construct(IGameEndManager gameEndManager)
+        {
+            _gameEndManager = gameEndManager;
+        }
 
         public bool IsActiveGameScene
         {
@@ -29,8 +39,6 @@ namespace OFG.ChessPeak
             }
         }
 
-        private IStorageService _storageService;
-        private INetworkManager _networkManager;
         private ILevelManager _levelManager;
 
         private SignalBus _signalBus;
@@ -40,36 +48,11 @@ namespace OFG.ChessPeak
         public void Construct(
             SignalBus signalBus,
             DiContainer diContainer,
-            IStorageService storageService,
-            INetworkManager networkManager,
             ILevelManager levelManager)
         {
             _signalBus = signalBus;
             _diContainer = diContainer;
-            _storageService = storageService;
-            _networkManager = networkManager;
             _levelManager = levelManager;
-        }
-        private void OnEnable()
-        {
-            EventBusProvider.EventBus.RegisterCallback<EventInputLoadLevel>(OnInputLoadLevel);
-            EventBusProvider.EventBus.RegisterCallback<EventInputLoadMenu>(LoadMainMenu);
-            EventBusProvider.EventBus.RegisterCallback<EventInputLoadLevelBuilder>(LoadLevelBuilder);
-            EventBusProvider.EventBus.RegisterCallback<EventInputLoadLevelDirectly>(OnInputLoadLevelDirectly);
-
-            _signalBus.Subscribe<SignalInputLoadThemeShop>(LoadThemeShop);
-            _signalBus.Subscribe<SignalInputLoadCustomLevel>(OnInputLoadCustomLevel);
-        }
-
-        private void OnDisable()
-        {
-            EventBusProvider.EventBus.UnregisterCallback<EventInputLoadLevel>(OnInputLoadLevel);
-            EventBusProvider.EventBus.UnregisterCallback<EventInputLoadMenu>(LoadMainMenu);
-            EventBusProvider.EventBus.UnregisterCallback<EventInputLoadLevelBuilder>(LoadLevelBuilder);
-            EventBusProvider.EventBus.UnregisterCallback<EventInputLoadLevelDirectly>(OnInputLoadLevelDirectly);
-
-            _signalBus.Unsubscribe<SignalInputLoadThemeShop>(LoadThemeShop);
-            _signalBus.Unsubscribe<SignalInputLoadCustomLevel>(OnInputLoadCustomLevel);
         }
 
         private TransitionScreen TransitionScreen
@@ -92,65 +75,34 @@ namespace OFG.ChessPeak
 
         private TransitionScreen _transitionScreen;
 
-        public void LoadGameLevel(int levelNumber)
+        public void LoadLevel(LevelData levelData, IGameEndHandler handler)
         {
-            string s = _levelManager.GetLevel(levelNumber).LevelJSON.text;
-            LevelData levelData = JsonConvert.DeserializeObject<LevelData>(s);
-
-            LoadGameLevelDirectly(levelData, levelNumber);
-        }
-        public void LoadGameLevelDirectly(LevelData levelData, int levelNumber)
-        {
-            _ = StartCoroutine(RoutineLoadingLevel(levelData, levelNumber));
-        }
-
-        public void LoadCustomLevel(LevlelNetworkData data)
-        {
-            Debug.Log(data);
-            Debug.Log(data.data);
-            Debug.Log(data.data.FieldWidth);
-            Debug.Log(data.data.Cells);
-            Debug.Log(data.data.CardsInHand);
-            StartCoroutine(RoutineLoadingLevel(data.data));
+            _gameEndManager.SetNewGameEndHandler(handler);
+            _lastLevelData = levelData;
+            _lastEndHandler = handler;
+            StartCoroutine(RoutineLoadingLevel(levelData, handler.Type));
         }
 
         public void LoadScene(SceneNames scene)
         {
             StartCoroutine(LoadSceneWithTransition(scene));
         }
-
-        private void OnInputLoadLevelDirectly(EventInputLoadLevelDirectly context) =>
-                LoadGameLevelDirectly(context.LevelData, context.LevelIndex);
-        private void OnInputLoadLevel(EventInputLoadLevel context) =>
-            LoadGameLevel(context.LevelNumber);
-
-        private void OnInputLoadCustomLevel(SignalInputLoadCustomLevel context) =>
-            _networkManager.GetFullCustomLevelData(context.ID, LoadCustomLevel, ErrorLoadCustomLevel);
-
-        private void LoadMainMenu(EventInputLoadMenu context) =>
-            StartCoroutine(LoadSceneWithTransition(SceneNames.MainMenu));
-        private void LoadLevelBuilder(EventInputLoadLevelBuilder context)
+        public void RepeatLevel()
         {
-            StartCoroutine(LoadSceneWithTransition(SceneNames.LevelBuilder));
-        }
-        private void LoadThemeShop(SignalInputLoadThemeShop context)
-        {
-            StartCoroutine(LoadSceneWithTransition(SceneNames.ThemeShop));
+            LoadLevel(_lastLevelData, _lastEndHandler);
         }
 
-        private IEnumerator RoutineLoadingLevel(LevelData levelTemplate, int levelNumber = -1)
+        private IEnumerator RoutineLoadingLevel(LevelData levelTemplate, LevelType type)
         {
-            EventLoadLevelComplete context = new(levelTemplate, levelNumber);
+            EventLoadLevelComplete context = new(levelTemplate);
             if (IsActiveGameScene)
             {
                 yield return TransitionScreen.Show(_transitionDuration);
                 EventBusProvider.EventBus.InvokeEvent(context);
+                _gameEndManager.GameEndHandler.LoadComplete();
                 yield return TransitionScreen.Hide(_transitionDuration);
-                Debug.Log("Load level" + levelNumber);
-                if (levelNumber > 0)
-                {
-                    _signalBus.Fire(new SignalLoadSystemLevel(levelNumber));
-                }
+
+                _signalBus.Fire(new SignalLoadLevel(type));
                 InvoceTransitionComplete(true);
             }
             else
@@ -158,17 +110,15 @@ namespace OFG.ChessPeak
                 yield return LoadSceneWithTransition(SceneNames.Game, data =>
                 {
                     EventBusProvider.EventBus.InvokeEvent(context);
-                    Debug.Log("Load level" + levelNumber);
-                    if (levelNumber > 0)
-                    {
-                        _signalBus.Fire(new SignalLoadSystemLevel(levelNumber));
-                    }
+                    _gameEndManager.GameEndHandler.LoadComplete();
+                    _signalBus.Fire(new SignalLoadLevel(type));
                 });
             }
         }
 
         private IEnumerator LoadSceneWithTransition(SceneNames names, Action<bool> sceneLoaded = null)
         {
+            _signalBus.Fire(new SignalStartLoadScene(names));   
             AsyncOperation asyncOperation = SceneManager.LoadSceneAsync((int)names);
             asyncOperation.allowSceneActivation = false;
             yield return TransitionScreen.Show(_transitionDuration);
@@ -203,11 +153,6 @@ namespace OFG.ChessPeak
                 EventTransitionComplete ctx = new EventTransitionComplete();
                 EventBusProvider.EventBus.InvokeEvent(ctx);
             }
-        }
-
-        private void ErrorLoadCustomLevel()
-        {
-            Debug.LogError("Error Load Custom level");
         }
     }
 }

@@ -30,12 +30,14 @@ namespace OFG.ChessPeak.LevelBuild
 
         private IStorageService _storageService;
         private INetworkManager _networkManager;
+        private SignalBus _signalBus;
 
         [Inject]
-        public void Construct(IStorageService storageService, INetworkManager networkManager)
+        public void Construct(SignalBus signalBus, IStorageService storageService, INetworkManager networkManager)
         {
             _storageService = storageService;
             _networkManager = networkManager;
+            _signalBus = signalBus;
         }
 
         private void Start()
@@ -47,12 +49,12 @@ namespace OFG.ChessPeak.LevelBuild
 
         private void OnEnable()
         {
-            EventBusProvider.EventBus.RegisterCallback<EventInputLoadMenu>(SaveEditorState);
+            _signalBus.Subscribe<SignalStartLoadScene>(SaveEditorState);
         }
 
         private void OnDisable()
         {
-            EventBusProvider.EventBus.UnregisterCallback<EventInputLoadMenu>(SaveEditorState);
+            _signalBus.Unsubscribe<SignalStartLoadScene>(SaveEditorState);
         }
         public void OpenCreateLevelWindow() =>
             _builderInputFSM.SetIdleState();
@@ -127,7 +129,7 @@ namespace OFG.ChessPeak.LevelBuild
             _builderInputFSM.SetApplyToolState();
         }
 
-        private void SaveEditorState(EventInputLoadMenu data)
+        private void SaveEditorState(SignalStartLoadScene ctx)
         {
             _levelSaver.SaveEditorState();
         }

@@ -5,22 +5,24 @@ namespace OFG.ChessPeak
 {
     public class LevelComplete : MonoBehaviour
     {
-        [SerializeField] private GameObject winPanel;
-        [SerializeField] private GameObject losePanel;
+        [SerializeField] private Transform _windowParent;
 
-        private int _thisLevelNumber;
-        private ILevelManager _levelManager;
+        private UIScreen _winScreen;
+        private UIScreen _loseScreen;
+
+        private IGameEndManager _gameEndManager;
+        private DiContainer _diContainer;
 
         [Inject]
-        public void Construct(ILevelManager levelManager)
+        public void Construct(DiContainer diContainer, IGameEndManager gameEndManager)
         {
-            _levelManager = levelManager;
+            _gameEndManager = gameEndManager;
+            _diContainer = diContainer;
         }
 
         private void Awake()
         {
             SubscribeOnEvents();
-            DisableWindows();
         }
 
         private void OnEnable()
@@ -37,54 +39,57 @@ namespace OFG.ChessPeak
 
         private void SubscribeOnEvents()
         {
-            EventBusProvider.EventBus.RegisterCallback<EventWinning>(LevelCompl);
-            EventBusProvider.EventBus.RegisterCallback<EventLosing>(LevelRestart);
-            EventBusProvider.EventBus.RegisterCallback<EventLoadLevelComplete>(DisableWindows);
-            EventBusProvider.EventBus.RegisterCallback<EventLoadLevelComplete>(SetThisLevelNumber);
+            EventBusProvider.EventBus.RegisterCallback<EventWinning>(LevelWin);
+            EventBusProvider.EventBus.RegisterCallback<EventLosing>(LevelLose);
+            EventBusProvider.EventBus.RegisterCallback<EventLoadLevelComplete>(SpawnWindows);
         }
 
         private void UnsubscribeFromEvents()
         {
-            EventBusProvider.EventBus.UnregisterCallback<EventWinning>(LevelCompl);
-            EventBusProvider.EventBus.UnregisterCallback<EventLosing>(LevelRestart);
-            EventBusProvider.EventBus.UnregisterCallback<EventLoadLevelComplete>(DisableWindows);
-            EventBusProvider.EventBus.UnregisterCallback<EventLoadLevelComplete>(SetThisLevelNumber);
+            EventBusProvider.EventBus.UnregisterCallback<EventWinning>(LevelWin);
+            EventBusProvider.EventBus.UnregisterCallback<EventLosing>(LevelLose);
+            EventBusProvider.EventBus.UnregisterCallback<EventLoadLevelComplete>(SpawnWindows);
         }
 
-        private void LevelCompl(EventWinning ctx)
+        private void LevelWin(EventWinning ctx)
         {
-            winPanel.SetActive(true);
-            if(_thisLevelNumber == PlayerProgress.GetWorldCurrentLevel(_levelManager.CurrentLevel.ID))
+            _winScreen.Show();
+            _gameEndManager.GameEndHandler.GameEnd(true);
+        }
+
+        private void LevelLose(EventLosing ctx)
+        {
+            _loseScreen.Show();
+            _gameEndManager.GameEndHandler.GameEnd(false);
+        }
+
+        private void SpawnWindows(EventLoadLevelComplete ctx)
+        {
+            DeleteScreens();
+
+            _winScreen = CreateScreen(_gameEndManager.GameEndHandler.WinScreenPrefab);
+            _loseScreen = CreateScreen(_gameEndManager.GameEndHandler.LoseScreenPrefab);
+        }
+
+        private UIScreen CreateScreen(UIScreen screenPrefab)
+        {
+            UIScreen screen = _diContainer.InstantiatePrefabForComponent<UIScreen>(screenPrefab, _windowParent);
+            screen.Hide();
+            return screen;
+        }
+        private void DeleteScreens()
+        {
+            Debug.Log("Delete");
+            if(_winScreen != null)
             {
-                UnlockNextLevel();
+                Destroy(_winScreen.gameObject);
+                _winScreen = null;
             }
-        }
-
-        private void LevelRestart(EventLosing ctx)
-        {
-            losePanel.SetActive(true);
-        }
-
-        private void DisableWindows(EventLoadLevelComplete ctx)
-        {
-            DisableWindows();
-        }
-
-        private void DisableWindows()
-        {
-            winPanel.SetActive(false);
-            losePanel.SetActive(false);
-        }
-
-        private void SetThisLevelNumber(EventLoadLevelComplete ctx)
-        {
-            _thisLevelNumber = ctx.LevelNumber;
-        }
-
-        private void UnlockNextLevel()
-        {
-            int thisLevel = PlayerProgress.GetWorldCurrentLevel(_levelManager.CurrentLevel.ID);
-            PlayerProgress.SetWorldCurrentLevel(_levelManager.CurrentLevel.ID, thisLevel + 1);
+            if(_loseScreen != null)
+            {
+                Destroy(_loseScreen.gameObject);
+                _loseScreen = null;
+            }
         }
     }
 }
