@@ -80,6 +80,7 @@ namespace OFG.ChessPeak
             if (_pointerController.TryGetHoveredCell(out _, out Vector2Int position2) &&
 _moves.Contains(position2))
             {
+                SetCursorSelection(position2);
                 MoveSelectedFigure();
                 return true;
             }
@@ -201,7 +202,6 @@ _moves.Contains(position2))
 
         private void MoveSelectedFigure()
         {
-            Debug.Log(_selectedFigure.FigureType);
             _gameField.Figures[_selectedFigurePosition] = null;
             Vector3 worldPosition = _gameField.Position2ToWorld(_previousCursorPosition);
             _selectedFigure.View.Down();

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace OFG.ChessPeak.UI
 {
@@ -10,9 +11,17 @@ namespace OFG.ChessPeak.UI
         [SerializeField] private string _maskAmountParamName;
 
         private Material _material;
+        private IProjectSettings _projectSettings;
+
+        [Inject]
+        public void Construct(IProjectSettings projectSettings)
+        {
+            _projectSettings = projectSettings;
+        }
 
         public IEnumerator Show(float duration)
         {
+            duration *= _projectSettings.ScreenAnimationDuration;
             TryCacheMaterial();
             float time = 0.0f;
             while (time < duration)
@@ -26,6 +35,7 @@ namespace OFG.ChessPeak.UI
 
         public IEnumerator Hide(float duration)
         {
+            duration *= _projectSettings.ScreenAnimationDuration;
             TryCacheMaterial();
             float time = duration;
             while (time > 0.0f)

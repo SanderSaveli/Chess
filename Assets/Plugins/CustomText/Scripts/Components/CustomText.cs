@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 namespace CustomText
 {
@@ -11,6 +12,7 @@ namespace CustomText
         [SerializeField] private Custom_ColorStyle _textColor = Custom_ColorStyle.Default;
         [SerializeField] private Custom_MaterialStyle _textMaterial = Custom_MaterialStyle.Default;
 
+        public Custom_ColorStyle TextColor => _textColor;
         private Custom_TextStyle _selectedTextStyle = Custom_TextStyle.Default;
         private Custom_ColorStyle _selectedTextColor = Custom_ColorStyle.Default;
         private Custom_MaterialStyle _selectedTextMaterial = Custom_MaterialStyle.Default;

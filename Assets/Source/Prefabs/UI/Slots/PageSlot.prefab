@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9176471, g: 0.8470589, b: 0.79215693, a: 1}
+  m_Color: {r: 0.98823535, g: 0.9490197, b: 0.9450981, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -238,16 +238,16 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f6f4405a125c81449a8eb9de4af38f93, type: 2}
-  m_sharedMaterial: {fileID: -5253822630593438569, guid: f6f4405a125c81449a8eb9de4af38f93,
+  m_fontAsset: {fileID: 11400000, guid: 1269cf98995b44645b4e65bf9d5968f7, type: 2}
+  m_sharedMaterial: {fileID: -3279528376205104064, guid: 1269cf98995b44645b4e65bf9d5968f7,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280032037
-  m_fontColor: {r: 0.14509805, g: 0.10588236, b: 0.10980393, a: 1}
+    rgba: 4280229663
+  m_fontColor: {r: 0.121568635, g: 0.121568635, b: 0.121568635, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -264,8 +264,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -308,4 +308,4 @@ MonoBehaviour:
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
   _textStyle: 6
   _textColor: 32
-  _textMaterial: 2
+  _textMaterial: 1

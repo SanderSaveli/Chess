@@ -7,12 +7,11 @@ namespace OFG.ChessPeak
     [RequireComponent(typeof(CanvasGroup))]
     public class TransparentScreenAnimator : ScreenAnimator
     {
-        private CanvasGroup _canvasGroup;
+        [SerializeField] private CanvasGroup _canvasGroup;
 
         private void Start()
         {
             transform.localScale = Vector3.one;
-            _canvasGroup = GetComponent<CanvasGroup>();
         }
 
         private void OnValidate()

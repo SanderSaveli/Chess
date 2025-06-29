@@ -28,8 +28,7 @@ namespace OFG.ChessPeak
                 LevelData levelData = _levelManager.GetLevel(levelNumber).GetData();
 
                 _sceneLoader.LoadLevel(levelData, handler);
-            }
-            
+            }        
         }
     }
 }

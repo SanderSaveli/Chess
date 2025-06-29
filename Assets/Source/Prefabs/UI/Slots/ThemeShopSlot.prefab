@@ -94,6 +94,7 @@ MonoBehaviour:
   _selectOffset: {x: 50, y: 0, z: 0}
   _startOffset: {x: 0, y: 0, z: 0}
   _text: {fileID: 3483494310189793853}
+  _tableKey: {fileID: 8823389683721596348}
   _image: {fileID: 4329457513812661607}
   _textKey: {fileID: 8823389683721596348}
 --- !u!1 &7218044470019214588

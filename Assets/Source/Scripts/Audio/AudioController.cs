@@ -1,5 +1,6 @@
 ﻿using Singletones;
 using UnityEngine;
+using Zenject;
 
 namespace OFG.ChessPeak
 {
@@ -7,6 +8,7 @@ namespace OFG.ChessPeak
     {
         [Header(H.Components)]
         [SerializeField] private AudioSource _soundSource;
+        [SerializeField] private AudioSource _musicSource;
 
         [Header("Sounds:")]
         [SerializeField] private SoundData _buttonSound;
@@ -20,12 +22,23 @@ namespace OFG.ChessPeak
 
         private float _soundVolume;
         private float _musicVolume;
+        private IProjectSettings _projectSettings;
+
+        [Inject]
+        public void Construct(IProjectSettings projectSettings)
+        {
+            _projectSettings = projectSettings;
+        }
 
         private void OnEnable()
         {
             SubscribeToEvents();
-            SetMusicVolume(GameSettings.MusicVolume);
-            SetSoundVolume(GameSettings.SoundVolume);
+        }
+
+        private void Start()
+        {
+            SetMusicVolume(_projectSettings.MusicVolume);
+            SetSoundVolume(_projectSettings.SoundVolume);
         }
 
         private void OnDisable()
@@ -36,9 +49,13 @@ namespace OFG.ChessPeak
         private void SetMusicVolume(float volume)
         {
             _musicVolume = volume;
+            _musicSource.volume = volume;
+        }
+        private void SetSoundVolume(float volume)
+        {
+            _soundVolume = volume;
             _soundSource.volume = volume;
         }
-        private void SetSoundVolume(float volume) =>_soundVolume = volume;
 
         private void SubscribeToEvents()
         {
@@ -49,8 +66,8 @@ namespace OFG.ChessPeak
             EventBusProvider.EventBus.RegisterCallback<EventCardSelected>(PlayCardSelectedSound);
             EventBusProvider.EventBus.RegisterCallback<EventFigurePlacedInBuilder>(PlayFigurePlacedSound);
 
-            GameSettings.OnMusicVolumeChanged += SetMusicVolume;
-            GameSettings.OnSoundVolumeChanged += SetSoundVolume;
+            _projectSettings.OnMusicVolumeChange += SetMusicVolume;
+            _projectSettings.OnSoundVolumeChange += SetSoundVolume;
         }
 
         private void UnsbscribeToEvents()
@@ -62,8 +79,8 @@ namespace OFG.ChessPeak
             EventBusProvider.EventBus.UnregisterCallback<EventCardSelected>(PlayCardSelectedSound);
             EventBusProvider.EventBus.UnregisterCallback<EventFigurePlacedInBuilder>(PlayFigurePlacedSound);
 
-            GameSettings.OnMusicVolumeChanged -= SetMusicVolume;
-            GameSettings.OnSoundVolumeChanged -= SetSoundVolume;
+            _projectSettings.OnMusicVolumeChange -= SetMusicVolume;
+            _projectSettings.OnSoundVolumeChange -= SetSoundVolume;
         }
 
         public void PlayButtonSound() => PlaySound(_buttonSound);

@@ -13,17 +13,17 @@ namespace OFG.ChessPeak
         [Header(H.Params)]
         [SerializeField] private bool _isShowAtStart;
 
-        private float _animationDurention;
         public bool IsShowen {  get; private set; }
         public bool IsShowAtStart => _isShowAtStart;
 
         public Action OnShowScreen;
         public Action OnHideScreen;
+        private IProjectSettings _projectSettings;
 
         [Inject]
         public void Construct(IProjectSettings projectSettings)
         {
-            _animationDurention = projectSettings.ScreenAnimationDuration;
+            _projectSettings = projectSettings;
         }
         private void Awake()
         {
@@ -46,9 +46,17 @@ namespace OFG.ChessPeak
 
         public virtual void Show()
         {
+            if(_animator == null)
+            {
+                _animator= gameObject.GetComponent<ScreenAnimator>();
+            }
+
             IsShowen = true;
             gameObject.SetActive(true);
-            _animator.AnimateShow(_animationDurention, null);
+            Debug.Log(gameObject.name);
+            Debug.Log(_animator);
+            Debug.Log(_projectSettings);
+            _animator.AnimateShow(_projectSettings.ScreenAnimationDuration, null);
             OnShowScreen?.Invoke();
             if(_bg != null)
                 _bg.Show();
@@ -56,8 +64,13 @@ namespace OFG.ChessPeak
 
         public virtual void Hide()
         {
+            if (_animator == null)
+            {
+                _animator = gameObject.GetComponent<ScreenAnimator>();
+            }
+
             IsShowen = false;
-            _animator.AnimateHide(_animationDurention, DisableGameobject);
+            _animator.AnimateHide(_projectSettings.ScreenAnimationDuration, DisableGameobject);
             OnHideScreen?.Invoke();
             if (_bg != null)
                 _bg.Hide();

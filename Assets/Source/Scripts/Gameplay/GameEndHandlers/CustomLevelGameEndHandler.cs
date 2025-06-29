@@ -7,6 +7,7 @@ namespace OFG.ChessPeak
         public CustomLevelGameEndHandler(CustomLevelContext ctx)
         {
             _context = ctx;
+            _gameEndType = LevelType.CustomLevel;
         }
     }
 }

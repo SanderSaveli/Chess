@@ -10,6 +10,7 @@ namespace OFG.ChessPeak
         [SerializeField] private FieldCreator _fieldCreator;
         [SerializeField] private LevelBuilder _levelBuilder;
         [SerializeField] private  ThemeShopFSM _themeShopFSM;
+        [SerializeField] private SystemLevelSO _level;
 
         private IStorageService _storageService;
         private SignalBus _signalBus;
@@ -35,7 +36,8 @@ namespace OFG.ChessPeak
 
         private void Start()
         {
-            _storageService.Load<LevelData>(Const.LEVLES_KEY + Const.THEME_LEVLE_NAME, BuildLevel);
+            //_storageService.Load<LevelData>(Const.LEVLES_KEY + Const.THEME_LEVLE_NAME, BuildLevel);
+            BuildLevel(_level.GetData());
         }
 
         public void BuildLevel(LevelData data) => _levelBuilder.BuildLevel(data);

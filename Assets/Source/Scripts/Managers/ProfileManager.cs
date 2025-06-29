@@ -11,6 +11,7 @@ namespace OFG.ChessPeak
         [SerializeField] private UIScreen _loginScreen;
         [SerializeField] private UIScreen _registerScreen;
         [SerializeField] private UIScreen _profileScreen;
+        [SerializeField] private MainMenuWindowManager _windowManager;
 
         private IAccountManager _accountManager;
         private SignalBus _signalBus;
@@ -24,13 +25,14 @@ namespace OFG.ChessPeak
 
         public void OpenProfile()
         {
+            Debug.Log("Profile");
             if(_accountManager.IsInAccount)
             {
-                _signalBus.Fire(new SignalInputOpenWindow(MenuScreens.profile));
+               _windowManager.OnInputOpenWindow(new SignalInputOpenWindow(MenuScreens.profile));
             }
             else
             {
-                _signalBus.Fire(new SignalInputOpenWindow(MenuScreens.register));
+                _windowManager.OnInputOpenWindow(new SignalInputOpenWindow(MenuScreens.register));
             }
         }
     }

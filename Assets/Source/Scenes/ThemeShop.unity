@@ -308,8 +308,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4291483882
-  m_fontColor: {r: 0.9176471, g: 0.8470589, b: 0.79215693, a: 1}
+    rgba: 4282398211
+  m_fontColor: {r: 0.011764707, g: 0.21176472, b: 0.2509804, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2051,6 +2051,9 @@ MonoBehaviour:
   _fieldCreator: {fileID: 2091167386}
   _levelBuilder: {fileID: 2091167387}
   _themeShopFSM: {fileID: 2091167391}
+  _level:
+    _levelJSON: {fileID: 4900000, guid: e0d41470d55a6f946999608bc16cabac, type: 3}
+    _award: 0
 --- !u!114 &2091167390
 MonoBehaviour:
   m_ObjectHideFlags: 0

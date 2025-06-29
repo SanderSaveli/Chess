@@ -122,6 +122,7 @@ namespace OFG.ChessPeak
             _isLoadLevel = false;
             CustomLevelContext ctx = new CustomLevelContext(_levelId);
             CustomLevelGameEndHandler handler = new CustomLevelGameEndHandler(ctx);
+            Debug.Log("1 " + handler.Type);
             _sceneLoader.LoadLevel(data.data, handler);
         }
     }

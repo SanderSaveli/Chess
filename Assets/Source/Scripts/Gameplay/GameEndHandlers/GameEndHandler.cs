@@ -9,7 +9,7 @@ namespace OFG.ChessPeak
         public LevelType Type => _gameEndType;
 
         [Header(H.Params)]
-        [SerializeField] private LevelType _gameEndType;
+        [SerializeField] protected LevelType _gameEndType;
 
         [Header(H.Prefabs)]
         [SerializeField] protected UIScreen _winScreen;
@@ -25,12 +25,12 @@ namespace OFG.ChessPeak
         {
             if (isWin)
             {
-                _winScreen?.Show();
+                //_winScreen?.Show();
                 OnWin();
             }
             else
             {
-                _loseScreen?.Show();
+                //_loseScreen?.Show();
                 Onlose();
             }
         }
