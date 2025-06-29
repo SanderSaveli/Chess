@@ -13,10 +13,12 @@ namespace OFG.ChessPeak
         [SerializeField] private UIScreen _profileScreen;
 
         private IAccountManager _accountManager;
+        private SignalBus _signalBus;
 
         [Inject]
-        public void Construct(IAccountManager accountManager)
+        public void Construct(SignalBus signalBus, IAccountManager accountManager)
         {
+            _signalBus = signalBus;
             _accountManager = accountManager;
         }
 
@@ -24,11 +26,11 @@ namespace OFG.ChessPeak
         {
             if(_accountManager.IsInAccount)
             {
-                _profileScreen.Show();
+                _signalBus.Fire(new SignalInputOpenWindow(MenuScreens.profile));
             }
             else
             {
-                _registerScreen.Show();
+                _signalBus.Fire(new SignalInputOpenWindow(MenuScreens.register));
             }
         }
     }

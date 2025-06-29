@@ -2,7 +2,7 @@ namespace OFG.ChessPeak
 {
     public static class Const
     {
-        private static string LOCKAL_BACKEND_SERVER = "http://127.0.0.1:8000/api";
+        private static string LOCKAL_BACKEND_SERVER = "https://outframegames.ru/api";
 
         public static string BACKEND_SERVER = LOCKAL_BACKEND_SERVER;
 

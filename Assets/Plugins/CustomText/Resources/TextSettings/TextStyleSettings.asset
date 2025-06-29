@@ -23,7 +23,7 @@ MonoBehaviour:
     LineSpacing: -15
   - Name: H1
     TextType: 1
-    TextSize: 128
+    TextSize: 90
     Font: {fileID: 11400000, guid: c7409b676309f3c4d8eee81e12a60fe6, type: 2}
     FontStyle: 0
     FontWeight: 400
@@ -63,8 +63,8 @@ MonoBehaviour:
     LineSpacing: -15
   - Name: text
     TextType: 6
-    TextSize: 14
-    Font: {fileID: 11400000, guid: f6f4405a125c81449a8eb9de4af38f93, type: 2}
+    TextSize: 16
+    Font: {fileID: 11400000, guid: 1269cf98995b44645b4e65bf9d5968f7, type: 2}
     FontStyle: 0
     FontWeight: 400
     CharacterSpacing: -3

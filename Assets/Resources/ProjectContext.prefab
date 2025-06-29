@@ -431,7 +431,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b7b1560eca5db54e8b50fea72ed0550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelsTutorials: []
+  _levelsTutorials:
+  - _levelNumber: 1
+    _tutorial: {fileID: 11400000, guid: 8395c0396897b074f83734ecb61a783d, type: 2}
+    Name: Level 1 tutorial
+  - _levelNumber: 2
+    _tutorial: {fileID: 11400000, guid: 58fa8d4eb564bc94c920242e86ff3d92, type: 2}
+    Name: Level 2 tutorial
+  - _levelNumber: 3
+    _tutorial: {fileID: 11400000, guid: f9bfdc7dc3bebdb4db3a52beca4db345, type: 2}
+    Name: Level 3 tutorial
+  - _levelNumber: 4
+    _tutorial: {fileID: 11400000, guid: 377b3c0ea3f741f49a01ee6755ecc58b, type: 2}
+    Name: Level 4 tutorial
 --- !u!1 &7024175725620723223
 GameObject:
   m_ObjectHideFlags: 0

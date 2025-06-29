@@ -8,6 +8,7 @@ namespace OFG.ChessPeak
     public class TutorialPopupData
     {
         [SerializeField] private string _title;
+        [TextArea]
         [SerializeField] private string _description;
 
         public string Title => _title;
