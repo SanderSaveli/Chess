@@ -77,9 +77,12 @@ namespace OFG.ChessPeak
 
         private bool HandleMove()
         {
-            if (_pointerController.TryGetHoveredCell(out _, out Vector2Int position2) &&
+            if (_pointerController.TryGetHoveredCell(out CellBase cell, out Vector2Int position2) &&
 _moves.Contains(position2))
             {
+                SetCursorSelection(position2);
+                Debug.Log(cell);
+                Debug.Log(_pointerController.GetRay());
                 MoveSelectedFigure();
                 return true;
             }
