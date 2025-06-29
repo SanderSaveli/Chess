@@ -61,14 +61,20 @@ namespace OFG.ChessPeak
 
         public Vector2 GetPointerPosition()
         {
-            if (Input.touchCount > 0)
-            {
-                return Input.GetTouch(0).position;
-            }
-            else
-            {
-                return Vector2.zero;
-            }
+#if UNITY_EDITOR || UNITY_STANDALONE
+            return Input.mousePosition;
+#elif UNITY_ANDROID || UNITY_IOS
+    if (Input.touchCount > 0)
+    {
+        return Input.GetTouch(0).position;
+    }
+    else
+    {
+        return Vector2.zero;
+    }
+#else
+    return Input.mousePosition;
+#endif
         }
 
         public Vector3 RayToWorldPosition()
