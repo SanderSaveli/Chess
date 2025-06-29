@@ -88,7 +88,6 @@ namespace CustomText
             _locale = type;
             _settings.LanguageKey = type.ToString();
             OnLoadedTexts?.Invoke();
-            Debug.Log(_settings.LanguageKey);
         }
 
         public void SetLocaleOrDefault(string value)

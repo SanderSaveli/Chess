@@ -18,7 +18,7 @@ namespace OFG.ChessPeak
 
         private GameField _gameField;
 
-        public Ray GetRay() => _camera.ScreenPointToRay(GetPointerPosition());//_camera.ScreenPointToRay(Input.mousePosition);
+        public Ray GetRay() => _camera.ScreenPointToRay(Input.mousePosition);
 
         public void Init(GameField gameField) => _gameField = gameField;
 
@@ -58,24 +58,6 @@ namespace OFG.ChessPeak
         //    Ray ray = GetRay();
         //    return TryGetCard(out card, ray);
         //}
-
-        public Vector2 GetPointerPosition()
-        {
-#if UNITY_EDITOR || UNITY_STANDALONE
-            return Input.mousePosition;
-#elif UNITY_ANDROID || UNITY_IOS
-    if (Input.touchCount > 0)
-    {
-        return Input.GetTouch(0).position;
-    }
-    else
-    {
-        return Vector2.zero;
-    }
-#else
-    return Input.mousePosition;
-#endif
-        }
 
         public Vector3 RayToWorldPosition()
         {

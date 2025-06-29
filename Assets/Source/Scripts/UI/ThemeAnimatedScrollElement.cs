@@ -1,3 +1,4 @@
+using TreeEditor;
 using UnityEngine;
 using Zenject;
 
@@ -41,8 +42,8 @@ namespace OFG.ChessPeak
             }
         }
 
-        protected Color SetColorAlfa(Color color, float a)
-        {
+        protected Color SetColorAlfa(Color color, float a) 
+        { 
             color.a = a;
             return color;
         }

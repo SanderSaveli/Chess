@@ -63,9 +63,6 @@ namespace OFG.ChessPeak
                 TargetScale,
                 ref _scaleVelocity,
                 _scaleSmoothTime);
-            Vector3 pos = transform.localPosition;
-            pos.z = 500;
-            transform.localPosition = pos;
         }
 
         public void Init(CardType cardType, Transform startPosition)
@@ -74,9 +71,7 @@ namespace OFG.ChessPeak
             _image.enabled = true;
             _image.sprite = _themeData.cardSet.deckcView;
             transform.position = startPosition.position;
-            Vector3 pos = startPosition.position;
-            pos.z = -10;
-            TargetPosition = pos;
+            TargetPosition = startPosition.position;
             startPos = startPosition.position;
         }
 

@@ -32,7 +32,6 @@ namespace OFG.ChessPeak
 
         private void ApplyLocate()
         {
-            Debug.Log(_typeLocale.ToString());
             _textManager.SetLocale( _typeLocale);
         }
     }

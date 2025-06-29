@@ -21,10 +21,6 @@ namespace OFG.ChessPeak
     {
         [SerializeField] private List<LevelTutorial> _levelsTutorials;
 
-        private void Start()
-        {
-            PlayerPrefs.SetInt(Const.TUTORIAL_KEY + 2, 0);
-        }
         public TutorialSO GetTutorial(int levelNumber)
         {
             return _levelsTutorials.FirstOrDefault(t => t.LevelNumber == levelNumber).Tutorial;

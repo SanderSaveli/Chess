@@ -1,6 +1,8 @@
 using CustomText;
 using IUP.Toolkit;
+using Singletones;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph.Drawing.Colors;
 using UnityEngine;
 
 namespace OFG.ChessPeak
@@ -12,14 +14,13 @@ namespace OFG.ChessPeak
         private int _actualThemeIndex;
         private ColorSettings _colorData;
         public ThemeData actualTheme => _actualTheme;
-        public int actualThemeIndex => _actualThemeIndex;
+        public int actualThemeIndex=> _actualThemeIndex;
         public IReadOnlyList<ThemeData> themes => _themes;
 
         public void Awake()
         {
             _colorData = ColorSettings.Instance;
-            if (!PlayerPrefs.HasKey(GetThemeKey(0)))
-            {
+            if (!PlayerPrefs.HasKey(GetThemeKey(0))){
                 InstantThemeKeys();
             }
             SetActualTheme();
@@ -58,7 +59,7 @@ namespace OFG.ChessPeak
             List<PlayerThemeContext> contexts = new List<PlayerThemeContext>();
             foreach (var theme in _themes)
             {
-                contexts.Add(new PlayerThemeContext(theme, PlayerPrefs.GetInt(GetThemeKey(i)) == 1));
+                contexts.Add( new PlayerThemeContext( theme, PlayerPrefs.GetInt(GetThemeKey(i)) == 1));
                 i++;
             }
             return contexts;
@@ -81,7 +82,7 @@ namespace OFG.ChessPeak
         private void InstantThemeKeys()
         {
             int i = 0;
-            foreach (var theme in _themes)
+            foreach(var theme in _themes)
             {
                 PlayerPrefs.SetInt(GetThemeKey(i), 0);
                 i++;

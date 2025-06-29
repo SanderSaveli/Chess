@@ -27,7 +27,7 @@ namespace OFG.ChessPeak
 
         public void SelectFigureUpdate()
         {
-            if (IsPointerDown())
+            if (Input.GetMouseButtonDown(0))
             {
                 if (_selectedFigure != null)
                 {
@@ -49,7 +49,7 @@ namespace OFG.ChessPeak
         private void HandleSelect(Vector2Int pos, Figure figure)
         {
             SetCursorSelection(pos);
-            _startDragFrom = _pointerController.GetPointerPosition();
+            _startDragFrom = Input.mousePosition;
             SelectFigure(figure, pos);
             UnsetSelectedCard();
         }
@@ -66,9 +66,9 @@ namespace OFG.ChessPeak
                 }
                 SelectOptions();
             }
-            else if (IsPointerUp())
+            else if (Input.GetMouseButtonUp(0))
             {
-                if((_startDragFrom - (Vector3)_pointerController.GetPointerPosition()).magnitude > 0.2f)
+                if((_startDragFrom - Input.mousePosition).magnitude > 0.2f)
                 {
                     HandleMove();
                 }
@@ -223,28 +223,6 @@ _moves.Contains(position2))
                 EventBusProvider.EventBus.InvokeEvent<EventFigureMoved>();
             }
             _selectedFigure = null;
-        }
-
-        public bool IsPointerDown()
-        {
-#if UNITY_EDITOR || UNITY_STANDALONE
-            return Input.GetMouseButtonDown(0);
-#elif UNITY_ANDROID || UNITY_IOS
-    return Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began;
-#else
-    return Input.GetMouseButtonDown(0);
-#endif
-        }
-
-        public bool IsPointerUp()
-        {
-#if UNITY_EDITOR || UNITY_STANDALONE
-            return Input.GetMouseButtonUp(0);
-#elif UNITY_ANDROID || UNITY_IOS
-    return Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended;
-#else
-    return Input.GetMouseButtonUp(0);
-#endif
         }
     }
 }

@@ -12,411 +12,333 @@
     "EN": "Start game"
   },
   {
-    "ID": "3",
+    "ID": "",
     "KEY": "change_theme",
     "RU": "Сменить тему",
     "EN": "Change Theme"
   },
   {
-    "ID": "4",
+    "ID": "",
     "KEY": "custom_levels",
     "RU": "Пользовательсике уровни",
     "EN": "custom levels"
   },
   {
-    "ID": "5",
+    "ID": "",
     "KEY": "editor",
     "RU": "Редактор уровней",
     "EN": "editor"
   },
   {
-    "ID": "6",
+    "ID": "",
     "KEY": "profile",
     "RU": "Профиль",
     "EN": "profile"
   },
   {
-    "ID": "7",
+    "ID": "",
     "KEY": "settings",
     "RU": "настройки",
     "EN": "settings"
   },
   {
-    "ID": "8",
+    "ID": "",
     "KEY": "quit",
     "RU": "выход",
     "EN": "quit"
   },
   {
-    "ID": "9",
+    "ID": "",
     "KEY": "back",
     "RU": "назад",
     "EN": "back"
   },
   {
-    "ID": "10",
+    "ID": "",
     "KEY": "go_to_menu",
     "RU": "в меню",
     "EN": "go to menu"
   },
   {
-    "ID": "11",
+    "ID": "",
     "KEY": "music",
     "RU": "музыка",
     "EN": "music\r"
   },
   {
-    "ID": "12",
+    "ID": "",
     "KEY": "sounds",
     "RU": "звуки",
     "EN": "sounds"
   },
   {
-    "ID": "13",
+    "ID": "",
     "KEY": "animation_speed\n",
     "RU": "скорость анимации",
     "EN": "animation speed\r"
   },
   {
-    "ID": "14",
+    "ID": "",
     "KEY": "language",
     "RU": "Язык",
     "EN": "language"
   },
   {
-    "ID": "15",
+    "ID": "",
     "KEY": "english",
     "RU": "English",
     "EN": "English"
   },
   {
-    "ID": "16",
+    "ID": "",
     "KEY": "russian",
     "RU": "Русский",
     "EN": "Русский"
   },
   {
-    "ID": "17",
+    "ID": "",
     "KEY": "creator_name",
     "RU": "Создатель:",
     "EN": "creator name:"
   },
   {
-    "ID": "18",
+    "ID": "",
     "KEY": "level_rating",
     "RU": "Рейтинг:",
     "EN": "level rating:"
   },
   {
-    "ID": "19",
+    "ID": "",
     "KEY": "theme_name_default",
     "RU": "Снежный пик",
     "EN": "Snow Peak"
   },
   {
-    "ID": "20",
+    "ID": "",
     "KEY": "theme_name_violet",
     "RU": "Фиалка ",
     "EN": "violet flower"
   },
   {
-    "ID": "21",
+    "ID": "",
     "KEY": "theme_name_desert",
     "RU": "Пустыня",
     "EN": "desert"
   },
   {
-    "ID": "22",
+    "ID": "",
     "KEY": "theme_name_black",
     "RU": "Черынй и белый",
     "EN": "Black and white"
   },
   {
-    "ID": "23",
+    "ID": "",
     "KEY": "theme_name_spring",
     "RU": "Весна",
     "EN": "Spring"
   },
   {
-    "ID": "24",
+    "ID": "",
     "KEY": "theme_name_sakura",
     "RU": "Сакура",
     "EN": "Сакура"
   },
   {
-    "ID": "25",
+    "ID": "",
     "KEY": "theme_name_dragon",
     "RU": "Пепельный дракон",
     "EN": "Ash Dragon"
   },
   {
-    "ID": "26",
+    "ID": "",
     "KEY": "registration",
     "RU": "регистрация",
     "EN": "registration"
   },
   {
-    "ID": "27",
+    "ID": "",
     "KEY": "authorization",
     "RU": "авторизация",
     "EN": "authorization"
   },
   {
-    "ID": "28",
+    "ID": "",
     "KEY": "enter_login",
     "RU": "Введите логин",
     "EN": "enter login"
   },
   {
-    "ID": "29",
+    "ID": "",
     "KEY": "enter_password",
     "RU": "Введите пароль",
     "EN": "enter password"
   },
   {
-    "ID": "30",
+    "ID": "",
     "KEY": "repeat_password",
     "RU": "Повторите пароль",
     "EN": "Repeat password"
   },
   {
-    "ID": "31",
+    "ID": "",
     "KEY": "create_account",
     "RU": "Создать аккаунт",
     "EN": "create an account"
   },
   {
-    "ID": "32",
+    "ID": "",
     "KEY": "login_account",
     "RU": "Войти в аккаунт",
     "EN": "Login to account"
   },
   {
-    "ID": "33",
+    "ID": "",
     "KEY": "default_registration_error",
     "RU": "Произошла ошибка, попробуйте позже",
     "EN": "An error occurred, I will change it later"
   },
   {
-    "ID": "34",
+    "ID": "",
     "KEY": "ok",
     "RU": "хорошо",
     "EN": "ok"
   },
   {
-    "ID": "35",
+    "ID": "",
     "KEY": "restart",
     "RU": "Заново",
     "EN": "restart"
   },
   {
-    "ID": "36",
+    "ID": "",
     "KEY": "next_level",
     "RU": "следующий уровень ",
     "EN": "next level"
   },
   {
-    "ID": "37",
+    "ID": "",
     "KEY": "create",
     "RU": "Создать",
     "EN": "create"
   },
   {
-    "ID": "38",
+    "ID": "",
     "KEY": "to_menu",
     "RU": "в меню",
     "EN": "go to menu"
   },
   {
-    "ID": "39",
+    "ID": "",
     "KEY": "king",
     "RU": "Король",
     "EN": "king"
   },
   {
-    "ID": "40",
+    "ID": "",
     "KEY": "queen",
     "RU": "Ферзь ",
     "EN": "queen"
   },
   {
-    "ID": "41",
+    "ID": "",
     "KEY": "rook",
     "RU": "Ладья",
     "EN": "rook"
   },
   {
-    "ID": "42",
+    "ID": "",
     "KEY": "knight",
     "RU": "Конь",
     "EN": "knight"
   },
   {
-    "ID": "43",
+    "ID": "",
     "KEY": "bishop",
     "RU": "Слон",
     "EN": "bishop"
   },
   {
-    "ID": "44",
+    "ID": "",
     "KEY": "pawn",
     "RU": "Пешка",
     "EN": "pawn"
   },
   {
-    "ID": "45",
+    "ID": "",
     "KEY": "black_king",
     "RU": "Черный король",
     "EN": "Black king"
   },
   {
-    "ID": "46",
+    "ID": "",
     "KEY": "delete",
     "RU": "Удалить",
     "EN": "Delete"
   },
   {
-    "ID": "47",
+    "ID": "",
     "KEY": "clear",
     "RU": "Отчистить",
     "EN": "clear"
   },
   {
-    "ID": "48",
+    "ID": "",
     "KEY": "deck",
     "RU": "Колода",
     "EN": "Deck"
   },
   {
-    "ID": "49",
+    "ID": "",
     "KEY": "hand",
     "RU": "Рука",
     "EN": "Hand"
   },
   {
-    "ID": "50",
+    "ID": "",
     "KEY": "close",
     "RU": "Закрыть",
     "EN": "Close"
   },
   {
-    "ID": "51",
+    "ID": "",
     "KEY": "try_again",
     "RU": "Попробовать снова",
     "EN": "Try again"
   },
   {
-    "ID": "52",
+    "ID": "",
     "KEY": "connection_error",
     "RU": "Это могла быть ошибка сети, проверьте свое интернет соединение",
     "EN": "There may be a connection error, check your internet connection"
   },
   {
-    "ID": "53",
+    "ID": "",
     "KEY": "went_wrong",
     "RU": "Что-то пошло не так...",
     "EN": "something went wrong..."
   },
   {
-    "ID": "54",
+    "ID": "",
     "KEY": "custom_level_win",
     "RU": "Поздравляем! \nТы побудил!",
     "EN": "Congratulations!\nyou win!"
   },
   {
-    "ID": "55",
+    "ID": "",
     "KEY": "rate_level",
     "RU": "Оцени уровень",
     "EN": "Rate the level"
   },
   {
-    "ID": "56",
+    "ID": "",
     "KEY": "repeat",
     "RU": "Пройти заново",
     "EN": "repeat"
   },
   {
-    "ID": "57",
+    "ID": "",
     "KEY": "rate",
     "RU": "Оценить",
     "EN": "rate"
-  },
-  {
-    "ID": "58",
-    "KEY": "tutorial_1_1",
-    "RU": "Привет! Давай разберемся с правилами игры, это не займет много времени.",
-    "EN": "Hi! Let's go over the rules of the game, it won't take long."
-  },
-  {
-    "ID": "59",
-    "KEY": "tutorial_1_2",
-    "RU": "Твоя главная задача- поставить мат черному королю, все как в шахматах. Но есть нюанс...",
-    "EN": "Your main task is to checkmate the black king, just like in chess. But there is a nuance..."
-  },
-  {
-    "ID": "60",
-    "KEY": "tutorial_1_3",
-    "RU": "Чтобы переместить фигуру тебе нужно потратить карточку того же типа. Доступные карты нахдятся в нижней правой части экрана",
-    "EN": "To move a figure you need to spend a card of the same type. Available cards are in the lower right part of the screen"
-  },
-  {
-    "ID": "61",
-    "KEY": "tutorial_1_4",
-    "RU": "Попробуй нажать на карту, чтобы выбрать ее, а затем сходи ферзем, чтобы поставить мат черному королю",
-    "EN": "Try clicking on a card to select it, then move your queen to checkmate the black king."
-  },
-  {
-    "ID": "62",
-    "KEY": "tutorial_2_1",
-    "RU": "Отлично, ты прошел свой первый уровень, поздравляю!",
-    "EN": "Great, you've passed your first level, congratulations!"
-  },
-  {
-    "ID": "63",
-    "KEY": "tutorial_2_2",
-    "RU": "Теперь попробуем позицию по сложнее. Выбирай карточки внищзу экрана, чтобы совершить ход фигурой того же типа.",
-    "EN": "Now let's try a more difficult position. Select cards at the bottom of the screen to make a move with a piece of the same type."
-  },
-  {
-    "ID": "64",
-    "KEY": "tutorial_2_3",
-    "RU": "Будь внимателен! Если карточки закончаться, а мат не будет объявлен- придется начинать с начала.",
-    "EN": "Be careful! If the cards run out and the checkmate is not announced, you will have to start from the beginning."
-  },
-  {
-    "ID": "65",
-    "KEY": "tutorial_3_1",
-    "RU": "У тебя хорошо получается, продолжай в том же духе!",
-    "EN": "You're doing great, keep up the good work!"
-  },
-  {
-    "ID": "66",
-    "KEY": "tutorial_3_2",
-    "RU": "Кстати, если вдруг поставишь пат- это тоже считается поражением, удачи",
-    "EN": "By the way, if you suddenly put a stalemate, this is also considered a defeat, good luck"
-  },
-  {
-    "ID": "67",
-    "KEY": "tutorial_4_1",
-    "RU": "Так держать! Теперь поговорим о еще одном важном элементе игры ",
-    "EN": "Keep it up! Now let's talk about another important element of the game"
-  },
-  {
-    "ID": "68",
-    "KEY": "tutorial_4_2",
-    "RU": "Колода. она располагается в левом нижнем углу экрана. После каждого хода ты будешь брать карты из нее, если они не закончились.",
-    "EN": "Deck. It is located in the lower left corner of the screen. After each move, you will take cards from it if they are not finished."
-  },
-  {
-    "ID": "69",
-    "KEY": "tutorial_4_3",
-    "RU": "Ты можешь нажать на колоду, чтобы увидеть карты и их порядок в колоде.",
-    "EN": "You can click on the deck to see the cards and their order in the deck."
-  },
-  {
-    "ID": "70",
-    "KEY": "tutorial_4_4",
-    "RU": "Планируй свои действия наперед, учитывая какие карты тебе придут из колоды.",
-    "EN": "Plan your actions in advance, taking into account what cards you will receive from the deck."
   }
 ]

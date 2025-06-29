@@ -14,10 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tutorialPopups:
   - _title: test_tutorial
-    _description: tutorial_1_1
+    _description: test_tutorial
   - _title: test_tutorial_2
-    _description: tutorial_1_2
-  - _title: test_tutorial_2
-    _description: tutorial_1_3
-  - _title: test_tutorial_2
-    _description: tutorial_1_4
+    _description: test_tutorial_2
