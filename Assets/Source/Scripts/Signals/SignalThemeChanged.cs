@@ -1,12 +1,12 @@
-using CustomText;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace OFG.ChessPeak
 {
     public readonly struct SignalThemeChanged
     {
-        public readonly ColorSettings ColorSettings;
+        public readonly ThemeData Theme;
+
+        public SignalThemeChanged(ThemeData theme)
+        {
+            Theme = theme;
+        }
     }
 }

@@ -5,45 +5,27 @@
     {
       "pos": {
         "x": 1,
+        "y": 1,
+        "magnitude": 1.41421354,
+        "sqrMagnitude": 2
+      },
+      "type": 4,
+      "color": 1
+    },
+    {
+      "pos": {
+        "x": 1,
         "y": 3,
         "magnitude": 3.1622777,
         "sqrMagnitude": 10
       },
-      "type": 5,
-      "color": 0
-    },
-    {
-      "pos": {
-        "x": 2,
-        "y": 1,
-        "magnitude": 2.236068,
-        "sqrMagnitude": 5
-      },
-      "type": 3,
-      "color": 1
-    },
-    {
-      "pos": {
-        "x": 3,
-        "y": 0,
-        "magnitude": 3.0,
-        "sqrMagnitude": 9
-      },
-      "type": 4,
+      "type": 1,
       "color": 1
     }
   ],
   "Cells": [],
-  "CardsInHand": [
-    4,
-    5
-  ],
-  "CardsInDeck": [
-    2,
-    4,
-    5,
-    6
-  ],
+  "CardsInHand": [],
+  "CardsInDeck": [],
   "fieldSize": {
     "x": 4,
     "y": 4,

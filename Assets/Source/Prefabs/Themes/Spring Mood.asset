@@ -160,7 +160,7 @@ MonoBehaviour:
   _themeShopBG: {fileID: 21300000, guid: 0a502c412be82244e983659ce3a97dd3, type: 3}
   _mascMaterial: {fileID: 2100000, guid: 2f587def88d113c41a1930fa4a13586b, type: 2}
   _deckMaterial: {fileID: 2100000, guid: 8bc6d56849443874ab8ed00f1edbf51e, type: 2}
-  _mountainsMaterial: {fileID: 0}
+  _mountainsMaterial: {fileID: 2100000, guid: 1f29d107bc12ecc409b6c30be0dfc179, type: 2}
   _whiteCellMaterial: {fileID: 2100000, guid: bfea4b65eee1cd746ad2235b1274de73, type: 2}
   _blackCellMaterial: {fileID: 2100000, guid: c72b3932f37b3c14c8c2a78b7cd81d9d, type: 2}
   _figureSet: {fileID: 11400000, guid: 2ee1e1ab8941d9f4cb31be1d280b7de4, type: 2}

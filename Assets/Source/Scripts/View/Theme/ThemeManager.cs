@@ -2,6 +2,7 @@ using CustomText;
 using IUP.Toolkit;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace OFG.ChessPeak
 {
@@ -14,6 +15,14 @@ namespace OFG.ChessPeak
         public ThemeData actualTheme => _actualTheme;
         public int actualThemeIndex => _actualThemeIndex;
         public IReadOnlyList<ThemeData> themes => _themes;
+
+        private SignalBus _signalBus;
+
+        [Inject]
+        public void Construct(SignalBus signalBus)
+        {
+            _signalBus = signalBus;
+        }
 
         public void Awake()
         {
@@ -50,6 +59,7 @@ namespace OFG.ChessPeak
             PlayerPrefs.SetInt(PrefsKey.ActualTheme, index);
             EventNewThemeSet ctx = new EventNewThemeSet(_actualTheme);
             EventBusProvider.EventBus.InvokeEvent(ctx);
+            _signalBus.Fire(new SignalThemeChanged(theme));
         }
 
         public List<PlayerThemeContext> GetThemeContext()
