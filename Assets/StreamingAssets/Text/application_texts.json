@@ -141,7 +141,7 @@
     "ID": "24",
     "KEY": "theme_name_sakura",
     "RU": "Сакура",
-    "EN": "Сакура"
+    "EN": "Sakura"
   },
   {
     "ID": "25",
@@ -418,5 +418,17 @@
     "KEY": "tutorial_4_4",
     "RU": "Планируй свои действия наперед, учитывая какие карты тебе придут из колоды.",
     "EN": "Plan your actions in advance, taking into account what cards you will receive from the deck."
+  },
+  {
+    "ID": "",
+    "KEY": "you_lost",
+    "RU": "Поражение",
+    "EN": "you lost"
+  },
+  {
+    "ID": "",
+    "KEY": "you_win",
+    "RU": "Победа!",
+    "EN": "you win!"
   }
 ]

@@ -153,6 +153,12 @@ MonoBehaviour:
   - Name: LevelName_Field
     TextColorType: 44
     Color: {r: 1, g: 1, b: 1, a: 1}
+  - Name: BlackKing_Left
+    TextColorType: 45
+    Color: {r: 0.14117648, g: 0.14901961, b: 0.16862746, a: 1}
+  - Name: BlackKing_Right
+    TextColorType: 46
+    Color: {r: 0.45490196, g: 0.07058824, b: 0.06666667, a: 1}
   _mainMenuImage: {fileID: 21300000, guid: 4097774a325fbcc4e9fa82f6d7f2a7ff, type: 3}
   _gameBG: {fileID: 21300000, guid: 80616662e9a893f44871f88b3ba50857, type: 3}
   _mainMenuPanel: {fileID: 21300000, guid: 78ebf14468967e44a89201f6096ac6ff, type: 3}

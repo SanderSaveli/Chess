@@ -18,6 +18,7 @@ namespace OFG.ChessPeak
 
         public void Fill(PlayerThemeContext value)
         {
+            Debug.Log(value.Theme.Name);
             _textKey.SetText(value.Theme.Name);
             _image.sprite = value.Theme.ThemeShopBG;
             _selectedColor = Color.white;

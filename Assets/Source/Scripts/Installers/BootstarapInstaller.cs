@@ -43,6 +43,7 @@ namespace OFG.ChessPeak
             Container.DeclareSignal<SignalStartLoadScene>();
             Container.DeclareSignal<SignalOpenSystemLevel>();
             Container.DeclareSignal<SignalValuteChange>();
+            Container.DeclareSignal<SignalThemeChanged>();
             #endregion
         }
 
