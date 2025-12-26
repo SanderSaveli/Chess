@@ -27,7 +27,7 @@ namespace OFG.ChessPeak
 
         public void SelectFigureUpdate()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (IsPointerDown())
             {
                 if (_selectedFigure != null)
                 {
@@ -49,7 +49,7 @@ namespace OFG.ChessPeak
         private void HandleSelect(Vector2Int pos, Figure figure)
         {
             SetCursorSelection(pos);
-            _startDragFrom = Input.mousePosition;
+            _startDragFrom = _pointerController.GetPointerPosition();
             SelectFigure(figure, pos);
             UnsetSelectedCard();
         }
@@ -66,9 +66,9 @@ namespace OFG.ChessPeak
                 }
                 SelectOptions();
             }
-            else if (Input.GetMouseButtonUp(0))
+            else if (IsPointerUp())
             {
-                if((_startDragFrom - Input.mousePosition).magnitude > 0.2f)
+                if((_startDragFrom - (Vector3)_pointerController.GetPointerPosition()).magnitude > 0.2f)
                 {
                     HandleMove();
                 }
@@ -80,6 +80,7 @@ namespace OFG.ChessPeak
             if (_pointerController.TryGetHoveredCell(out _, out Vector2Int position2) &&
 _moves.Contains(position2))
             {
+                SetCursorSelection(position2);
                 MoveSelectedFigure();
                 return true;
             }
@@ -201,7 +202,6 @@ _moves.Contains(position2))
 
         private void MoveSelectedFigure()
         {
-            Debug.Log(_selectedFigure.FigureType);
             _gameField.Figures[_selectedFigurePosition] = null;
             Vector3 worldPosition = _gameField.Position2ToWorld(_previousCursorPosition);
             _selectedFigure.View.Down();
@@ -223,6 +223,28 @@ _moves.Contains(position2))
                 EventBusProvider.EventBus.InvokeEvent<EventFigureMoved>();
             }
             _selectedFigure = null;
+        }
+
+        public bool IsPointerDown()
+        {
+#if UNITY_EDITOR || UNITY_STANDALONE
+            return Input.GetMouseButtonDown(0);
+#elif UNITY_ANDROID || UNITY_IOS
+    return Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began;
+#else
+    return Input.GetMouseButtonDown(0);
+#endif
+        }
+
+        public bool IsPointerUp()
+        {
+#if UNITY_EDITOR || UNITY_STANDALONE
+            return Input.GetMouseButtonUp(0);
+#elif UNITY_ANDROID || UNITY_IOS
+    return Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended;
+#else
+    return Input.GetMouseButtonUp(0);
+#endif
         }
     }
 }

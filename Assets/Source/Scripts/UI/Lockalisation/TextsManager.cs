@@ -41,13 +41,14 @@ namespace CustomText
 
         private void GetTexts()
         {
-            if (Application.isEditor)
-                StartCoroutine(APIServer.GET_BY_URL(URL, SetTexts, Error));
-            else
-            {
-                Debug.Log("TEXTS найден " + _path);
-                _storageService.Load<List<TextTableStruct>>(_path, SetTexts);
-            }
+            StartCoroutine(APIServer.GET_BY_URL(URL, SetTexts, Error));
+            //if (Application.isEditor)
+            //    StartCoroutine(APIServer.GET_BY_URL(URL, SetTexts, Error));
+            //else
+            //{
+            //    Debug.Log("TEXTS найден " + _path);
+            //    _storageService.Load<List<TextTableStruct>>(_path, SetTexts);
+            //}
         }
 
         private void Error(string s)
@@ -88,6 +89,7 @@ namespace CustomText
             _locale = type;
             _settings.LanguageKey = type.ToString();
             OnLoadedTexts?.Invoke();
+            Debug.Log(_settings.LanguageKey);
         }
 
         public void SetLocaleOrDefault(string value)

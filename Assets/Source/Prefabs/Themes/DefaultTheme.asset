@@ -122,7 +122,7 @@ MonoBehaviour:
     Color: {r: 0.011764707, g: 0.21176472, b: 0.2509804, a: 1}
   - Name: PanelInGame_Background
     TextColorType: 34
-    Color: {r: 0.38823533, g: 0.5372549, b: 0.54901963, a: 1}
+    Color: {r: 0.65882355, g: 0.81960785, b: 0.827451, a: 1}
   - Name: CustomLevels_Background
     TextColorType: 35
     Color: {r: 0.38823533, g: 0.5372549, b: 0.54901963, a: 1}
@@ -153,7 +153,13 @@ MonoBehaviour:
   - Name: LevelName_Field
     TextColorType: 44
     Color: {r: 0.011764707, g: 0.21176472, b: 0.2509804, a: 1}
-  _mainMenuImage: {fileID: 21300000, guid: 5a4886971a4de5e43b8faf0f64fb58bb, type: 3}
+  - Name: BlackKing_Left
+    TextColorType: 45
+    Color: {r: 0.011764706, g: 0.21176471, b: 0.2509804, a: 1}
+  - Name: BlackKing_Right
+    TextColorType: 46
+    Color: {r: 0.003921569, g: 0.3254902, b: 0.39607844, a: 1}
+  _mainMenuImage: {fileID: 21300000, guid: 5fd6d6e23d7d2174f8e4b97c26875d51, type: 3}
   _gameBG: {fileID: 21300000, guid: c92031873249f2a4988a76c80d681fed, type: 3}
   _mainMenuPanel: {fileID: 21300000, guid: 21e480ba7e9f79d4185a85c5e18dbddd, type: 3}
   _deckEditImage: {fileID: 21300000, guid: 887dc053621209f438128a0e276b4b8f, type: 3}

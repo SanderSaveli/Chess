@@ -1,7 +1,5 @@
 using DG.Tweening;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace OFG.ChessPeak
@@ -37,6 +35,10 @@ namespace OFG.ChessPeak
         public override void AnimateShow(float duration, Action callback)
         {
             gameObject.SetActive(true);
+            if(_rectTransform == null)
+            {
+                _rectTransform = GetComponent<RectTransform>();
+            }
 
             Vector2 fromPos = GetOffsetPosition(enterFrom);
             _rectTransform.anchoredPosition = fromPos;

@@ -14,9 +14,12 @@ namespace OFG.ChessPeak
         [SerializeField] private Settings _projectSettings;
         [SerializeField] private AccountManager _accountManager;
         [SerializeField] private TextsManager _textsManager;
-        [SerializeField] private GameContextHolder _gameEnd;
+        [SerializeField] private GameEndManager _gameEndManager;
         [SerializeField] private SceneLoader _scemeLoader;
         [SerializeField] private TutorialManager _tutorialManager;
+        [SerializeField] private LevelManager _levelManager;
+        [SerializeField] private ValuteManager _valuteManager;
+
         public override void InstallBindings()
         {
             SignalBusInstaller.Install(Container);
@@ -26,17 +29,21 @@ namespace OFG.ChessPeak
             Container.Bind<IProjectSettings>().FromInstance(_projectSettings).AsSingle().NonLazy();
             Container.Bind<IAccountManager>().FromInstance(_accountManager).AsSingle().NonLazy();
             Container.Bind<TextsManager>().FromInstance(_textsManager).AsSingle().NonLazy();
-            Container.Bind<GameContextHolder>().FromInstance(_gameEnd).AsSingle().NonLazy();
+            Container.Bind<IGameEndManager>().FromInstance(_gameEndManager).AsSingle().NonLazy();
             Container.Bind<ISceneLoader>().FromInstance(_scemeLoader).AsSingle().NonLazy();
             Container.Bind<ITutorialManager>().FromInstance(_tutorialManager).AsSingle().NonLazy();
+            Container.Bind<ILevelManager>().FromInstance(_levelManager).AsSingle().NonLazy();
+            Container.Bind<IValuteManager>().FromInstance(_valuteManager).AsSingle().NonLazy();
 
             #region Signals
             Container.DeclareSignal<SignalInputLoadScene>();
-            Container.DeclareSignal<SignalInputLoadCustomLevel>();
-            Container.DeclareSignal<SignalInputLoadThemeShop>();
             Container.DeclareSignal<SignalPlayerAccountUpdated>();
             Container.DeclareSignal<SignalInputOpenWindow>();
-            Container.DeclareSignal<SignalLoadSystemLevel>();
+            Container.DeclareSignal<SignalLoadLevel>();
+            Container.DeclareSignal<SignalStartLoadScene>();
+            Container.DeclareSignal<SignalOpenSystemLevel>();
+            Container.DeclareSignal<SignalValuteChange>();
+            Container.DeclareSignal<SignalThemeChanged>();
             #endregion
         }
 

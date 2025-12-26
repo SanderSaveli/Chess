@@ -1,10 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.Rendering.DebugUI;
 
 namespace OFG.ChessPeak
 {
@@ -18,6 +15,7 @@ namespace OFG.ChessPeak
 
         private void OnEnable()
         {
+            _slider.value = GetCloseness(SetSliderValue());
             _slider.onValueChanged.AddListener(HandleValueChange);
             HandleValueChange(_slider.value);
         }
@@ -29,7 +27,7 @@ namespace OFG.ChessPeak
 
         private void HandleValueChange(float value)
         {
-            Debug.Log(value);
+            Debug.Log("value " + value);
             float v = Mathf.Lerp(_minValue, _maxValue, value);
 
             if (_isFloorToInt)
@@ -41,6 +39,20 @@ namespace OFG.ChessPeak
                 v = (float)Math.Round((double)v, 1);
             }
             _text.text = v.ToString();
+            Debug.Log("v " + v);
+            HandleValue(v);
+        }
+        protected virtual float SetSliderValue()
+        {
+            return _slider.value;
+        }
+        protected virtual void HandleValue(float value)
+        {
+
+        }
+        float GetCloseness(float value)
+        {
+             return Mathf.InverseLerp(_minValue, _maxValue, value);
         }
     }
 }

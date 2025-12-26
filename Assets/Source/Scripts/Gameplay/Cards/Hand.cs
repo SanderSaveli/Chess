@@ -70,6 +70,7 @@ namespace OFG.ChessPeak
             {
                 CardView cardView = _cardViews[i];
                 Vector3 pos = cardView.transform.position;
+                pos.z = 0;
                 cardView.transform.position = cardView.TargetPosition;
                 cardView.TargetPosition = pos;
             }

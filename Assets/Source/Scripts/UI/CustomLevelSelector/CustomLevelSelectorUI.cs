@@ -22,13 +22,18 @@ namespace OFG.ChessPeak
 
         private int _page =1;
         private INetworkManager _networkManager;
+        private ISceneLoader _sceneLoader;
         private SignalBus _signalBus;
 
+        private bool _isLoadLevel;
+        private int _levelId;
+
         [Inject]
-        public void Construct(SignalBus signalBus, INetworkManager networkManager)
+        public void Construct(SignalBus signalBus, INetworkManager networkManager, ISceneLoader sceneLoader)
         {
             _signalBus = signalBus;
             _networkManager = networkManager;
+            _sceneLoader = sceneLoader;
         }
 
         private void OnEnable()
@@ -66,15 +71,18 @@ namespace OFG.ChessPeak
 
         public bool HasPage(int pageNumber) => pageNumber > 0 && pageNumber <= TotalPage;
 
-        private void InvokeOnLevelSelectedEvent(int levelName)
+        private void InvokeOnLevelSelectedEvent(int id)
         {
-            _signalBus.Fire(new SignalInputLoadCustomLevel(levelName));
+            if (_isLoadLevel) return;
+            _networkManager.GetFullCustomLevelData(id, GetFullLevelData, NetworkError);
+            _levelId = id;
+            _isLoadLevel = true;
         }
 
         private void ShowCustomLevles()
         {
             LevelListContext context = new LevelListContext(_itemsPerPage, _page);
-            _networkManager.GetCustomLevelList(context, InitLevelIcons, ErrorGetingLevels);
+            _networkManager.GetCustomLevelList(context, InitLevelIcons, NetworkError);
         }
 
         private void InitLevelIcons(LevelListNetworkData data)
@@ -87,8 +95,9 @@ namespace OFG.ChessPeak
             OnPageUpdated?.Invoke();
         }
 
-        private void ErrorGetingLevels()
+        private void NetworkError()
         {
+            _isLoadLevel = false;
             _mainMenu.OpenLevelsErrorScreen();
         }
 
@@ -107,5 +116,15 @@ namespace OFG.ChessPeak
                 levelButtonView.Clicked -= InvokeOnLevelSelectedEvent;
             }
         }
+
+        private void GetFullLevelData(LevlelNetworkData data)
+        {
+            _isLoadLevel = false;
+            CustomLevelContext ctx = new CustomLevelContext(_levelId);
+            CustomLevelGameEndHandler handler = new CustomLevelGameEndHandler(ctx);
+            Debug.Log("1 " + handler.Type);
+            _sceneLoader.LoadLevel(data.data, handler);
+        }
     }
 }
+

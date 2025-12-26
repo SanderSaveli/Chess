@@ -47,5 +47,7 @@
         LevelName_InputExample = 42,
         LevelName_Entered = 43,
         LevelName_Field = 44,
+        BlackKing_Left = 45,
+        BlackKing_Right = 46
     }
 }

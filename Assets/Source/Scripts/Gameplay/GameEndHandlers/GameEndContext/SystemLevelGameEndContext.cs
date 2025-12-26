@@ -1,11 +1,15 @@
 namespace OFG.ChessPeak
 {
-    public class SystemLevelGameEndContext : BaceGameEndContext
+    public readonly struct SystemLevelGameEndContext
     {
-        public int LevelNumber;
-        public SystemLevelGameEndContext() : base(typeof(SystemLevelGameEndContext))
+        public readonly string WorldID;
+        public readonly int LevelNumber;
+        public readonly ILevelManager LevelManager;
+        public SystemLevelGameEndContext(string WorldId, int levelNumber, ILevelManager levelManager)
         {
-
+            WorldID = WorldId;
+            LevelNumber = levelNumber;
+            LevelManager = levelManager;
         }
     }
 }

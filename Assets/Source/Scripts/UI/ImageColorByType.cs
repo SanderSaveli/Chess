@@ -19,7 +19,7 @@ public class ImageColorByType : MonoBehaviour
         _selectedTextColor = _type;
         if (ColorSettings.Instance == null) return;
         ColorParams textColor = ColorSettings.Instance.Colors.Find(t => t.TextColorType.Equals(_type));
-        if (textColor != null) _image.color = textColor.Color;
+        if (textColor != null && _image!= null) _image.color = textColor.Color;
     }
 
 #if UNITY_EDITOR

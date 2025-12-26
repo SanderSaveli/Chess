@@ -97,6 +97,6 @@ namespace OFG.ChessPeak.LevelBuild
 
             EventFigurePlacedInBuilder context = new EventFigurePlacedInBuilder(position2);
             EventBusProvider.EventBus.InvokeEvent(context);
-        }
+        }  
     }
 }
